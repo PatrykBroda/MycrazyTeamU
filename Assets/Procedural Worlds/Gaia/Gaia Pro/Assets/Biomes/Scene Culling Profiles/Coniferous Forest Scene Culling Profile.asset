@@ -24,20 +24,20 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 205
   - 341
   - 1024
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   - 0
   - 0
   - 0
@@ -56,21 +56,21 @@ MonoBehaviour:
   - UI
   - 
   - 
+  - Player
+  - Monster
+  - Npc
+  - ItemDrop
+  - Door
+  - Ladder
+  - Fence
+  - NoDepthInFirstPerson
   - PW_VFX
+  - Projectile
+  - AggroArea
+  - ItemModel
   - PW_Object_Small
   - PW_Object_Medium
   - PW_Object_Large
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -90,20 +90,20 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 102
   - 171
   - 512
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   - 0
   - 0
   - 0
