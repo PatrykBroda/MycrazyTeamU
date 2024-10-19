@@ -27,6 +27,12 @@ TagManager:
   - FurnaceIngredientSlot
   - FurnaceFuelSlot
   - FurnaceResultSlot
+  - PW - Nature
+  - PW - Prop
+  - PW - Building
+  - Synty Medium Farm
+  - Synty Small Farm
+  - Synty Tree
   layers:
   - Default
   - TransparentFX
@@ -44,13 +50,13 @@ TagManager:
   - Ladder
   - Fence
   - NoDepthInFirstPerson
-  - 
+  - PW_VFX
   - Projectile
   - AggroArea
   - ItemModel
-  - 
-  - 
-  - 
+  - PW_Object_Small
+  - PW_Object_Medium
+  - PW_Object_Large
   - 
   - 
   - 
