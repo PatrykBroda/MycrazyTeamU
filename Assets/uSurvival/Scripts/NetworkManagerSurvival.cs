@@ -31,6 +31,7 @@ public class NetworkManagerSurvival : NetworkManager
     // UI components to avoid FindObjectOfType
     [Header("UI")]
     public UIPopup uiPopup;
+    public GameObject videoRenderTexture;
 
     // we may want to add another game server if the first one gets too crowded.
     // the server list allows people to choose a server.
@@ -373,6 +374,13 @@ public class NetworkManagerSurvival : NetworkManager
             print("AddPlayer: not in lobby" + conn);
             ServerSendError(conn, "AddPlayer: not in lobby", true);
         }
+
+        RemoveBackgroundVideo();
+    }
+
+    void RemoveBackgroundVideo()
+    {
+        videoRenderTexture.SetActive(false);
     }
 
     void OnServerCharacterDelete(NetworkConnection conn, CharacterDeleteMsg message)
