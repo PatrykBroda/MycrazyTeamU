@@ -16,15 +16,19 @@ public class Harvestable : Entity
     [Tooltip("Time in seconds before the harvestable respawns.")]
     public float respawnTime = 60f; // Time in seconds to respawn
 
-    private Health health;
+    // Removed AudioClip and ParticleSystem fields as per previous steps
+
+    // No duplicate 'health' field. Using inherited 'health' from Entity.
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        health = GetComponent<Health>();
+        Debug.Log("Harvestable: OnStartServer called.");
+
         if (health != null)
         {
             health.OnDeath += HandleDeath;
+            Debug.Log("Harvestable: Subscribed to Health.OnDeath.");
         }
         else
         {
@@ -38,6 +42,7 @@ public class Harvestable : Entity
     [Server]
     private void HandleDeath()
     {
+        Debug.Log("Harvestable: HandleDeath called.");
         DropResources();
         StartCoroutine(RespawnCoroutine());
     }
@@ -48,9 +53,11 @@ public class Harvestable : Entity
     [Server]
     private void DropResources()
     {
+        Debug.Log("Harvestable: DropResources called.");
+
         if (resourcePrefab == null)
         {
-            Debug.LogError("Resource Prefab is not assigned in Harvestable.");
+            Debug.LogError("Harvestable: Resource Prefab is not assigned.");
             return;
         }
 
@@ -63,10 +70,12 @@ public class Harvestable : Entity
             // Instantiate and spawn the resource on the network
             GameObject resource = Instantiate(resourcePrefab, dropPosition, Quaternion.identity);
             NetworkServer.Spawn(resource);
+            Debug.Log($"Harvestable: Spawned resource '{resource.gameObject.name}' at {dropPosition}.");
         }
 
         // Destroy the harvestable entity on the server
         NetworkServer.Destroy(gameObject);
+        Debug.Log("Harvestable: Destroyed harvestable GameObject.");
     }
 
     /// <summary>
@@ -76,19 +85,34 @@ public class Harvestable : Entity
     [Server]
     private IEnumerator RespawnCoroutine()
     {
+        Debug.Log($"Harvestable: RespawnCoroutine started. Will respawn in {respawnTime} seconds.");
         yield return new WaitForSeconds(respawnTime);
 
         // Reinstantiate the harvestable object at the original position and rotation
         GameObject respawnedObject = Instantiate(gameObject, transform.position, transform.rotation);
         NetworkServer.Spawn(respawnedObject);
+        Debug.Log("Harvestable: Respawned harvestable GameObject.");
     }
 
     public override void OnStopServer()
     {
         base.OnStopServer();
+        Debug.Log("Harvestable: OnStopServer called.");
+
         if (health != null)
         {
             health.OnDeath -= HandleDeath;
+            Debug.Log("Harvestable: Unsubscribed from Health.OnDeath.");
         }
+    }
+
+    /// <summary>
+    /// Override to handle actions when the object is instantiated on clients.
+    /// </summary>
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        Debug.Log("Harvestable: OnStartClient called.");
+        // Optional: Initialize client-side visual components
     }
 }
