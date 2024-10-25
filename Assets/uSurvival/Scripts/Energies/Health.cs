@@ -79,5 +79,15 @@ public class Health : Energy
         }
     }
 
+    /// <summary>
+    /// Resets the health of the entity to its maximum value.
+    /// </summary>
+    [Server]
+    public void ResetHealth()
+    {
+        currentHealth = max;
+        Debug.Log($"[Health Debug] {gameObject.name} Health reset to {currentHealth}.");
+    }
+
     // Optional: Implement healing or recovery methods if needed
 }

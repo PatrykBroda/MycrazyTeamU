@@ -5,8 +5,12 @@ using Mirror;
 [CreateAssetMenu(menuName = "uSurvival Item/Weapon(Melee)", order = 999)]
 public class MeleeWeaponItem : WeaponItem
 {
+    [Header("Melee Weapon Settings")]
+    [Tooltip("Radius for sphere casting.")]
     public float sphereCastRadius = 0.5f; // Don't make it too big or it will hit the floor first!
-    public float attackRange = 2f; // Define attack range as needed
+
+    [Tooltip("Define melee-specific attack range.")]
+    public float meleeAttackRange = 2f; // Renamed from attackRange
 
     // Usage
     public override Usability CanUseHotbar(Player player, int hotbarIndex, Vector3 lookAt)
@@ -37,7 +41,7 @@ public class MeleeWeaponItem : WeaponItem
             sphereCastRadius,
             direction,
             out hit,
-            attackRange + sphereCastRadius,
+            meleeAttackRange + sphereCastRadius, // Updated usage
             player.gameObject,
             player.look.raycastLayers
         );
@@ -77,14 +81,19 @@ public class MeleeWeaponItem : WeaponItem
         if (victim != null)
         {
             // Log the hit event
-            Debug.LogError($"MeleeWeaponItem: Hit Entity '{victim.gameObject.name}' at position {hit.point}.");
+            Debug.LogError($"[Hit Debug] MeleeWeaponItem: Hit Entity '{victim.gameObject.name}' at position {hit.point}.");
 
             // Deal damage
             if (victim.health != null)
             {
+                // Log current health before taking damage
+                Debug.LogError($"[Health Debug] {victim.gameObject.name} initial Health: {victim.health.CurrentHealth}");
+
                 int totalDamage = player.combat.damage + damage;
                 victim.health.TakeDamage(totalDamage);
-                Debug.Log($"MeleeWeaponItem: Dealt {totalDamage} damage to '{victim.gameObject.name}'. New Health: {victim.health.CurrentHealth}");
+
+                // Log the new health after taking damage
+                Debug.LogError($"[Health Debug] {victim.gameObject.name} took {totalDamage} damage. Current Health: {victim.health.CurrentHealth}");
             }
             else
             {
@@ -107,13 +116,22 @@ public class MeleeWeaponItem : WeaponItem
             ItemSlot slot = player.hotbar.slots[hotbarIndex];
             if (slot.amount > 0)
             {
+                int previousDurability = slot.item.durability;
                 slot.item.durability = Mathf.Max(slot.item.durability - 1, 0);
                 player.hotbar.slots[hotbarIndex] = slot;
-                Debug.Log($"MeleeWeaponItem: Reduced durability of slot {hotbarIndex} to {slot.item.durability}.");
+
+                // Log the durability change
+                Debug.LogError($"[Durability Debug] Slot {hotbarIndex} durability changed from {previousDurability} to {slot.item.durability}.");
+
+                // Optional: Log when durability reaches zero
+                if (slot.item.durability == 0)
+                {
+                    Debug.LogError($"[Durability Debug] Item in slot {hotbarIndex} has broken.");
+                }
             }
             else
             {
-                Debug.Log($"MeleeWeaponItem: Ignored slot {hotbarIndex} due to zero amount.");
+                Debug.LogError($"[Durability Debug] Ignored slot {hotbarIndex} due to zero amount.");
             }
         }
         else
@@ -149,7 +167,13 @@ public class MeleeWeaponItem : WeaponItem
                 }
 
                 // Log the successful weapon use
-                Debug.LogError($"MeleeWeaponItem: Successfully used weapon on '{victim.gameObject.name}'.");
+                Debug.LogError($"[Use Hotbar Debug] MeleeWeaponItem: Successfully used weapon on '{victim.gameObject.name}'.");
+            }
+
+            // Additionally, log the victim's current health
+            if (victim.health != null)
+            {
+                Debug.LogError($"[Health Debug] After OnUsedHotbar: {victim.gameObject.name} Health: {victim.health.CurrentHealth}");
             }
         }
         else
@@ -162,7 +186,7 @@ public class MeleeWeaponItem : WeaponItem
             }
 
             // Log the failed weapon use
-            Debug.LogError("MeleeWeaponItem: Weapon use failed; no Entity hit.");
+            Debug.LogError("[Use Hotbar Debug] MeleeWeaponItem: Weapon use failed; no Entity hit.");
         }
     }
 }
