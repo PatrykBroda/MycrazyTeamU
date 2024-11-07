@@ -104,10 +104,16 @@ public class CraftingRecipe : ScriptableRecipe
     }
 
     // find a recipe based on item slots
+    // find a recipe based on item slots, prioritizing more complex recipes
     public static CraftingRecipe Find(List<ItemSlot> items)
     {
+        // get all recipes sorted by the number of ingredients, from most to least
+        List<CraftingRecipe> sortedRecipes = dictCrafting.Values
+            .OrderByDescending(recipe => recipe.ingredients.Count(ingredient => ingredient.amount > 0))
+            .ToList();
+
         // avoid Linq for performance
-        foreach (CraftingRecipe recipe in dictCrafting.Values)
+        foreach (CraftingRecipe recipe in sortedRecipes)
             if (recipe.CanCraftWith(items))
                 return recipe;
         return null;
