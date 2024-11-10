@@ -20,7 +20,7 @@ MonoBehaviour:
     A Palette that can be used to build stuff.
 
 '
-  image: {fileID: 21300000, guid: d0fc7edf286924893964a5968855ce38, type: 3}
+  image: {fileID: 21300000, guid: 86610d8b399ff1e4bb5b9b5972f88457, type: 3}
   drop: {fileID: 114115959467145612, guid: ba5797c1bace8e04fb2b5ea6a8fa2df3, type: 3}
   modelPrefab: {fileID: 1679553642453974, guid: 5e8e892059985a140a251fb9a00991f6,
     type: 3}
