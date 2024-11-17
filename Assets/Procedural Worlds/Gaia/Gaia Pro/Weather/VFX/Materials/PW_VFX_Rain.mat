@@ -35,7 +35,7 @@ Material:
     m_Floats:
     - _DetailNoiseScale: 2
     - _InvFade: 3
-    - _PW_VFX_Weather_Intensity: 0.95
+    - _PW_VFX_Weather_Intensity: 0
     m_Colors:
     - _MainColor: {r: 1, g: 1, b: 1, a: 0.5453125}
     - _TilingAndSpeed: {r: 18.29, g: 2, b: 0, a: 20}
