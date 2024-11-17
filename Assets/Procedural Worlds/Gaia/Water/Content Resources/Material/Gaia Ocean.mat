@@ -99,7 +99,7 @@ Material:
     - _FoamBubbblesScale: 0.5
     - _FoamBubblesStrength: 0.8
     - _FoamBubblesTile: 1536
-    - _FoamDepth: 1
+    - _FoamDepth: 1.15
     - _FoamEdge: 0.25
     - _FoamMoveSpeed: 0.3
     - _FoamStrength: 2

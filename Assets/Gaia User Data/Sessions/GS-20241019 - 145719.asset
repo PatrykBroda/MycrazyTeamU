@@ -95,6 +95,17 @@ MonoBehaviour:
     sessionPlaybackState: 1
     m_terrainsFoldedOut: 0
     m_serializedExternalAction: 
+  - m_description: Spawning - Multiple Spawners (12)
+    m_operationType: 7
+    m_isActive: 1
+    m_affectedTerrainNames:
+    - Terrain_0_0-20241019 - 150519
+    m_operationDateTime: 15/11/2024 13:28:48
+    scriptableObjectAssetGUID: a70e98957f0b2ea458adc91ff43b7c61
+    m_isFoldedOut: 0
+    sessionPlaybackState: 1
+    m_terrainsFoldedOut: 0
+    m_serializedExternalAction: 
   m_terrainMinMaxCache:
   - guid: 91a7d55c6629ea948b9f87e639e7eb3e
     isWorldmap: 0
@@ -107,6 +118,24 @@ MonoBehaviour:
     min: 0
     max: 0
   m_bakedMaskCacheEntries:
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_12
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_12
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_12
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerTree_7340032_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_5
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_3
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_3
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_3
+    texture: {fileID: 0}
   - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_4
     assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
       - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_4
@@ -118,5 +147,47 @@ MonoBehaviour:
       - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_-3
     fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
       - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_-3
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_5
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerTree_7340032_0
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_0
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_0
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_2
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_2
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_7340032_2
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerTree_7340032_-2
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_-2
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerTree_7340032_-2
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_1048576_0.5
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_1048576_0.5
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_1048576_0.5
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_2097152_0.75
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_2097152_0.75
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_2097152_0.75
+    texture: {fileID: 0}
+  - fileName: Terrain_0_0-20241019 - 150519_LayerGameObject_4194304_1
+    assetPath: Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_4194304_1
+    fullPath: E:/projects/UsurvivalGit/MycrazyTeamU/Assets/Procedural Worlds/Gaia/TerrainCollisionData/Terrain_0_0-20241019
+      - 150519/Terrain_0_0-20241019 - 150519_LayerGameObject_4194304_1
     texture: {fileID: 0}
   m_worldBiomeMaskSettings: {fileID: 0}
