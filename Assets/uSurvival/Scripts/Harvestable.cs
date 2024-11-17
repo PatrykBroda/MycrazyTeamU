@@ -20,6 +20,12 @@ public class Harvestable : Entity
     // Reference to Health component
     private Health healthComponent;
 
+    // Reference to Animator component
+    private Animator animator;
+
+    // Previous health value to detect changes
+    private int previousHealth;
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -35,6 +41,66 @@ public class Harvestable : Entity
         else
         {
             Debug.LogWarning($"{gameObject.name} has no Health component attached.");
+        }
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        Debug.Log("Harvestable: OnStartClient called.");
+
+        // Get the Animator component on the client
+        animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogWarning($"{gameObject.name} has no Animator component attached.");
+        }
+
+        // Get the Health component
+        healthComponent = GetComponent<Health>();
+
+        if (healthComponent != null)
+        {
+            // Initialize previousHealth with the current health
+            previousHealth = healthComponent.CurrentHealth;
+        }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} has no Health component attached.");
+        }
+    }
+
+    private void Update()
+    {
+        // Only proceed if we have the Health component
+        if (healthComponent != null)
+        {
+            int currentHealth = healthComponent.CurrentHealth;
+
+            // Check if health has decreased
+            if (currentHealth < previousHealth)
+            {
+                Debug.Log($"[Harvestable Debug] {gameObject.name} took damage. Current Health: {currentHealth}");
+
+                // Trigger the shake animation
+                PlayShakeAnimation();
+            }
+
+            // Update previousHealth for the next frame
+            previousHealth = currentHealth;
+        }
+    }
+
+    /// <summary>
+    /// Triggers the "Shake" animation.
+    /// </summary>
+    private void PlayShakeAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Shake");
+            Debug.Log("Harvestable: Shake animation triggered.");
         }
     }
 
@@ -150,6 +216,9 @@ public class Harvestable : Entity
         {
             healthComponent.ResetHealth(); // Ensure this method exists in your Health component
             Debug.Log($"[Harvestable Debug] {gameObject.name} Health reset to {healthComponent.CurrentHealth}.");
+
+            // Update previousHealth after resetting
+            previousHealth = healthComponent.CurrentHealth;
         }
         else
         {
@@ -167,16 +236,5 @@ public class Harvestable : Entity
             healthComponent.OnDeath -= HandleDeath;
             Debug.Log("Harvestable: Unsubscribed from Health.OnDeath.");
         }
-    }
-
-    /// <summary>
-    /// Override to handle actions when the object is instantiated on clients.
-    /// </summary>
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-        Debug.Log("Harvestable: OnStartClient called.");
-        // Since we're using gameObject.SetActive, Mirror automatically handles the active state across clients.
-        // No additional setup is required here unless you have client-specific logic.
     }
 }
