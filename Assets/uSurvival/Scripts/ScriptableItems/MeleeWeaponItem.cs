@@ -81,23 +81,23 @@ public class MeleeWeaponItem : WeaponItem
         if (victim != null)
         {
             // Log the hit event
-            Debug.LogError($"[Hit Debug] MeleeWeaponItem: Hit Entity '{victim.gameObject.name}' at position {hit.point}.");
+            Debug.Log($"[Hit Debug] MeleeWeaponItem: Hit Entity '{victim.gameObject.name}' at position {hit.point}.");
 
             // Deal damage
             if (victim.health != null)
             {
                 // Log current health before taking damage
-                Debug.LogError($"[Health Debug] {victim.gameObject.name} initial Health: {victim.health.CurrentHealth}");
+                Debug.Log($"[Health Debug] {victim.gameObject.name} initial Health: {victim.health.CurrentHealth}");
 
                 int totalDamage = player.combat.damage + damage;
                 victim.health.TakeDamage(totalDamage);
 
                 // Log the new health after taking damage
-                Debug.LogError($"[Health Debug] {victim.gameObject.name} took {totalDamage} damage. Current Health: {victim.health.CurrentHealth}");
+                Debug.Log($"[Health Debug] {victim.gameObject.name} took {totalDamage} damage. Current Health: {victim.health.CurrentHealth}");
             }
             else
             {
-                Debug.LogError($"MeleeWeaponItem: Entity '{victim.gameObject.name}' does not have a Health component.");
+                Debug.Log($"MeleeWeaponItem: Entity '{victim.gameObject.name}' does not have a Health component.");
             }
 
             // Check if the victim is Harvestable
@@ -121,17 +121,17 @@ public class MeleeWeaponItem : WeaponItem
                 player.hotbar.slots[hotbarIndex] = slot;
 
                 // Log the durability change
-                Debug.LogError($"[Durability Debug] Slot {hotbarIndex} durability changed from {previousDurability} to {slot.item.durability}.");
+                Debug.Log($"[Durability Debug] Slot {hotbarIndex} durability changed from {previousDurability} to {slot.item.durability}.");
 
                 // Optional: Log when durability reaches zero
                 if (slot.item.durability == 0)
                 {
-                    Debug.LogError($"[Durability Debug] Item in slot {hotbarIndex} has broken.");
+                    Debug.Log($"[Durability Debug] Item in slot {hotbarIndex} has broken.");
                 }
             }
             else
             {
-                Debug.LogError($"[Durability Debug] Ignored slot {hotbarIndex} due to zero amount.");
+                Debug.Log($"[Durability Debug] Ignored slot {hotbarIndex} due to zero amount.");
             }
         }
         else
@@ -167,13 +167,13 @@ public class MeleeWeaponItem : WeaponItem
                 }
 
                 // Log the successful weapon use
-                Debug.LogError($"[Use Hotbar Debug] MeleeWeaponItem: Successfully used weapon on '{victim.gameObject.name}'.");
+                Debug.Log($"[Use Hotbar Debug] MeleeWeaponItem: Successfully used weapon on '{victim.gameObject.name}'.");
             }
 
             // Additionally, log the victim's current health
             if (victim.health != null)
             {
-                Debug.LogError($"[Health Debug] After OnUsedHotbar: {victim.gameObject.name} Health: {victim.health.CurrentHealth}");
+                Debug.Log($"[Health Debug] After OnUsedHotbar: {victim.gameObject.name} Health: {victim.health.CurrentHealth}");
             }
         }
         else
