@@ -10,14 +10,15 @@ using Mirror;
 // note: distinction between WALKING and RUNNING in case we need to know the
 //       difference somewhere (e.g. for endurance recovery)
 // note: AIRBORNE means jumping || falling. no need to have two states for that.
-public enum MoveState : byte {IDLE, WALKING, RUNNING, CROUCHING, CRAWLING, AIRBORNE, CLIMBING, SWIMMING, DEAD}
+public enum MoveState : byte { IDLE, WALKING, RUNNING, CROUCHING, CRAWLING, AIRBORNE, CLIMBING, SWIMMING, DEAD }
 
 [RequireComponent(typeof(CharacterController2k))]
 [RequireComponent(typeof(AudioSource))]
-public class PlayerMovement : NetworkBehaviourNonAlloc
+public partial class PlayerMovement : NetworkBehaviour
 {
     // components to be assigned in inspector
     [Header("Components")]
+    public Joystick joystick;
     public Animator animator;
     public Health health;
     public CharacterController2k controller;
@@ -77,7 +78,7 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
     [Header("Jumping")]
     public float jumpSpeed = 7;
     [HideInInspector] public float jumpLeg;
-    bool jumpKeyPressed;
+    [HideInInspector] public bool jumpKeyPressed;
 
     [Header("Falling")]
     public float fallMinimumMagnitude = 6; // walking down steps shouldn't count as falling and play no falling sound.
@@ -137,6 +138,7 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
     void Awake()
     {
         camera = Camera.main;
+        // Removed joystick assignment from Awake; we'll find it in Update
     }
 
     void OnValidate()
@@ -155,8 +157,11 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
         float vertical = 0;
         if (!UIUtils.AnyInputActive())
         {
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
+            if (joystick != null)
+            {
+                horizontal = joystick.Horizontal;
+                vertical = joystick.Vertical;
+            }
         }
 
         // normalize ONLY IF needs to be normalized (if length>1).
@@ -296,7 +301,7 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
         // measure only the Y direction. we don't want to take fall damage
         // if we jump forward into a wall because xz is high.
         float fallMagnitude = Mathf.Abs(lastFall.y);
-        if(fallMagnitude >= fallDamageMinimumMagnitude)
+        if (fallMagnitude >= fallDamageMinimumMagnitude)
         {
             int damage = Mathf.RoundToInt(fallMagnitude * fallDamageMultiplier);
             health.current -= damage;
@@ -773,9 +778,17 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
         return MoveState.DEAD;
     }
 
-    // use Update to check Input
+    // use Update to check Input and find the joystick
     void Update()
     {
+        // If joystick is null, try to find it
+        if (joystick == null)
+        {
+            GameObject joystickObject = GameObject.Find("Variable Joystick Move");
+            if (joystickObject != null)
+                joystick = joystickObject.GetComponent<Joystick>();
+        }
+
         // local player?
         if (isLocalPlayer)
         {
@@ -996,15 +1009,15 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
             Debug.DrawLine(transform.position, transform.position + desiredDir, Color.cyan);
 
             // update state machine
-            if (state == MoveState.IDLE)           state = UpdateIDLE(inputDir, desiredDir);
-            else if (state == MoveState.WALKING)   state = UpdateWALKINGandRUNNING(inputDir, desiredDir);
-            else if (state == MoveState.RUNNING)   state = UpdateWALKINGandRUNNING(inputDir, desiredDir);
+            if (state == MoveState.IDLE) state = UpdateIDLE(inputDir, desiredDir);
+            else if (state == MoveState.WALKING) state = UpdateWALKINGandRUNNING(inputDir, desiredDir);
+            else if (state == MoveState.RUNNING) state = UpdateWALKINGandRUNNING(inputDir, desiredDir);
             else if (state == MoveState.CROUCHING) state = UpdateCROUCHING(inputDir, desiredDir);
-            else if (state == MoveState.CRAWLING)  state = UpdateCRAWLING(inputDir, desiredDir);
-            else if (state == MoveState.AIRBORNE)  state = UpdateAIRBORNE(inputDir, desiredDir);
-            else if (state == MoveState.CLIMBING)  state = UpdateCLIMBING(inputDir, desiredDir);
-            else if (state == MoveState.SWIMMING)  state = UpdateSWIMMING(inputDir, desiredDir);
-            else if (state == MoveState.DEAD)      state = UpdateDEAD(inputDir, desiredDir);
+            else if (state == MoveState.CRAWLING) state = UpdateCRAWLING(inputDir, desiredDir);
+            else if (state == MoveState.AIRBORNE) state = UpdateAIRBORNE(inputDir, desiredDir);
+            else if (state == MoveState.CLIMBING) state = UpdateCLIMBING(inputDir, desiredDir);
+            else if (state == MoveState.SWIMMING) state = UpdateSWIMMING(inputDir, desiredDir);
+            else if (state == MoveState.DEAD) state = UpdateDEAD(inputDir, desiredDir);
             else Debug.LogError("Unhandled Movement State: " + state);
 
             // cache this move's state to detect landing etc. next time
@@ -1252,7 +1265,7 @@ public class PlayerMovement : NetworkBehaviourNonAlloc
     {
         if (controller.velocity.sqrMagnitude > 0 && (inputDir.x != 0 || inputDir.y != 0))
         {
-            stepCycle += (controller.velocity.magnitude + (speed*(state == MoveState.WALKING ? 1 : runStepLength)))*
+            stepCycle += (controller.velocity.magnitude + (speed * (state == MoveState.WALKING ? 1 : runStepLength))) *
                          Time.fixedDeltaTime;
         }
 

@@ -8,7 +8,7 @@ public class Zoom : NetworkBehaviourNonAlloc
 
     // cache cameras (main and weapon camera) and default FOW
     Camera[] cameras;
-    float defaultFieldOfView;
+    public float defaultFieldOfView;
 
     void Awake()
     {
@@ -16,7 +16,7 @@ public class Zoom : NetworkBehaviourNonAlloc
         defaultFieldOfView = cameras[0].fieldOfView;
     }
 
-    void AssignFieldOfView(float value)
+    public void AssignFieldOfView(float value)
     {
         foreach (Camera cam in cameras)
             cam.fieldOfView = value;

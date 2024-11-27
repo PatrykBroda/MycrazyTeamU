@@ -2,9 +2,10 @@
 using UnityEngine;
 using Mirror;
 
-public class PlayerLook : NetworkBehaviourNonAlloc
+public partial class PlayerLook : NetworkBehaviour
 {
     [Header("Components")]
+    public Joystick joystick;
     public IKHandling ik;
     public PlayerMovement movement;
     public Health health;
@@ -50,7 +51,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
     // to be modified. Z (forward/backward) should NEVER be modified because
     // then we could look through walls when tilting our head forward to look
     // downwards, etc. This can be avoided in the camera positioning logic, but
-    // is way to complex and not worth it at all.
+    // is way too complex and not worth it at all.
     [Header("Offsets - Standing")]
     public Vector2 firstPersonOffsetStanding = Vector2.zero;
     public Vector2 thirdPersonOffsetStanding = Vector2.up;
@@ -100,7 +101,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
     //
     // * and we can't only calculate and store the values in Update because
     //   ShoulderLookAt needs them live in LateUpdate, Update is too far behind
-    //   and would cause the arms to be lag behind a bit.
+    //   and would cause the arms to lag behind a bit.
     //
     [SyncVar, HideInInspector] public Vector3 syncedLookDirectionFar;
 
@@ -151,7 +152,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
             else
             {
                 // the only person to need the raycast direction is the local player (right now).
-                // we use the far direction for other player's animations and we pass a the
+                // we use the far direction for other player's animations and we pass the
                 // raycast direction to the server when using items. there should be no reason to
                 // sync those 12 extra bytes over the network, so let's just show an error here
                 // => can still use the below code if necessary some day
@@ -161,12 +162,13 @@ public class PlayerLook : NetworkBehaviourNonAlloc
                 Debug.LogError("PlayerLook.lookPositionRaycasted isn't synced so you can only call it on the local player right now.\n" + Environment.StackTrace);
                 return Vector3.zero;
             }
-       }
+        }
     }
 
     void Awake()
     {
         camera = Camera.main;
+        // Remove joystick finding from here
     }
 
     void Start()
@@ -206,6 +208,16 @@ public class PlayerLook : NetworkBehaviourNonAlloc
     {
         if (!isLocalPlayer) return;
 
+        // Find the joystick if not yet assigned
+        if (joystick == null)
+        {
+            GameObject joystickObj = GameObject.Find("Variable Joystick Look");
+            if (joystickObj != null)
+            {
+                joystick = joystickObj.GetComponent<Joystick>();
+            }
+        }
+
         // send only each 'sendinterval', otherwise we send at whatever
         // the player's tick rate is, which is like DDOS
         // (SendInterval doesn't seem to apply to Cmd, so we have to do
@@ -225,36 +237,45 @@ public class PlayerLook : NetworkBehaviourNonAlloc
         }
 
         // only while alive and while cursor is locked, otherwise we are in a UI
-        if (health.current > 0 && Cursor.lockState == CursorLockMode.Locked)
+        if (health.current > 0)
         {
-            // calculate horizontal and vertical rotation steps
-            float xExtra = Input.GetAxis("Mouse X") * XSensitivity;
-            float yExtra = Input.GetAxis("Mouse Y") * YSensitivity;
-
-            // use mouse to rotate character
-            // (but use camera freelook parent while climbing so player isn't rotated
-            //  while climbing)
-            // (no free look in first person)
-            if (movement.state == MoveState.CLIMBING ||
-                (Input.GetKey(freeLookKey) && !UIUtils.AnyInputActive() && distance > 0))
+            // Check if joystick is available
+            if (joystick != null)
             {
-                // set to freelook parent already?
-                if (camera.transform.parent != freeLookParent)
-                    InitializeFreeLook();
+                // calculate horizontal and vertical rotation steps
+                float xExtra = joystick.Horizontal * XSensitivity;
+                float yExtra = joystick.Vertical * YSensitivity;
 
-                // rotate freelooktarget for horizontal, rotate camera for vertical
-                freeLookParent.Rotate(new Vector3(0, xExtra, 0));
-                camera.transform.Rotate(new Vector3(-yExtra, 0, 0));
+                // use joystick to rotate character
+                // (but use camera freelook parent while climbing so player isn't rotated
+                //  while climbing)
+                // (no free look in first person)
+                if (movement.state == MoveState.CLIMBING ||
+                    (Input.GetKey(freeLookKey) && !UIUtils.AnyInputActive() && distance > 0))
+                {
+                    // set to freelook parent already?
+                    if (camera.transform.parent != freeLookParent)
+                        InitializeFreeLook();
+
+                    // rotate freelook target for horizontal, rotate camera for vertical
+                    freeLookParent.Rotate(new Vector3(0, xExtra, 0));
+                    camera.transform.Rotate(new Vector3(-yExtra, 0, 0));
+                }
+                else
+                {
+                    // set to player parent already?
+                    if (camera.transform.parent != transform)
+                        InitializeForcedLook();
+
+                    // rotate character for horizontal, rotate camera for vertical
+                    transform.Rotate(new Vector3(0, xExtra, 0));
+                    camera.transform.Rotate(new Vector3(-yExtra, 0, 0));
+                }
             }
             else
             {
-                // set to player parent already?
-                if (camera.transform.parent != transform)
-                    InitializeForcedLook();
-
-                // rotate character for horizontal, rotate camera for vertical
-                transform.Rotate(new Vector3(0, xExtra, 0));
-                camera.transform.Rotate(new Vector3(-yExtra, 0, 0));
+                // Handle alternative input or do nothing if joystick is not found
+                // For example, you could use mouse input here as a fallback
             }
         }
     }
@@ -351,7 +372,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
             // -> always based on original distance and only overwrite if necessary
             //    so that we dont have to zoom out again after view block disappears
             // -> we cast exactly from cam to target, which is the crosshair position.
-            //    if anything is inbetween then view blocking changes the distance.
+            //    if anything is in between then view blocking changes the distance.
             //    this works perfectly.
             float finalDistance = distance;
             Debug.DrawLine(target, camera.transform.position, Color.white);
@@ -378,7 +399,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
     {
         if (isLocalPlayer)
         {
-            return camera != null && // camera isn't initialized while loading players in charselection
+            return camera != null && // camera isn't initialized while loading players in character selection
                    camera.transform.parent == freeLookParent;
         }
         return syncedIsFreeLooking;
@@ -389,7 +410,7 @@ public class PlayerLook : NetworkBehaviourNonAlloc
         camera.transform.SetParent(freeLookParent, false);
         freeLookParent.localRotation = Quaternion.identity; // initial rotation := where we look at right now
 
-        // disable body ik while free looking. only the head should turn.
+        // disable body IK while free looking. only the head should turn.
         // feels best, especially when holding weapons
         ik.lookAtBodyWeightActive = false;
     }

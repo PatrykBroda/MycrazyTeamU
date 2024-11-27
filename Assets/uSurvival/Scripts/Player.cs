@@ -10,7 +10,7 @@ public class SyncDictionaryIntDouble : SyncDictionary<int, double> {}
 
 [Serializable] public class UnityEventPlayer : UnityEvent<Player> {}
 
-public class Player : Entity
+public partial class Player : Entity
 {
     // fields for all player components to avoid costly GetComponent calls
     [Header("Components")]

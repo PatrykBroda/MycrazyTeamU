@@ -204,7 +204,7 @@ public class PlayerHotbar : ItemContainer, ICombatBonus
 
     // update //////////////////////////////////////////////////////////////////
     [Client]
-    void TryUseItem(UsableItem itemData)
+    public void TryUseItem(UsableItem itemData)
     {
         // note: no .amount > 0 check because it's either an item or hands
 
@@ -254,33 +254,33 @@ public class PlayerHotbar : ItemContainer, ICombatBonus
         }
     }
 
-    void Update()
-    {
+   // void Update()
+  //  {
         // current selection model needs to be refreshed on the client AND on
         // the server, because the server needs the muzzle location when firing.
         // -> slots.Callback is only called on clients as it seems, so we need
         //    to do it in Update. RefreshLocation only refresh if necessary
         //    anyway.
-        equipment.RefreshLocation(equipment.weaponMount, slots[selection]);
+   //     equipment.RefreshLocation(equipment.weaponMount, slots[selection]);
 
         // localplayer selected item usage
-        if (isLocalPlayer)
-        {
-            // mouse down and can we use items right now?
-            if (Input.GetMouseButton(0) &&
-                Cursor.lockState == CursorLockMode.Locked &&
-                health.current > 0 &&
-                movement.state != MoveState.CLIMBING &&
-                reloading.ReloadTimeRemaining() == 0 &&
-                !look.IsFreeLooking() &&
-                !Utils.IsCursorOverUserInterface() &&
-                Input.touchCount <= 1)
-            {
-                // use current item or hands
-                TryUseItem(GetCurrentUsableItemOrHands());
-            }
-        }
-    }
+  //      if (isLocalPlayer)
+  //      {
+  // //         // mouse down and can we use items right now?
+   //         if (Input.GetMouseButton(0) &&
+   //             Cursor.lockState == CursorLockMode.Locked &&
+   //             health.current > 0 &&
+    //            movement.state != MoveState.CLIMBING &&
+    //            reloading.ReloadTimeRemaining() == 0 &&
+  //              !look.IsFreeLooking() &&
+  //              !Utils.IsCursorOverUserInterface() &&
+ //               Input.touchCount <= 1)
+ //           {
+ //               // use current item or hands
+ //               TryUseItem(GetCurrentUsableItemOrHands());
+  //          }
+  //      }
+  //  }
 
     ////////////////////////////////////////////////////////////////////////////
     [Command]
