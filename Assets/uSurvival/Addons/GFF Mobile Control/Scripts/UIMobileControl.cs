@@ -14,6 +14,9 @@ namespace GFFAddons
         public Transform[] slots;
         public Transform[] pockets;
 
+        public Button buttonMain;
+        public GameObject panelMain;
+
         public Button buttonAttack;
         public Button buttonReload;
         public Button buttonInteraction;
@@ -33,38 +36,10 @@ namespace GFFAddons
 
         private void Start()
         {
-            // Initialize button listeners if assigned
-            if (buttonAttack != null)
+            buttonMain.onClick.SetListener(() =>
             {
-                buttonAttack.onClick.AddListener(() =>
-                {
-                    Player player = Player.localPlayer;
-                    if (player != null)
-                    {
-                        player.hotbar.TryUseItem(player.hotbar.GetCurrentUsableItemOrHands());
-                    }
-                });
-            }
-
-            if (buttonReload != null)
-            {
-                buttonReload.onClick.AddListener(() =>
-                {
-                    Player player = Player.localPlayer;
-                    if (player != null)
-                    {
-                        ReloadWeapon(player);
-                    }
-                });
-            }
-
-            if (buttonZoom != null)
-            {
-                buttonZoom.onClick.AddListener(() =>
-                {
-                    zoomKeyPressed = !zoomKeyPressed;
-                });
-            }
+                panelMain.SetActive(!panelMain.activeSelf);
+            });
         }
 
         private void Update()
@@ -72,127 +47,144 @@ namespace GFFAddons
             Player player = Player.localPlayer;
             if (player != null)
             {
-                // Activate gameplay panel
                 panel.SetActive(true);
+                joystickMove.gameObject.SetActive(!panelMain.activeSelf);
+                joystickLook.gameObject.SetActive(!panelMain.activeSelf);
 
-                // Ensure joysticks are always visible
-                joystickMove.gameObject.SetActive(true);
-                joystickLook.gameObject.SetActive(true);
-
-                // Update jump key state
-                player.movement.jumpKeyPressed = jumpKeyPressed;
-
-                // Handle Zoom functionality
-                UsableItem itemData = player.hotbar.GetCurrentUsableItemOrHands();
-                if (zoomKeyPressed && itemData is RangedWeaponItem rangedItem)
+                buttonAttack.onClick.SetListener(() =>
                 {
-                  //  player.zoom.AssignFieldOfView(player.zoom.defaultFieldOfView - rangedItem.zoom);
-                }
-                else
+                    player.hotbar.TryUseItem(player.hotbar.GetCurrentUsableItemOrHands());
+                });
+
+                buttonReload.onClick.SetListener(() =>
                 {
-                  //  player.zoom.AssignFieldOfView(player.zoom.defaultFieldOfView);
-                }
-
-                // Refresh hotbar slots
-                RefreshHotbarSlots(player);
-            }
-            else
-            {
-                // Hide gameplay panel if player is not available
-                panel.SetActive(false);
-            }
-        }
-
-        private void RefreshHotbarSlots(Player player)
-        {
-            for (int i = 0; i < slots.Length; ++i)
-            {
-                UIHotbarSlot slot = slots[i].GetComponent<UIHotbarSlot>();
-                slot.dragAndDropable.name = i.ToString(); // Drag-and-drop index
-
-                ItemSlot itemSlot = player.hotbar.slots[i];
-
-                if (itemSlot.amount > 0)
-                {
-                    // Refresh valid item
-                    slot.tooltip.enabled = true;
-                    slot.dragAndDropable.dragable = true;
-
-                    // Use durability colors
-                    if (itemSlot.item.maxDurability > 0)
+                    if (player.health.current > 0 && player.movement.state != MoveState.CLIMBING && player.reloading.ReloadTimeRemaining() == 0)
                     {
-                        if (itemSlot.item.durability == 0)
-                            slot.image.color = brokenDurabilityColor;
-                        else if (itemSlot.item.DurabilityPercent() < lowDurabilityThreshold)
-                            slot.image.color = lowDurabilityColor;
-                        else
-                            slot.image.color = Color.white;
-                    }
-                    else
-                    {
-                        slot.image.color = Color.white; // Reset for no-durability items
-                    }
-
-                    slot.image.sprite = itemSlot.item.image;
-
-                    if (slot.tooltip.IsVisible())
-                        slot.tooltip.text = itemSlot.ToolTip();
-
-                    // Cooldown for usable items
-                    if (itemSlot.item.data is UsableItem usable)
-                    {
-                        float cooldown = player.GetItemCooldown(usable.cooldownCategory);
-                        slot.cooldownCircle.fillAmount = usable.cooldown > 0 ? cooldown / usable.cooldown : 0;
-                    }
-                    else
-                    {
-                        slot.cooldownCircle.fillAmount = 0;
-                    }
-
-                    slot.amountOverlay.SetActive(itemSlot.amount > 1);
-                    if (itemSlot.amount > 1)
-                        slot.amountText.text = itemSlot.amount.ToString();
-                }
-                else
-                {
-                    // Refresh invalid item
-                    slot.tooltip.enabled = false;
-                    slot.dragAndDropable.dragable = false;
-                    slot.image.color = Color.clear;
-                    slot.image.sprite = null;
-                    slot.cooldownCircle.fillAmount = 0;
-                    slot.amountOverlay.SetActive(false);
-                }
-            }
-        }
-
-        private void ReloadWeapon(Player player)
-        {
-            if (player.health.current > 0 && player.movement.state != MoveState.CLIMBING && player.reloading.ReloadTimeRemaining() == 0)
-            {
-                ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
-                if (slot.amount > 0 && slot.item.data is RangedWeaponItem itemData)
-                {
-                    if (itemData.requiredAmmo != null && slot.item.ammo < itemData.magazineSize)
-                    {
-                        int inventoryIndex = player.inventory.GetItemIndexByName(itemData.requiredAmmo.name);
-                        if (inventoryIndex != -1)
+                        // usable item in selected hotbar slot?
+                        ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
+                        if (slot.amount > 0 && slot.item.data is RangedWeaponItem itemData)
                         {
-                            player.reloading.CmdReloadWeaponOnHotbar(inventoryIndex, player.hotbar.selection);
-                            if (itemData.reloadSound) player.reloading.audioSource.PlayOneShot(itemData.reloadSound);
+                            // requires ammo and not fully loaded yet?
+                            if (itemData.requiredAmmo != null && slot.item.ammo < itemData.magazineSize)
+                            {
+                                // ammo type in inventory?
+                                int inventoryIndex = player.inventory.GetItemIndexByName(itemData.requiredAmmo.name);
+                                if (inventoryIndex != -1)
+                                {
+                                    // ask server to reload
+                                    player.reloading.CmdReloadWeaponOnHotbar(inventoryIndex, player.hotbar.selection);
+
+                                    // play audio locally to avoid server delay and to save bandwidth
+                                    if (itemData.reloadSound) player.reloading.audioSource.PlayOneShot(itemData.reloadSound);
+                                }
+                            }
                         }
                     }
+                });
+
+                buttonInteraction.gameObject.SetActive(player.interaction != null && player.interaction.current != null);
+                buttonInteraction.onClick.SetListener(() =>
+                {
+                    // call OnInteract on client and server
+                    // (some effects like doors are server sided, some effects like
+                    //  'open storage UI' are client sided)
+                    player.interaction.current.OnInteractClient(player);
+                    player.interaction.CmdInteract(player.look.lookPositionRaycasted);
+                });
+
+                buttonJump.gameObject.SetActive(!panelMain.activeSelf);
+
+                player.movement.jumpKeyPressed = jumpKeyPressed;
+
+                buttonZoom.onClick.SetListener(() =>
+                {
+
+                });
+
+                UsableItem itemData = player.hotbar.GetCurrentUsableItemOrHands();
+                if (zoomKeyPressed && itemData is RangedWeaponItem)
+                {
+                  //  player.zoom.AssignFieldOfView(player.zoom.defaultFieldOfView - ((RangedWeaponItem)itemData).zoom);
+                }
+                // otherwise reset field of view
+             //   else player.zoom.AssignFieldOfView(player.zoom.defaultFieldOfView);
+
+                //gff zoom
+                //player.GetComponent<Zoom>().SetZoomState();
+
+                // refresh all
+                for (int i = 0; i < slots.Length; ++i)
+                {
+                    UIHotbarSlot slot = slots[i].GetComponent<UIHotbarSlot>();
+                    slot.dragAndDropable.name = i.ToString(); // drag and drop index
+
+                    ItemSlot itemSlot = player.hotbar.slots[i];
+
+                    if (itemSlot.amount > 0)
+                    {
+                        // refresh valid item
+                        slot.tooltip.enabled = true;
+                        slot.dragAndDropable.dragable = true;
+                        // use durability colors?
+                        if (itemSlot.item.maxDurability > 0)
+                        {
+                            if (itemSlot.item.durability == 0)
+                                slot.image.color = brokenDurabilityColor;
+                            else if (itemSlot.item.DurabilityPercent() < lowDurabilityThreshold)
+                                slot.image.color = lowDurabilityColor;
+                            else
+                                slot.image.color = Color.white;
+                        }
+                        else slot.image.color = Color.white; // reset for no-durability items
+                        slot.image.sprite = itemSlot.item.image;
+                        // only build tooltip while it's actually shown. this
+                        // avoids MASSIVE amounts of StringBuilder allocations.
+                        if (slot.tooltip.IsVisible())
+                            slot.tooltip.text = itemSlot.ToolTip();
+                        // cooldown if usable item
+                        if (itemSlot.item.data is UsableItem)
+                        {
+                            UsableItem usable = (UsableItem)itemSlot.item.data;
+                            float cooldown = player.GetItemCooldown(usable.cooldownCategory);
+                            slot.cooldownCircle.fillAmount = usable.cooldown > 0 ? cooldown / usable.cooldown : 0;
+                        }
+                        else slot.cooldownCircle.fillAmount = 0;
+                        slot.amountOverlay.SetActive(itemSlot.amount > 1);
+                        if (itemSlot.amount > 1) slot.amountText.text = itemSlot.amount.ToString();
+                    }
+                    else
+                    {
+                        // refresh invalid item
+                        slot.tooltip.enabled = false;
+                        slot.dragAndDropable.dragable = false;
+                        slot.image.color = Color.clear;
+                        slot.image.sprite = null;
+                        slot.cooldownCircle.fillAmount = 0;
+                        slot.amountOverlay.SetActive(false);
+                    }
                 }
             }
+            else panel.SetActive(false);
         }
 
-        // UI Button Event Handlers
-        public void OnJumpPointerDown() => jumpKeyPressed = true;
+        public void OnJumpPointerDown()
+        {
+            jumpKeyPressed = true;
+        }
 
-        public void OnJumpPointerUp() => jumpKeyPressed = false;
+        public void OnJumpPointerUp()
+        {
+            jumpKeyPressed = false;
+        }
 
-        public void OnZoomPointerDown() => zoomKeyPressed = true;
+        public void OnZoomPointerDown()
+        {
+            zoomKeyPressed = true;
+        }
 
-        public void OnZoomPointerUp() => zoomKeyPressed = false;
+        public void OnZoomPointerUp()
+        {
+            zoomKeyPressed = false;
+        }
     }
 }
