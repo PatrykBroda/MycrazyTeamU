@@ -99,7 +99,7 @@ Material:
     - _FoamBubbblesScale: 0.5
     - _FoamBubblesStrength: 0.8
     - _FoamBubblesTile: 1536
-    - _FoamDepth: 1.15
+    - _FoamDepth: 1
     - _FoamEdge: 0.25
     - _FoamMoveSpeed: 0.3
     - _FoamStrength: 2
@@ -172,7 +172,7 @@ Material:
     - _EdgeWaterColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _PW_MainLightColor: {r: 0.47450984, g: 0.7490196, b: 1, a: 1}
-    - _PW_MainLightDir: {r: 0.3213938, g: 0.76604444, b: -0.5566705, a: 0}
+    - _PW_MainLightDir: {r: 0.32139382, g: 0.76604456, b: -0.5566703, a: 0}
     - _PW_MainLightSpecular: {r: 0.3137255, g: 0.27189302, b: 0.22345544, a: 1}
     - _PW_SSSTint: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionColor: {r: 0.1, g: 0.12, b: 0.17, a: 1}
