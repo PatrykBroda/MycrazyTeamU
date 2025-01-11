@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbc25bef1e7c4f4aa348edf964275e9, type: 3}
+  m_Name: Water Ostrozka
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 50
+  dropFromInventory: 1
+  dropFromEquipment: 0
+  dropFromHotbar: 0
+  _itemWeight: 250
+  canSendOnMail: 0
+  buyPrice: 0
+  sellPrice: 0
+  sellable: 1
+  itemMallPrice: 10
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 50
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some hydration.
+
+
+    Restores {USAGEHYDRATION}
+    Hydration on use.
+
+
+    Amount: {AMOUNT}'
+  image: {fileID: 21300000, guid: 43630fc17820f6c4abb25c439242d188, type: 3}
+  drop: {fileID: 114354571381432026, guid: eda199d14b507f0408840508d86e85d1, type: 3}
+  modelPrefab: {fileID: 0}
+  equipmentItemType: 0
+  category: Pocket
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 8300000, guid: 0844a7685cee3dc4d989c0079d97b082, type: 3}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  cooldown: 1
+  _cooldownCategory: Drinks
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  potionType: 2
+  usageBoost: 0
+  _usageRadiation: 0
+  usageHealth: 10
+  usageHydration: 100
+  usageNutrition: 0

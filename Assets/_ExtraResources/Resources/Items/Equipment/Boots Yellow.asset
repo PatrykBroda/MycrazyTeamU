@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c06992fabc4400c8c2e33ff979c9e2, type: 3}
+  m_Name: Boots Yellow
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 1
+  canPutInTheStorageGuild: 1
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 300
+  canSendOnMail: 0
+  buyPrice: 7500
+  sellPrice: 2000
+  sellable: 1
+  tradable: 1
+  itemMallPrice: 1750
+  canPutInTheStorage: 1
+  skins: []
+  localization:
+  - text: English
+    language: 10
+    description: Allows you to enter infected places
+  - text: Russian
+    language: 30
+    description: "\u041F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0437\u0430\u0445\u043E\u0434\u0438\u0442\u044C
+      \u0432 \u0437\u0430\u0440\u0430\u0436\u0435\u043D\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430"
+  maxStack: 1
+  maxDurability: 10000
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    {DESCRIPTION}
+
+
+    {DEFENSEBONUS}
+
+
+    {DURABILITYMAX}
+
+    {DURABILITY}
+
+
+    {WEIGHT}
+
+    {TRADABLE}
+
+    {BUYPRICE}'
+  image: {fileID: 21300000, guid: 4cc7abb9ea8f2a14ead4b3df0b4ad184, type: 3}
+  lootSound: {fileID: 8300000, guid: bce84b3643e6f284782de83c55b79cc5, type: 3}
+  drop: {fileID: 112787239652236888, guid: 0c1bf0af9e598244ab7472b1176f84de, type: 3}
+  modelPrefab: {fileID: 7596906282980819730, guid: daea183bb5707764a8f85974005e8cb0,
+    type: 3}
+  equipmentItemType: 8
+  category: Boots
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 8300000, guid: 1886247efa26c704487936b7855c9c80, type: 3}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  puttingOnSound: {fileID: 0}
+  removedSound: {fileID: 0}
+  cooldown: 0
+  _cooldownCategory: 
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  armorType: 0
+  multiplierReducingDamage: 0.5
+  requiredCombatSkill: {fileID: 0}
+  requiredLevel: 1
+  moveSpeedBonus: 0
+  moveSpeedBonusPercentage: 0
+  secondCategory: Filter
+  secondItems:
+  - {fileID: 11400000, guid: 238d8e36b367f4245bebecf2ca7c9ab6, type: 2}
+  - {fileID: 11400000, guid: 3c95cf63703c35e40bdb3ec0b5f78f72, type: 2}
+  _addSlots: 0
+  _weightBonus: 0
+  _radiationResistanceBonus: 1
+  healthBonus: 0
+  hydrationBonus: 0
+  nutritionBonus: 0
+  damageBonus: 0
+  defenseBonus: 2
+  defaultBodyArmor: 0

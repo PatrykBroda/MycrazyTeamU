@@ -22,14 +22,16 @@ MonoBehaviour:
 
     {DAMAGE} Damage
 
-    Fire Interval: {COOLDOWN}s
+    Fire
+    Interval: {COOLDOWN}s
 
     Requires: {REQUIREDAMMO}
 
 
     Ammo: {AMMO} / {MAGAZINESIZE}
 
-    Durability: {DURABILITY}%
+    Durability:
+    {DURABILITY}%
 
 '
   image: {fileID: 21300000, guid: f57532adb27f4442b9dffe630b960d2d, type: 3}
@@ -42,6 +44,7 @@ MonoBehaviour:
   failedUseSound: {fileID: 8300000, guid: 9c977571ca7f343cf8e739a311e3034e, type: 3}
   emptySound: {fileID: 8300000, guid: 7516a6affda49469993f31d09f151128, type: 3}
   cooldown: 0.375
+  _cooldownCategory: 
   shoulderLookAtWhileHolding: 1
   useDirectly: 0
   attackRange: 30
@@ -55,5 +58,5 @@ MonoBehaviour:
   decalPrefab: {fileID: 1369496945668376, guid: 12cfe7016056b48e6875cfc877e30d28,
     type: 3}
   decalOffset: 0.01
-  recoilHorizontal: 1
-  recoilVertical: 4
+  recoilHorizontal: 3
+  recoilVertical: 8

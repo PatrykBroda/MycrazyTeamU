@@ -1,0 +1,40 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on asset store
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : NPC Talk
+Addon version : 1.0
+Date of creation / editing 19.07.2024
+Require Components : Addons Core (UniversalSlot, UtilsExtended), Interaction Extended, Npc
+Recommended Components : none
+Compatible projects : uSurvival 1.87
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Link : https://u3d.as/3koC
+
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+									  Installation and Configuration
+
+0. follow the instructions to configure the addon "Interaction Extended"
+
+1. a) add an NPC prefab (Addons/GFF NPC/Prefabs/Npc Zombie) to the scene
+   b) add a script "NpcTalk" to this prefab
+   c) in script "NpcTalk" in field "Talk Data" select the prepared file with conversations
+
+
+
+2. Drag the "GFF Npc Talk.prefab" (/Addons/GFF NPC Talk/Prefabs/GFF Npc Talk.prefab) to the Canvas
+
+
+3. Select the "Main Camera" object. In the inspector on script "CursorLocking.cs" 
+    add element "NpcTalkPanel " to Array "windows That Unlock Cursor" (Canvas\GFF Npc Talk\NpcTalkPanel)

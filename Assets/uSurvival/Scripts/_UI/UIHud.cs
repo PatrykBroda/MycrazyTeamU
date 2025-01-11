@@ -1,67 +1,157 @@
-﻿using UnityEngine;
+﻿using GFFAddons;
+using Mirror;
+using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHud : MonoBehaviour
+namespace uSurvival
 {
-    public GameObject panel;
-    public Slider healthSlider;
-    public Text healthStatus;
-    public Slider hydrationSlider;
-    public Text hydrationStatus;
-    public Slider nutritionSlider;
-    public Text nutritionStatus;
-    public Slider temperatureSlider;
-    public Text temperatureStatus;
-    public string temperatureUnit = "°C";
-    public int temperatureDecimalDigits = 1;
-    public Slider enduranceSlider;
-    public Text enduranceStatus;
-    public Text ammoText;
-
-    void Update()
+    public class UIHud : MonoBehaviour
     {
-        Player player = Player.localPlayer;
-        if (player)
+        public KeyCode hotKey = KeyCode.LeftAlt;
+
+        [Header("Colors")]
+        public Color brokenDurabilityColor = Color.red;
+        public Color lowDurabilityColor = Color.magenta;
+        [Range(0.01f, 0.99f)] public float lowDurabilityThreshold = 0.1f;
+
+        [Header("Elements")]
+        public GameObject panel;
+
+        public Slider sliderBoost;
+
+        //Health
+        public Image imageHealth;
+        public TextMeshProUGUI textHealth;
+
+        //Hydration
+        public Image imageHydration;
+        public TextMeshProUGUI textHydration;
+
+        //Nutrition
+        public Image imageNutrition;
+        public TextMeshProUGUI textNutrition;
+
+        //Endurance
+        public Image imageEndurance;
+        public TextMeshProUGUI textEndurance;
+
+        //Weight
+        public Image imageWeight;
+        public GameObject weightOverload;
+
+        [Header("Elements Disabled In Game")]
+        public GameObject panelMainMenu;
+        public GameObject elementsDisabledInGame;
+
+        [Header("Lifetime, PlayersKilled, MonstersKilled")]
+        public TextMeshProUGUI textLifetime;
+        public TextMeshProUGUI textPlayersKilled;
+        public TextMeshProUGUI textMonstersKilled;
+
+        [Header("Damage, Defense, MoveSpeed")]
+        public TextMeshProUGUI damageText;
+        public TextMeshProUGUI defenseText;
+        public TextMeshProUGUI moveSpeedText;
+
+        [Header("Respawn")]
+        public GameObject panelRespawn;
+        public Text timeText;
+
+        private IEnumerator Start()
         {
-            panel.SetActive(true);
-
-            // health
-            healthSlider.value = player.health.Percent();
-            healthStatus.text = player.health.current + " / " + player.health.max;
-
-            // hydration
-            hydrationSlider.value = player.hydration.Percent();
-            hydrationStatus.text = player.hydration.current + " / " + player.hydration.max;
-
-            // nutrition
-            nutritionSlider.value = player.nutrition.Percent();
-            nutritionStatus.text = player.nutrition.current + " / " + player.nutrition.max;
-
-            // temperature (scaled down, see Temperature script)
-            temperatureSlider.value = player.temperature.Percent();
-            float currentTemperature = player.temperature.current / 100f;
-            float maxTemperature = player.temperature.max / 100f;
-            string toStringFormat = "F" + temperatureDecimalDigits.ToString(); // "F2" etc.
-            temperatureStatus.text = currentTemperature.ToString(toStringFormat) + " / " +
-                                     maxTemperature.ToString(toStringFormat) + " " +
-                                     temperatureUnit;
-
-            // endurance
-            enduranceSlider.value = player.endurance.Percent();
-            enduranceStatus.text = player.endurance.current + " / " + player.endurance.max;
-
-            // ammo
-            ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
-            if (slot.amount > 0 && slot.item.data is RangedWeaponItem itemData)
+            while (true)
             {
-                if (itemData.requiredAmmo != null)
+                Player player = Player.localPlayer;
+                if (player)
                 {
-                    ammoText.text = slot.item.ammo + " / " + itemData.magazineSize;
+                    panel.SetActive(true);
+                    UpdateHealthValue(player.health);
+                    UpdateHydrationValue(player.hydration);
+                    UpdateNutritionValue(player.nutrition);
+                    UpdateEnduranceValue(player.endurance);
+
+                    //weight
+                    float weightPercent = player.weight.Percent();
+                    imageWeight.fillAmount = weightPercent;
+
+                    if (imageWeight.fillAmount == 1)
+                        imageWeight.color = brokenDurabilityColor;
+                    else if (imageWeight.fillAmount > lowDurabilityThreshold)
+                        imageWeight.color = lowDurabilityColor;
+                    else imageWeight.color = Color.white;
+
+                    weightOverload.SetActive(weightPercent >= 1);
+
+                    //boost
+                    sliderBoost.value = player.boosts.boost;
+
+                    if (elementsDisabledInGame.activeSelf)
+                    {
+                        damageText.text = player.combat.damage.ToString();
+                        defenseText.text = player.combat.defense.ToString();
+                        moveSpeedText.text = player.movement.moveSpeed.ToString("F2");
+
+                        textPlayersKilled.text = player.statistics.playersKilled.ToString();
+                        textMonstersKilled.text = player.statistics.monstersKilled.ToString();
+                        textLifetime.text = UtilsExtended.PrettySeconds((float)player.statistics.lifetime);
+                    }
+
+                    if (panelRespawn.activeSelf)
+                    {
+                        // calculate the respawn time remaining for the client
+                        double remaining = player.respawning.respawnTimeEnd - NetworkTime.time;
+                        timeText.text = remaining.ToString("F0");
+                    }
                 }
-                else ammoText.text = "0 / 0";
+                else
+                {
+                    panel.SetActive(false);
+                    panelRespawn.SetActive(false);
+                }
+
+                yield return new WaitForSeconds(0.5f);
             }
-            else ammoText.text = "0 / 0";
         }
-        else panel.SetActive(false);
+
+        private void Update()
+        {
+            Player player = Player.localPlayer;
+            if (player)
+            {
+                elementsDisabledInGame.SetActive(Input.GetKey(hotKey) && !UIUtils.AnyInputActive());
+
+                //Respawn panel 
+                panelRespawn.SetActive(player.health.current <= 0);
+
+                // hotkey (not while typing in chat, etc.)
+                //if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
+                //{
+
+                //}
+            }
+        }
+
+        private void UpdateHealthValue(Health health)
+        {
+            imageHealth.fillAmount = (health.current != 0 && health.max != 0) ? (float)health.current / health.max : 0;
+            textHealth.text = health.current + " / " + health.max;
+        }
+        private void UpdateHydrationValue(Hydration hydration)
+        {
+            imageHydration.fillAmount = (hydration.current != 0 && hydration.max != 0) ? (float)hydration.current / hydration.max : 0;
+            textHydration.text = hydration.current + " / " + hydration.max;
+        }
+        private void UpdateNutritionValue(Nutrition nutrition)
+        {
+            imageNutrition.fillAmount = (nutrition.current != 0 && nutrition.max != 0) ? (float)nutrition.current / nutrition.max : 0;
+            textNutrition.text = nutrition.current + " / " + nutrition.max;
+        }
+        private void UpdateEnduranceValue(Endurance endurance)
+        {
+            imageEndurance.fillAmount = (endurance.current != 0 && endurance.max != 0) ? (float)endurance.current / endurance.max : 0;
+            textEndurance.text = endurance.current + " / " + endurance.max;
+        }
     }
 }

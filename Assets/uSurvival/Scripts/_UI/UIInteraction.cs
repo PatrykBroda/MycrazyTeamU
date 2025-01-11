@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UIInteraction : MonoBehaviour
+namespace uSurvival
 {
-    public GameObject panel;
-    public Text hotkeyText;
-    public Text actionText;
-
-    void Update()
+    public class UIInteraction : MonoBehaviour
     {
-        // looking at something interactable?
-        Player player = Player.localPlayer;
-        if (player != null)
+        public GameObject panel;
+        public Text hotkeyText;
+        public Text actionText;
+
+        void Update()
         {
-            if (player.interaction != null && player.interaction.current != null)
+            // looking at something interactable?
+            Player player = Player.localPlayer;
+            if (player != null)
             {
-                panel.SetActive(true);
-                hotkeyText.text = player.interaction.key.ToString();
-                actionText.text = player.interaction.current.GetInteractionText();
+                if (player.interaction != null && player.interaction.current != null)
+                {
+                    panel.SetActive(true);
+                    hotkeyText.text = player.interaction.key.ToString();
+                    actionText.text = player.interaction.current.InteractionText();
+                }
+                else panel.SetActive(false);
             }
             else panel.SetActive(false);
         }
-        else panel.SetActive(false);
     }
 }

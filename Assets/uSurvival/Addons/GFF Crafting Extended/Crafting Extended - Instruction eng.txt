@@ -1,0 +1,105 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Crafting Extended
+Addon version : 1.14
+Date of creation / editing 24.11.2021
+Require Components / Addons : Addons Core, Textures, Sounds
+Recommended Addons : Item Rarity
+Compatible projects : uSurvival 1.83
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2019.4.32
+Link : http://u3d.as/1zSJ
+
+
+Versions for other projects:
+ * uMMORPG Remastered : http://u3d.as/1QRo
+ * uMMORPG : http://u3d.as/1rCV
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "ScriptableItem.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+2. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+3. Edit the "PlayerInventory.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+4. Edit the "PlayerEquipment.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+5. Edit the "NetworkManagerSurvival .cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+6. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/ 
+   "public class" change to "public partial class"
+
+
+7. a) Disable or delete "CraftingPanel"  (Canvas\MainUI\MainUIPanel\)
+   b) Drag the "GFF Crafting Extended.prefab" (Addons\GFF Crafting Extended\Prefabs\) to the (Canvas\MainUI\MainUIPanel\)
+   b) Drag the "ButtonCraft.prefab" (Addons\GFF Crafting Extended\Prefabs\) to the (Canvas\MainUI\MainUIPanel\)
+
+
+8. Create your recipes or Transfer folder "GFF Recipes" (Addons\GFF Crafting Extended\GFF Recipes\) to folder  Resources\
+
+
+9. a) Move two folders from "Addons\GFF Crafting Extended\Items\" to folder Resources\Items\
+   b) Move folder "GFF Crafting Skills" from "Addons\GFF Crafting Extended\" to folder Resources\
+
+
+10. Edit all player prefabs
+  a) add script "PlayerCraftingExtended"
+  b) in script "PlayerCraftingExtended" in field "Player" drag this prefab
+  c) in script "Player" in field "Crafting Extended" drag this prefab
+  d) in Inspector in script "PlayerCraftingExtended" in "Skill Templates" add Crafting skiils from (...\Resources\GFF Crafting Skills)
+
+
+
+9. Select the "GFF Crafting Extended" (Canvas\MainUI\MainUIPanel\GFF Crafting Extended) in script UICraftingExtended.cs
+  a) in inspector expand "ListRecipes" and add to Recipe (uSurvival\Resources\Items\GFF Recipes\)
+
+  b) If you want to use Studyable Scrolls For Craft
+     --  add learned recipes (Resources\Items\GFF Studyable Scrolls For Craft) to monster loot
+     --  enable this option in script "PlayerCraftingExtended" for all players prefab
+     --  add to gameobject NetworkManager script Database Events
+           On Connected  -> Object - NetworkManager, Function - Database.Connect_CraftingRecipes
+           On Character Load  -> Object - NetworkManager, Function - Database.CharacterLoad_CraftingRecipes
+           On Character Save  -> Object - NetworkManager, Function - Database.CharacterSave_CraftingRecipe
+
+
+  c) If you want to use crafting skills 
+            On Connected  -> Object - NetworkManager, Function - Database.Connect_CraftingSkills
+            On Character Load  -> Object - NetworkManager, Function - Database.CharacterLoad_CraftingSkills
+            On Character Save  -> Object - NetworkManager, Function - Database.CharacterSave_CraftingSkills
+
+
+  d) in inspector in script "UICraftingExtended" drag  in field "Button Open" object " ButtonCraft" from (Canvas\MainUI\MainUIPanel\)
+
+
+
+	                                  Info
+1. Check all recipes - after installation some parameters may be empty 
+  a) List ingredients - add the ingredients you want
+
+  b) if this recipe breaks an object into pieces (such recipes in the name have the word "Recycle") then "Recipe Item" should not be empty
+
+

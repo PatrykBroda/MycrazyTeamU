@@ -12,13 +12,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshPathfindingIterationsPerFrame : MonoBehaviour
+namespace uSurvival
 {
-    public int iterations = 100; // default
-
-    void Awake()
+    public class NavMeshPathfindingIterationsPerFrame : MonoBehaviour
     {
-        print("Setting NavMesh Pathfinding Iterations Per Frame from " + NavMesh.pathfindingIterationsPerFrame + " to " + iterations);
-        NavMesh.pathfindingIterationsPerFrame = iterations;
+        public int iterations = 100; // default
+
+        void Awake()
+        {
+            Debug.Log($"Setting NavMesh Pathfinding Iterations Per Frame from {NavMesh.pathfindingIterationsPerFrame} to {iterations}");
+            NavMesh.pathfindingIterationsPerFrame = iterations;
+        }
     }
 }

@@ -1,38 +1,41 @@
 ﻿using UnityEngine;
 using Mirror;
 
-public class Zoom : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    // components to be assigned in inspector
-    public PlayerHotbar hotbar;
-
-    // cache cameras (main and weapon camera) and default FOW
-    Camera[] cameras;
-    public float defaultFieldOfView;
-
-    void Awake()
+    public partial class Zoom : NetworkBehaviour
     {
-        cameras = Camera.main.GetComponentsInChildren<Camera>();
-        defaultFieldOfView = cameras[0].fieldOfView;
-    }
+        // components to be assigned in inspector
+        //public PlayerHotbar hotbar;
 
-    public void AssignFieldOfView(float value)
-    {
-        foreach (Camera cam in cameras)
-            cam.fieldOfView = value;
-    }
+        // cache cameras (main and weapon camera) and default FOW
+        Camera[] cameras;
+        float defaultFieldOfView;
 
-    void Update()
-    {
-        if (!isLocalPlayer) return;
-
-        // holding down the right mouse button and using a ranged weapon?
-        UsableItem itemData = hotbar.GetCurrentUsableItemOrHands();
-        if (Input.GetMouseButton(1) && itemData is RangedWeaponItem)
+        void Awake()
         {
-            AssignFieldOfView(defaultFieldOfView - ((RangedWeaponItem)itemData).zoom);
+            cameras = Camera.main.GetComponentsInChildren<Camera>();
+            defaultFieldOfView = cameras[0].fieldOfView;
         }
-        // otherwise reset field of view
-        else AssignFieldOfView(defaultFieldOfView);
+
+        void AssignFieldOfView(float value)
+        {
+            foreach (Camera cam in cameras)
+                cam.fieldOfView = value;
+        }
+
+        //void Update()
+        //{
+        //    if (!isLocalPlayer) return;
+
+        //    // holding down the right mouse button and using a ranged weapon?
+        //    UsableItem itemData = equipment.GetCurrentUsableItemOrHands();
+        //    if (Input.GetMouseButton(1) && itemData is RangedWeaponItem)
+        //    {
+        //        AssignFieldOfView(defaultFieldOfView - ((RangedWeaponItem)itemData).zoom);
+        //    }
+        //    // otherwise reset field of view
+        //    else AssignFieldOfView(defaultFieldOfView);
+        //}
     }
 }

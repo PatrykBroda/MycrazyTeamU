@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ff1ff799944e2489eedc2e76a3c106, type: 3}
+  m_Name: Bed Glock 17
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 350
+  canSendOnMail: 1
+  buyPrice: 100
+  sellPrice: 25
+  sellable: 1
+  tradable: 1
+  itemMallPrice: 100
+  canPutInTheStorage: 1
+  skins: []
+  localization:
+  - language: 10
+    description: Part of a Glock 17 pistol. You can try to assemble the pistol if
+      you have all the parts
+  - language: 30
+    description: "\u0427\u0430\u0441\u0442\u044C \u043F\u0438\u0441\u0442\u043E\u043B\u0435\u0442\u0430
+      \u0413\u043B\u043E\u043A 17. \u041C\u043E\u0436\u043D\u043E \u043F\u043E\u043F\u044B\u0442\u0430\u0442\u044C\u0441\u044F
+      \u0441\u043E\u0431\u0440\u0430\u0442\u044C \u043F\u0438\u0441\u0442\u043E\u043B\u0435\u0442
+      \u043F\u0440\u0438 \u043D\u0430\u043B\u0438\u0447\u0438\u0438 \u0432\u0441\u0435\u0445
+      \u0447\u0430\u0441\u0442\u0435\u0439"
+  maxStack: 1
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    {DESCRIPTION}
+
+
+    {WEIGHT}'
+  image: {fileID: 21300000, guid: 7c35cb8c57074f94992308769b1376a3, type: 3}
+  lootSound: {fileID: 8300000, guid: 3beeda5770ff9e1459f6c2aa694b40ed, type: 3}
+  drop: {fileID: 114890139362544706, guid: 3826332d0a301fd49aee5e139e397203, type: 3}
+  modelPrefab: {fileID: 0}

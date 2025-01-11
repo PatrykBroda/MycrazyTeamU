@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b098443e49cbc42bc0a966e93e718b, type: 3}
+  m_Name: ItemMall Male
+  m_EditorClassIdentifier: 
+  categories:
+  - category: Equipment
+    type: 0
+    items:
+    - {fileID: 11400000, guid: 25e3efb2c8a158a4ba877319556c2b59, type: 2}
+    - {fileID: 11400000, guid: 87c0484a23b4d544a9e6b61d0125431e, type: 2}
+    - {fileID: 11400000, guid: 1360173c52986aa4bb878f32da718829, type: 2}
+    - {fileID: 11400000, guid: b6054f7602415004592ae77e241f16d4, type: 2}
+    - {fileID: 11400000, guid: a92a22fe07885034787f7296bdd18a47, type: 2}
+    - {fileID: 11400000, guid: 6c2013889ad77fb47a8ec8c712b900a7, type: 2}
+    - {fileID: 11400000, guid: ba26446cd78396d418b303bbf36c1233, type: 2}
+    - {fileID: 11400000, guid: e371330b0d0734540a67217623886577, type: 2}
+    - {fileID: 11400000, guid: 4050269f5a40c13458f3d0954453bf89, type: 2}
+    - {fileID: 11400000, guid: 047d5603c6006194d8c68e03c0f5a1bc, type: 2}
+    - {fileID: 11400000, guid: 429873ae33625e54abe4d3d640dd0b25, type: 2}
+    - {fileID: 11400000, guid: a64e7f9b812bf3846bce44a4e1f81170, type: 2}
+    - {fileID: 11400000, guid: 3f5a9f16aca552f44aae1639cf45d94c, type: 2}
+    - {fileID: 11400000, guid: d3d8faae83f02994aa602bc214f5a682, type: 2}
+    - {fileID: 11400000, guid: 6cb6081a96b9a234ba4cdfb6a777816a, type: 2}
+    - {fileID: 11400000, guid: 435f306e614e4f3489e3ccd425b16374, type: 2}
+    - {fileID: 11400000, guid: ea54d3a1220eba645b55f0bfbd8a93da, type: 2}
+    - {fileID: 11400000, guid: 1f358bd5cdcc79f4fab87b83f1683b0f, type: 2}
+    - {fileID: 11400000, guid: 27e7d4779890da94580d3422ce08536e, type: 2}
+    - {fileID: 11400000, guid: fd2b305ea4d9460448681c3aee6a90a4, type: 2}
+    - {fileID: 11400000, guid: acbe7ecadda243248baef5847cce30f5, type: 2}
+    - {fileID: 11400000, guid: 16cce386821bafa47abc38c8331b9c59, type: 2}
+    - {fileID: 11400000, guid: 391069bc267e7c14dbfa04f69ea0a4fd, type: 2}
+    - {fileID: 11400000, guid: 1bbdc3345a7b61e45906eca8336a3de9, type: 2}
+    - {fileID: 11400000, guid: 3c95cf63703c35e40bdb3ec0b5f78f72, type: 2}
+    - {fileID: 11400000, guid: 3e877857da405114e86888636de841f8, type: 2}
+    - {fileID: 11400000, guid: 5d0ef12dd846a7f45a581a9cff2cf9ae, type: 2}
+  - category: Weapons
+    type: 1
+    items:
+    - {fileID: 11400000, guid: 3cb1c37e79f32a748bb0ee8b71de3a84, type: 2}
+    - {fileID: 11400000, guid: 157bcec2fa0eef54c8c1d223ad94810f, type: 2}
+    - {fileID: 11400000, guid: e002068eed3c68d4ab6dc4dc67b846e9, type: 2}
+    - {fileID: 11400000, guid: 35bb06f118cfcbf4f8c78390cead008f, type: 2}
+    - {fileID: 11400000, guid: 7d7aa7c333d586745926fd5d8b9f699e, type: 2}
+    - {fileID: 11400000, guid: 8faa49f87c55af742a12f7b29b2b6906, type: 2}
+    - {fileID: 11400000, guid: 1efe53f67dfb4684f88b00917d7c3352, type: 2}
+  - category: Ammo
+    type: 2
+    items:
+    - {fileID: 11400000, guid: 854ea5d695842ff47b67d3eb768395fb, type: 2}
+    - {fileID: 11400000, guid: d16c489bcf3b84240957f4adf59dbfdc, type: 2}
+    - {fileID: 11400000, guid: c20b2eb83f1b3884aa352f031d739b2b, type: 2}
+    - {fileID: 11400000, guid: 6a6eb73152dd2e0449631741674d48ab, type: 2}
+    - {fileID: 11400000, guid: 5668038cfa9403d4f9945ecb97020a66, type: 2}
+    - {fileID: 11400000, guid: 83a22f87c275960478707dcadda1deca, type: 2}
+  - category: Power UPS
+    type: 3
+    items:
+    - {fileID: 11400000, guid: e6c34294b926f12478ab58816d840e54, type: 2}
+    - {fileID: 11400000, guid: 7ba14d60bedc666409403d125349e2ba, type: 2}
+  - category: Currencies
+    type: 4
+    items: []
+  - category: Bundles
+    type: 6
+    items: []
+  - category: Weapon Skins
+    type: 7
+    items:
+    - {fileID: 11400000, guid: 04abee92a9df5e54fa904b715d630403, type: 2}
+    - {fileID: 11400000, guid: 390b22fd2935c07418d4af50098dee8f, type: 2}
+    - {fileID: 11400000, guid: 92a186a57766a5b4b8681ed07b10fc7d, type: 2}
+    - {fileID: 11400000, guid: cd22829775ad9ea42abb084f525feb8f, type: 2}
+    - {fileID: 11400000, guid: 499c5fb72cb7be548b958eefb1e983f0, type: 2}
+    - {fileID: 11400000, guid: 00d30cb2928818f4488af95be8a8354c, type: 2}
+  - category: Suits
+    type: 5
+    items:
+    - {fileID: 11400000, guid: 8e13f30d874e943428d4a54e9ada45f2, type: 2}
+    - {fileID: 11400000, guid: a24286c49d1292e4ca45906666a4ece7, type: 2}
+    - {fileID: 11400000, guid: d994e6fcadafc604f8b84b7e5594a92a, type: 2}
+    - {fileID: 11400000, guid: 002969b5cf7c7c944a124acf9f8d377a, type: 2}
+    - {fileID: 11400000, guid: dc6953f449c461a42a035cacede4caea, type: 2}
+    - {fileID: 11400000, guid: a2f98aeedfdcf414ebb5b4fab8ee22c6, type: 2}
+    - {fileID: 11400000, guid: d380b3a841f2aad4b8d5a1888dd9669d, type: 2}
+    - {fileID: 11400000, guid: 83b2f645c322c894aad3d0c21667ef1e, type: 2}
+    - {fileID: 11400000, guid: b09c377f77a99de46916a84c5cd2e3de, type: 2}
+    - {fileID: 11400000, guid: cb58cd72426b10143b15ca2fb3ebdaa6, type: 2}
+    - {fileID: 11400000, guid: c56d7bff0b8e2824fbd85c2f81f3b082, type: 2}
+    - {fileID: 11400000, guid: 8f554e6781b68bf439980dbbdec036ba, type: 2}
+    - {fileID: 11400000, guid: e964e23379f67b04f9618d19bf22b610, type: 2}
+    - {fileID: 11400000, guid: 6613c1ef4bfccda4996f5f9f9de1fb6a, type: 2}
+  bundles:
+  - {fileID: 11400000, guid: 93c6af7be6920eb468585c16ce37f258, type: 2}
+  - {fileID: 11400000, guid: 9c6d3c097eb2feb4caad5e81cbe155fe, type: 2}
+  - {fileID: 11400000, guid: 7bc0d3c168fb1b24ab610dd901b4d3e3, type: 2}

@@ -1,8 +1,13 @@
-﻿using UnityEngine;
-
-public interface Interactable
+﻿namespace uSurvival
 {
-    string GetInteractionText();
-    void OnInteractClient(Player player);
-    void OnInteractServer(Player player);
+    public interface Interactable
+    {
+        string InteractionText();
+        void OnInteractClient(Player player);
+        void OnInteractServer(Player player);
+
+        //gff
+        //Color GetInteractionColor();
+        Entity GetInteractionEntity();
+    }
 }

@@ -1,46 +1,49 @@
 ﻿using UnityEngine;
-using Mirror;
 
-// inventory, attributes etc. can influence max
-public interface IHydrationBonus
+namespace uSurvival
 {
-    int GetHydrationBonus(int baseHydration);
-    int GetHydrationRecoveryBonus();
-}
-
-[DisallowMultipleComponent]
-public class Hydration : Energy
-{
-    public int baseRecoveryPerTick = -1;
-    public int baseHydration = 100;
-
-    // cache components that give a bonus (attributes, inventory, etc.)
-    // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
-    IHydrationBonus[] _bonusComponents;
-    IHydrationBonus[] bonusComponents =>
-        _bonusComponents ?? (_bonusComponents = GetComponents<IHydrationBonus>());
-
-    public override int max
+    // inventory, attributes etc. can influence max
+    public interface IHydrationBonus
     {
-        get
-        {
-            // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
-            int bonus = 0;
-            foreach (IHydrationBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetHydrationBonus(baseHydration);
-            return baseHydration + bonus;
-        }
+        short HydrationBonus(short baseHydration);
+        short HydrationRecoveryBonus();
     }
 
-    public override int recoveryPerTick
+    [DisallowMultipleComponent]
+    public class Hydration : Energy
     {
-        get
+        public short baseRecoveryPerTick = -1;
+        public short baseHydration = 100;
+
+        // cache components that give a bonus (attributes, inventory, etc.)
+        // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
+        IHydrationBonus[] _bonusComponents;
+        IHydrationBonus[] bonusComponents =>
+            _bonusComponents ??= GetComponents<IHydrationBonus>();
+
+        public override short max
         {
-            // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
-            int bonus = 0;
-            foreach (IHydrationBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetHydrationRecoveryBonus();
-            return baseRecoveryPerTick + bonus;
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (IHydrationBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.HydrationBonus(baseHydration);
+                return (short)(baseHydration + bonus);
+            }
+        }
+
+        public override short recoveryPerTick
+        {
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (IHydrationBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.HydrationRecoveryBonus();
+
+                return (short)(baseRecoveryPerTick + bonus);
+            }
         }
     }
 }

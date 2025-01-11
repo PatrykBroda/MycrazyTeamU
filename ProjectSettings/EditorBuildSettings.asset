@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MyAssets/scenes/ProceduralGameMiobile.unity
-    guid: e0f3edbd77409c548908bb8ed7fd5036
-  - enabled: 1
-    path: Assets/MyAssets/scenes/ProceduralGame.unity
-    guid: 10e1b1bd1160d71438f647da10acc26e
-  - enabled: 1
-    path: Assets/uSurvival/Scenes/World.unity
-    guid: a11831025daca24449ab977327654930
+    path: Assets/_ExtraResources/_Scenes/World_Apocalypse_Is_Coming_001.unity
+    guid: 3992065927d2b324781cf20dbbc060d7
   m_configObjects: {}

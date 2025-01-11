@@ -27,12 +27,20 @@ TagManager:
   - FurnaceIngredientSlot
   - FurnaceFuelSlot
   - FurnaceResultSlot
-  - PW - Nature
-  - PW - Prop
-  - PW - Building
-  - Synty Medium Farm
-  - Synty Small Farm
-  - Synty Tree
+  - WeaponModuleSlot
+  - CraftingExtendedIngredientSlot
+  - MailSlot
+  - PocketSlot
+  - ConstructionSlot
+  - QuestLocation
+  - TradingSlot
+  - BuySlot
+  - SellSlot
+  - EquipmentSecondSlot
+  - DurabilityRestoreSlot
+  - BindSlot
+  - AuctionSlot
+  - Radiation
   layers:
   - Default
   - TransparentFX
@@ -40,7 +48,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - POST
   - 
   - Player
   - Monster
@@ -50,15 +58,15 @@ TagManager:
   - Ladder
   - Fence
   - NoDepthInFirstPerson
-  - PW_VFX
+  - 
   - Projectile
   - AggroArea
   - ItemModel
-  - PW_Object_Small
-  - PW_Object_Medium
-  - PW_Object_Large
-  - Interactable
   - 
+  - MiniMap
+  - NotLocalPlayer
+  - HideForLocalPlaer
+  - Obstruction
   - 
   - 
   - 

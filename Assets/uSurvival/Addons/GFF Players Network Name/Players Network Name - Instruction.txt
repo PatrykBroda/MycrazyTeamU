@@ -1,0 +1,31 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Players Network Name
+Addon version : 1.0
+Date of creation / editing 02.01.2023
+Require Components / Addons : "Face Camera"
+Recommended Addons : Interaction Extended
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.16
+Link : 
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit all player prefabs
+  a) add prefab "NameOverlayPosition" before object "3dModel"
+  b) add scripts "PlayerNetworkName"
+  c) in Inspector in script "PlayerNetworkName" drag in field "name Overlay" object "" from (this Prefab\ NameOverlayPosition\NameOverlay)

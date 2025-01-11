@@ -4,82 +4,85 @@
 using UnityEngine;
 using Mirror;
 
-[RequireComponent(typeof(NetworkTransform))] // for position sync
-public class UseRigidbodyDuringDeath : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    public Rigidbody rigidBody;
-    public float applyForce = 1000;
-
-    // remember original position and rotation
-    public bool resetPositionWhenRespawning = true;
-    Vector3 startPosition;
-    Quaternion startRotation;
-    bool dirty;
-
-    // needs to be known on client and server
-    void Awake()
+    [RequireComponent(typeof(NetworkTransform))] // for position sync
+    public class UseRigidbodyDuringDeath : NetworkBehaviour
     {
-        startPosition = transform.position;
-        startRotation = transform.rotation;
-    }
+        public Rigidbody rigidBody;
+        public float applyForce = 1000;
 
-    // on death events /////////////////////////////////////////////////////////
-    [Server]
-    public void OnDeath()
-    {
-        // fall on server and client (via rpc)
-        StartFall();
-        RpcStartFall();
-    }
+        // remember original position and rotation
+        public bool resetPositionWhenRespawning = true;
+        Vector3 startPosition;
+        Quaternion startRotation;
+        bool dirty;
 
-    [Server]
-    public void OnDeathTimeElapsed()
-    {
-        StopFall();
-        RpcStopFall();
-    }
-
-    [Server]
-    public void OnRespawn()
-    {
-        // reset position after fall
-        if (resetPositionWhenRespawning)
+        // needs to be known on client and server
+        void Awake()
         {
-            transform.position = startPosition;
-            transform.rotation = startRotation;
+            startPosition = transform.position;
+            startRotation = transform.rotation;
         }
-    }
 
-    // falling /////////////////////////////////////////////////////////////////
-    void StartFall()
-    {
-        rigidBody.isKinematic = false;
+        // on death events /////////////////////////////////////////////////////////
+        [Server]
+        public void OnDeath()
+        {
+            // fall on server and client (via rpc)
+            StartFall();
+            RpcStartFall();
+        }
 
-        // the tree won't fall if it stands perfectly straight, so let's add a
-        // small force to make it fall
-        rigidBody.AddForce(transform.forward * applyForce);
-    }
+        [Server]
+        public void OnDeathTimeElapsed()
+        {
+            StopFall();
+            RpcStopFall();
+        }
 
-    void StopFall()
-    {
-        rigidBody.isKinematic = true;
-    }
+        [Server]
+        public void OnRespawn()
+        {
+            // reset position after fall
+            if (resetPositionWhenRespawning)
+            {
+                transform.position = startPosition;
+                transform.rotation = startRotation;
+            }
+        }
 
-    // rpcs ////////////////////////////////////////////////////////////////////
-    // syncing a falling tree to the client would cost a lot of bandwidth if we
-    // use NetworkTransform for thousands of trees. it's better to use one Rpc
-    // and hope that the results will be roughly the same on client and server
-    [ClientRpc]
-    void RpcStartFall()
-    {
-        if (isServer) return; // don't call it in host mode again
-        StartFall();
-    }
+        // falling /////////////////////////////////////////////////////////////////
+        void StartFall()
+        {
+            rigidBody.isKinematic = false;
 
-    [ClientRpc]
-    void RpcStopFall()
-    {
-        if (isServer) return; // don't call it in host mode again
-        StopFall();
+            // the tree won't fall if it stands perfectly straight, so let's add a
+            // small force to make it fall
+            rigidBody.AddForce(transform.forward * applyForce);
+        }
+
+        void StopFall()
+        {
+            rigidBody.isKinematic = true;
+        }
+
+        // rpcs ////////////////////////////////////////////////////////////////////
+        // syncing a falling tree to the client would cost a lot of bandwidth if we
+        // use NetworkTransform for thousands of trees. it's better to use one Rpc
+        // and hope that the results will be roughly the same on client and server
+        [ClientRpc]
+        void RpcStartFall()
+        {
+            if (isServer) return; // don't call it in host mode again
+            StartFall();
+        }
+
+        [ClientRpc]
+        void RpcStopFall()
+        {
+            if (isServer) return; // don't call it in host mode again
+            StopFall();
+        }
     }
 }

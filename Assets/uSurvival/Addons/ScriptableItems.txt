@@ -1,0 +1,14 @@
+
+
+
+                                                               AmmoItem : ScriptableItem
+                                                             UsableItem : ScriptableItem
+                                             EquipmentItem : UsableItem
+                                                PotionItem : UsableItem
+                                             StructureItem : UsableItem
+                                                WeaponItem : UsableItem
+                              MeleeWeaponItem : WeaponItem
+                             RangedWeaponItem : WeaponItem
+RangedProjectileWeaponItem : RangedWeaponItem
+   RangedRaycastWeaponItem : RangedWeaponItem
+

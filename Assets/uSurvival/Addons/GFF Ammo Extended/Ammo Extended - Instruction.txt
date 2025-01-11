@@ -1,0 +1,129 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+Any suggestions and questions you can send us by Email "GameFunSPB@gmail.com"
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+
+
+Addon name : Ammo extended
+Addon version : 1.1
+Date of creation / editing 01.06.2023
+Require Components : none
+Recommended Components : none
+Compatible projects : uSurvival 1.86
+Recommendations : Test the package on a uSurvival without changes.
+Recommended version Unity 2021.3.26
+Link : https://assetstore.unity.com/preview/246050/817911
+
+Versions for other projects:
+ * uMMORPG Classic : http://u3d.as/1BMC
+ * uMMORPG Remastered : http://u3d.as/1WgD
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "AmmoItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class AmmoItem : ScriptableItem
+       replace it on        public partial class AmmoItem : ScriptableItem
+
+
+2. Edit the "RangedWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public abstract class RangedWeaponItem : WeaponItem
+       replace it on        public abstract partial class RangedWeaponItem : WeaponItem
+
+  b)       Find line        tip.Replace("{REQUIREDAMMO}", requiredAmmo != null ? requiredAmmo.name : "");
+       replace it on        tip.Replace("{REQUIREDAMMO}", GetCompatibleAmmoForToolTip());
+
+
+3. Edit the "PlayerHotbar.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerHotbar : ItemContainer, ICombatBonus
+       replace it on        public partial class PlayerHotbar : ItemContainer, ICombatBonus
+
+
+4. Edit the "PlayerReloading.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerReloading : NetworkBehaviour
+       replace it on        public partial class PlayerReloading : NetworkBehaviour
+
+  b)       Find line        if (itemData.requiredAmmo != null && slot.item.ammo < itemData.magazineSize)
+       replace it on        if (itemData.compatibleAmmo != null && itemData.compatibleAmmo.Length > 0 && slot.item.ammo < itemData.magazineSize)
+
+  c)       Find line        int inventoryIndex = inventory.GetItemIndexByName(itemData.requiredAmmo.name);
+       replace it on        int inventoryIndex = inventory.GetItemIndexByName(itemData.compatibleAmmo[hotbar.selectedAmmo].name);
+
+  d)       Find line        if (weaponData.requiredAmmo == ammoData)
+       replace it on        if (weaponData.compatibleAmmo[hotbar.selectedAmmo] == ammoData)
+
+
+  e)      Find lines        if (CanLoadAmmoIntoWeapon(ammoSlot, weaponSlot.item))
+       replace it on        if (CanLoadAmmoIntoWeaponExtended(ammoSlot, weaponSlot.item))
+
+
+  f)      after line        if (!isLocalPlayer) return;
+            add line        ChangeAmmoForHotbarWeapon();
+
+
+5. Edit the "Item.cs"  Script in   Assets/uSurvival/Scripts/
+  a)      after line        public int ammo;
+            add line        public string ammoname;
+
+  b)      after line        ammo = 0;
+            add line        ammoname = "";
+
+
+6. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+  a)      after line        public int amount { get; set; }
+            add line        public string ammoname { get; set; }
+
+  b)      after line        item.ammo = row.ammo;
+            add line        item.ammoname = row.ammoname;
+
+  c)      after line        ammo = slot.item.ammo,
+            add line        ammoname = slot.item.ammoname,
+
+
+7. Edit the "RangedRaycastWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)     before line        player.combat.DealDamageAt(victim, damage, hit.point, hit.normal, hit.collider);
+            add line        int ammoBonus = (int)(damage * compatibleAmmo[player.hotbar.selectedAmmo].damageBonusFromAmmo);
+
+  b)       Find line        player.combat.DealDamageAt(victim, damage, hit.point, hit.normal, hit.collider);
+       replace it on        player.combat.DealDamageAt(victim, damage + ammoBonus, hit.point, hit.normal, hit.collider);
+
+
+8. For all weapon items (Assets/uSurvival/Resources/Items/Weapons(Ranged))
+ * add compatible ammo (Addons/GFF Ammo Extended/Resources/Ammo/)
+
+
+9. Add new Ammo (Addons/GFF Ammo Extended/ItemDrops) to the scene
+
+
+10. Edit the "UIHud.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class UIHud : MonoBehaviour
+       replace it on        public partial class UIHud : MonoBehaviour
+
+  b)      after line        ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
+            add line        ShowSelectedAmmoName(player, slot);
+
+
+11. a) Delete "HUD" from Canvas/
+    b) Drag the prefab "HUD" (Assets/uSurvival/Addons/GFF Ammo Extended/Prefabs/) to the Canvas/
+
+
+
+//if used Weapon System From Equipment Addon
+1. Edit all player prefabs
+  *) in Inspector in script "PlayerReloading" drag in field "Equipment" this prefab
+
+
+2. Edit the "RangedRaycastWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)     before line        player.combat.DealDamageAt(victim, damage, hit.point, hit.normal, hit.collider);
+            add line        int ammoBonus = (int)(damage * compatibleAmmo[player.equipment.selectedAmmo].damageBonusFromAmmo);
+
+  b)       Find line        player.combat.DealDamageAt(victim, damage, hit.point, hit.normal, hit.collider);
+       replace it on        player.combat.DealDamageAt(victim, damage + ammoBonus, hit.point, hit.normal, hit.collider);

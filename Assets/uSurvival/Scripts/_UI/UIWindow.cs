@@ -4,65 +4,68 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public enum CloseOption
+namespace uSurvival
 {
-    DoNothing,
-    DeactivateWindow,
-    DestroyWindow
-}
-
-public class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
-{
-    // close option
-    public CloseOption onClose = CloseOption.DeactivateWindow;
-
-    // cache
-    Transform window;
-
-    void Awake()
+    public enum CloseOption
     {
-        // cache the parent window
-        window = transform.parent;
+        DoNothing,
+        DeactivateWindow,
+        DestroyWindow
     }
 
-    public void HandleDrag(PointerEventData d)
+    public class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        // send message in case the parent needs to know about it
-        window.SendMessage("OnWindowDrag", d, SendMessageOptions.DontRequireReceiver);
+        // close option
+        public CloseOption onClose = CloseOption.DeactivateWindow;
 
-        // move the parent
-        window.Translate(d.delta);
-    }
+        // cache
+        Transform window;
 
-    public void OnBeginDrag(PointerEventData d)
-    {
-        HandleDrag(d);
-    }
+        void Awake()
+        {
+            // cache the parent window
+            window = transform.parent;
+        }
 
-    public void OnDrag(PointerEventData d)
-    {
-        HandleDrag(d);
-    }
+        public void HandleDrag(PointerEventData d)
+        {
+            // send message in case the parent needs to know about it
+            window.SendMessage("OnWindowDrag", d, SendMessageOptions.DontRequireReceiver);
 
-    public void OnEndDrag(PointerEventData d)
-    {
-        HandleDrag(d);
-    }
+            // move the parent
+            window.Translate(d.delta);
+        }
 
-    // OnClose is called by the close button via Inspector Callbacks
-    public void OnClose()
-    {
-        // send message in case it's needed
-        // note: it's important to not name it the same as THIS function to avoid
-        //       a deadlock
-        window.SendMessage("OnWindowClose", SendMessageOptions.DontRequireReceiver);
+        public void OnBeginDrag(PointerEventData d)
+        {
+            HandleDrag(d);
+        }
 
-        // hide window
-        if (onClose == CloseOption.DeactivateWindow)
-            window.gameObject.SetActive(false);
+        public void OnDrag(PointerEventData d)
+        {
+            HandleDrag(d);
+        }
 
-        // destroy if needed
-        if (onClose == CloseOption.DestroyWindow)
-            Destroy(window.gameObject);
+        public void OnEndDrag(PointerEventData d)
+        {
+            HandleDrag(d);
+        }
+
+        // OnClose is called by the close button via Inspector Callbacks
+        public void OnClose()
+        {
+            // send message in case it's needed
+            // note: it's important to not name it the same as THIS function to avoid
+            //       a deadlock
+            window.SendMessage("OnWindowClose", SendMessageOptions.DontRequireReceiver);
+
+            // hide window
+            if (onClose == CloseOption.DeactivateWindow)
+                window.gameObject.SetActive(false);
+
+            // destroy if needed
+            if (onClose == CloseOption.DestroyWindow)
+                Destroy(window.gameObject);
+        }
     }
 }

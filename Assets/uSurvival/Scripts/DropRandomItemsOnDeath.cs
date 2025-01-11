@@ -1,31 +1,50 @@
 ﻿using UnityEngine;
 using Mirror;
 
-public class DropRandomItemsOnDeath : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    public ItemDropChance[] dropChances;
-    public float radiusMultiplier = 1;
-    public int dropSolverAttempts = 3; // attempts to drop without being behind a wall, etc.
-
-    [Server]
-    void DropItemAtRandomPosition(GameObject dropPrefab)
+    public partial class DropRandomItemsOnDeath : NetworkBehaviour
     {
-        // drop at random point on navmesh that is NOT behind a wall
-        // -> dropping behind a wall is just bad gameplay
-        // -> on navmesh because that's the easiest way to find the ground
-        //    without accidentally raycasting ourselves or something else
-        Vector3 position = Utils.ReachableRandomUnitCircleOnNavMesh(transform.position, radiusMultiplier, dropSolverAttempts);
+        public ItemDropChance[] dropChances;
+        public float radiusMultiplier = 1;
+        public int dropSolverAttempts = 3; // attempts to drop without being behind a wall, etc.
 
-        // drop
-        GameObject drop = Instantiate(dropPrefab, position, Quaternion.identity);
-        NetworkServer.Spawn(drop);
-    }
+        [Server]
+        void DropItemAtRandomPosition(GameObject dropPrefab, ushort amount)
+        {
+            // drop at random point on navmesh that is NOT behind a wall
+            // -> dropping behind a wall is just bad gameplay
+            // -> on navmesh because that's the easiest way to find the ground
+            //    without accidentally raycasting ourselves or something else
+            Vector3 position = Utils.ReachableRandomUnitCircleOnNavMesh(transform.position, radiusMultiplier, dropSolverAttempts);
 
-    [Server]
-    public void OnDeath()
-    {
-        foreach (ItemDropChance itemChance in dropChances)
-            if (Random.value <= itemChance.probability)
-                DropItemAtRandomPosition(itemChance.drop.gameObject);
+            // drop
+            GameObject drop = Instantiate(dropPrefab, position, Quaternion.identity);
+
+            //gff
+            drop.GetComponent<ItemDrop>().ownerTime = NetworkTime.time + ownerDurationTime;
+            drop.GetComponent<ItemDrop>().destroy = true;
+            drop.GetComponent<ItemDrop>().amount = amount;
+
+            NetworkServer.Spawn(drop);
+        }
+
+        [Server]
+        public void OnDeath()
+        {
+            foreach (ItemDropChance itemChance in dropChances)
+                if (Random.value <= itemChance.probability)
+                    DropItemAtRandomPosition(itemChance.drop.gameObject, (ushort)Random.Range(itemChance.minAmount, itemChance.maxAmount));
+        }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            for (int i = 0; i < dropChances.Length; i++)
+            {
+                if (dropChances[i].drop != null)dropChances[i].name = dropChances[i].drop.name;
+            }
+        }
     }
 }

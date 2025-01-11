@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bca2ffcc5350144f8e99608d04b6db0, type: 3}
+  m_Name: AK Green Khaki Skin
+  m_EditorClassIdentifier: 
+  auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  itemWeight: 0
+  canSendOnMail: 0
+  buyPrice: 0
+  sellPrice: 0
+  sellable: 1
+  tradable: 1
+  itemMallPrice: 2000
+  canPutInTheStorage: 1
+  skinModelPrefab: []
+  maxStack: 1
+  maxDurability: 1000
+  destroyable: 0
+  toolTip: 
+  image: {fileID: 21300000, guid: 29a2ebcb24cef2f4bae25d8515e5a71a, type: 3}
+  drop: {fileID: 0}
+  modelPrefab: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 157bcec2fa0eef54c8c1d223ad94810f, type: 2}

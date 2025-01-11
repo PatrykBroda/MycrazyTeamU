@@ -1,93 +1,50 @@
 ﻿using UnityEngine;
-using Mirror;
-using System;
 
-public interface IHealthBonus
+namespace uSurvival
 {
-    int GetHealthBonus(int baseHealth);
-    int GetHealthRecoveryBonus();
-}
-
-[DisallowMultipleComponent]
-public class Health : Energy
-{
-    // Event to notify subscribers when health reaches zero
-    public event Action OnDeath;
-
-    public int baseRecoveryPerTick = 0;
-    public int baseHealth = 100;
-
-    // Cache components that give a bonus (attributes, inventory, etc.)
-    // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
-    IHealthBonus[] _bonusComponents;
-    IHealthBonus[] bonusComponents =>
-        _bonusComponents ?? (_bonusComponents = GetComponents<IHealthBonus>());
-
-    // Current health synchronized across the network
-    [SyncVar]
-    private int currentHealth;
-
-    public override int max
+    // inventory, attributes etc. can influence max health
+    public interface IHealthBonus
     {
-        get
+        short HealthBonus(short baseHealth);
+        short HealthRecoveryBonus();
+    }
+
+    [DisallowMultipleComponent]
+    public class Health : Energy
+    {
+        public short baseRecoveryPerTick = 0;
+        public short baseHealth = 100;
+
+        // cache components that give a bonus (attributes, inventory, etc.)
+        // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
+        IHealthBonus[] _bonusComponents;
+        IHealthBonus[] bonusComponents =>
+            _bonusComponents ??= GetComponents<IHealthBonus>();
+
+        public override short max
         {
-            // Sum up bonuses manually for performance
-            int bonus = 0;
-            foreach (IHealthBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetHealthBonus(baseHealth);
-            return baseHealth + bonus;
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (IHealthBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.HealthBonus(baseHealth);
+
+                return (short)(baseHealth + bonus);
+            }
+        }
+
+        public override short recoveryPerTick
+        {
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (IHealthBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.HealthRecoveryBonus();
+
+                return (short)(baseRecoveryPerTick + bonus);
+            }
         }
     }
-
-    public override int recoveryPerTick
-    {
-        get
-        {
-            // Sum up recovery bonuses manually for performance
-            int bonus = 0;
-            foreach (IHealthBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetHealthRecoveryBonus();
-            return baseRecoveryPerTick + bonus;
-        }
-    }
-
-    // Property to access current health
-    public int CurrentHealth => currentHealth;
-
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        currentHealth = max;
-    }
-
-    /// <summary>
-    /// Applies damage to the entity. If health reaches zero, triggers the OnDeath event.
-    /// </summary>
-    /// <param name="amount">Amount of damage to apply.</param>
-    [Server]
-    public void TakeDamage(int amount)
-    {
-        if (currentHealth <= 0)
-            return; // Already dead
-
-        currentHealth -= amount;
-        currentHealth = Mathf.Max(currentHealth, 0);
-
-        if (currentHealth == 0)
-        {
-            OnDeath?.Invoke();
-        }
-    }
-
-    /// <summary>
-    /// Resets the health of the entity to its maximum value.
-    /// </summary>
-    [Server]
-    public void ResetHealth()
-    {
-        currentHealth = max;
-        Debug.Log($"[Health Debug] {gameObject.name} Health reset to {currentHealth}.");
-    }
-
-    // Optional: Implement healing or recovery methods if needed
 }

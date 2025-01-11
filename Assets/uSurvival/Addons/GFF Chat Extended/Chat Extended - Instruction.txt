@@ -1,0 +1,51 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Chat Extended
+Addon version : 1.0
+Date of creation / editing 13.09.2021
+Require Components : Addons Core
+Recommended Components : none
+Compatible projects : uMMORPG Remastered 2.34
+Recommendations : Test the addon on a clean version uMMORPG without changes.
+Link : 
+
+
+Versions for other projects:
+ * uMMORPG  
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "PlayerChat.cs"  Script in “/Scripts/" 
+   a)     Find line       public class PlayerChat : NetworkBehaviour
+          change to       public partial class PlayerChat : NetworkBehaviour 
+
+   b)     completely comment out the void "OnStartLocalPlayer" 
+
+
+2. Disable or remove the object "Chat" from Canvas
+
+3. Drag the "GFF Chat Extended.prefab"  (Addons\GFF Chat Extended\Prefabs\) to the canvas element so canvas is the parent.
+
+4. Drag the "GFF Chat Block.prefab"  (Addons\GFF Chat Extended\Prefabs\) to the canvas element so canvas is the parent.
+
+
+5. Edit all player prefabs
+  a) in Inspector in script "PlayerChat" add prefabs for "Channels Extended" from (Addons\GFF Chat Extended\Prefabs\)
+
+
+6. Select "GFF Chat Extended" in Canvas
+  a) in Inspector in script "UIChatExtended" 
+       Drag in "Ignore List Script" the Canvas\GFF Chat Block

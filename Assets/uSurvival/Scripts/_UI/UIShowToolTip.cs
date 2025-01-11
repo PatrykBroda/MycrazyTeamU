@@ -3,70 +3,73 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIShowToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+namespace uSurvival
 {
-    public GameObject tooltipPrefab;
-    [TextArea(1, 30)] public string text = "";
-
-    // instantiated tooltip
-    GameObject current;
-
-    void CreateToolTip()
+    public class UIShowToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        // instantiate
-        current = Instantiate(tooltipPrefab, transform.position, Quaternion.identity);
+        public GameObject tooltipPrefab;
+        [TextArea(1, 30)] public string text = "";
 
-        // put to foreground
-        current.transform.SetParent(transform.root, true); // canvas
-        current.transform.SetAsLastSibling(); // last one means foreground
+        // instantiated tooltip
+        GameObject current;
 
-        // set text immediately. don't wait for next Update(), otherwise there
-        // is 1 frame with a small tooltip without a text which is odd.
-        current.GetComponentInChildren<Text>().text = text;
-    }
+        void CreateToolTip()
+        {
+            // instantiate
+            current = Instantiate(tooltipPrefab, transform.position, Quaternion.identity);
 
-    void ShowToolTip(float delay)
-    {
-        Invoke(nameof(CreateToolTip), delay);
-    }
+            // put to foreground
+            current.transform.SetParent(transform.root, true); // canvas
+            current.transform.SetAsLastSibling(); // last one means foreground
 
-    // helper function to check if the tooltip is currently shown
-    // -> useful to only calculate item/skill/etc. tooltips when really needed
-    public bool IsVisible() => current != null;
+            // set text immediately. don't wait for next Update(), otherwise there
+            // is 1 frame with a small tooltip without a text which is odd.
+            current.GetComponentInChildren<Text>().text = text;
+        }
 
-    void DestroyToolTip()
-    {
-        // stop any running attempts to show it
-        CancelInvoke(nameof(CreateToolTip));
+        void ShowToolTip(float delay)
+        {
+            Invoke(nameof(CreateToolTip), delay);
+        }
 
-        // destroy it
-        Destroy(current);
-    }
+        // helper function to check if the tooltip is currently shown
+        // -> useful to only calculate item/skill/etc. tooltips when really needed
+        public bool IsVisible() => current != null;
 
-    public void OnPointerEnter(PointerEventData d)
-    {
-        ShowToolTip(0.5f);
-    }
+        void DestroyToolTip()
+        {
+            // stop any running attempts to show it
+            CancelInvoke(nameof(CreateToolTip));
 
-    public void OnPointerExit(PointerEventData d)
-    {
-        DestroyToolTip();
-    }
+            // destroy it
+            Destroy(current);
+        }
 
-    void Update()
-    {
-        // always copy text to tooltip. it might change dynamically when
-        // swapping items etc., so setting it once is not enough.
-        if (current) current.GetComponentInChildren<Text>().text = text;
-    }
+        public void OnPointerEnter(PointerEventData d)
+        {
+            ShowToolTip(0.5f);
+        }
 
-    void OnDisable()
-    {
-        DestroyToolTip();
-    }
+        public void OnPointerExit(PointerEventData d)
+        {
+            DestroyToolTip();
+        }
 
-    void OnDestroy()
-    {
-        DestroyToolTip();
+        void Update()
+        {
+            // always copy text to tooltip. it might change dynamically when
+            // swapping items etc., so setting it once is not enough.
+            if (current) current.GetComponentInChildren<Text>().text = text;
+        }
+
+        void OnDisable()
+        {
+            DestroyToolTip();
+        }
+
+        void OnDestroy()
+        {
+            DestroyToolTip();
+        }
     }
 }

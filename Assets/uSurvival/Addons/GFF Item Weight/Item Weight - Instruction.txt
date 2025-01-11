@@ -1,0 +1,115 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+Any suggestions and questions you can send us by Email "GameFunSPB@gmail.com"
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+
+
+Addon name : Item Weight
+Addon version : 1.2
+Date of creation / editing 01.11.2022
+Require Components : none
+Recommended Components : none
+Compatible projects : uSurvival 1.85
+Recommendations : Test the package on a uSurvival without changes.
+Link : http://u3d.as/2aBA
+
+
+Versions for other projects:
+ * uMMORPG Classic : http://u3d.as/1TL5
+ * uMMORPG Remastered : http://u3d.as/1TL6
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "ScriptableItem.cs"  Script in “/Scripts/ScriptableItems/" 
+   a)     Find line       public class ScriptableItem : ScriptableObjectNonAlloc
+          change to       public partial class ScriptableItem : ScriptableObjectNonAlloc
+
+   b)    after line       tip.Replace("{DESTROYABLE}", (destroyable ? "Yes" : "No"));
+           add line       tip.Replace("{WEIGHT}", itemWeight.ToString());
+
+
+2. Edit the "EquipmentItem.cs"  Script in “/Scripts/ScriptableItems/" 
+   a)     Find line       public class EquipmentItem : UsableItem
+          change to       public partial class EquipmentItem : UsableItem
+
+   b)   Before line       return tip.ToString();
+           add line       tip.Replace("{WEIGHTBONUS}", weightBonus.ToString());
+
+
+3. Edit the "Player.cs"  Script in “/Scripts/" 
+   a)     Find line       public class Player : Entity
+          change to       public partial class Player : Entity
+
+
+4. Edit the "Combat.cs"  Script in “Scripts/" 
+   a) find line      public class Combat : NetworkBehaviourNonAlloc 
+      change to      public partial class Combat : NetworkBehaviourNonAlloc
+
+   b)after line      int GetDefenseBonus();
+       add line      int GetWeightBonus();
+
+
+5. Edit the "Equipment.cs"  Script in “Scripts/" 
+   a) find line      public abstract class Equipment : ItemContainer, IHealthBonus, IManaBonus, ICombatBonus 
+      change to      public abstract partial class Equipment : ItemContainer, IHealthBonus, IManaBonus, ICombatBonus
+
+
+6. Edit the "Inventory.cs"  Script in “Scripts/" 
+   a) find line      public class Inventory : ItemContainer 
+      change to      public partial class Inventory : ItemContainer
+
+
+7. Edit the "PlayerHotbar.cs"  Script in “Scripts/" 
+   a) find line      public class Inventory : ItemContainer 
+      change to      public partial class Inventory : ItemContainer
+
+
+8. Edit the "UIStatus.cs" Script in “ Assets/uSurvival/Scripts/_UI " 
+   a) find line      public class UIStatus : MonoBehaviour
+      change to      public partial class UIStatus : MonoBehaviour
+
+   b) after line     defenseText.text = player.combat.defense.ToString();
+		add line     Update_Weight(player);
+
+
+9. If used original "MainUI"
+   a) Delete the "MainUI" from Canvas
+   b) Drag the "MainUI.prefab" from (\Prefabs\)to the canvas element so canvas is the parent.
+   c) in GameObject "Main Camera" in script "Cursor locking"  edit array "windows That Unlock Cursor"
+       - in first slot drag "MainUIPanel"  from Canvas\MainUI\MainUIPanel
+
+
+10. Edit the "Endurance.cs" Script in “ Assets/uSurvival/Scripts/ " 
+   a)after line      public PlayerMovement movement;
+       add line      public Player player;
+
+   b) find line     ? drainState.drain
+      change to     ? drainState.drain - player.DrainByWeight()
+
+
+11. Edit all player prefabs
+  a) in Inspector in script "Endurance" drag in field "Player" this prefab
+
+  b) in Inspector in script "Endurance" add Element to "Drain States"
+    - State = "Walking"
+	- Drain = 0
+
+
+
+
+		  	                          Information
+All Items have a settings ("Item Weight" and "weight Bonus") in which you can specify how much this item will give bonuses
+
+The weight that a character can carry can be changed for character prefabs. by default it is 200
+
+
+

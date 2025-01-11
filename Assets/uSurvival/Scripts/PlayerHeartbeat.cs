@@ -4,13 +4,16 @@
 using UnityEngine;
 using Mirror;
 
-public class PlayerHeartbeat : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    public AudioSource audioSource;
-    public Health health;
-
-    void Update()
+    public class PlayerHeartbeat : NetworkBehaviour
     {
-        audioSource.volume = isLocalPlayer ? (1 - health.Percent()) : 0;
+        public AudioSource audioSource;
+        public Health health;
+
+        void Update()
+        {
+            audioSource.volume = isLocalPlayer ? (1 - health.Percent()) : 0;
+        }
     }
 }

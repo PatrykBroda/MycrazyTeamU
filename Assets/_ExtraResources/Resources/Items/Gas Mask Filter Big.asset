@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206203c1d144d644bb173eaed6848659, type: 3}
+  m_Name: Gas Mask Filter Big
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 1
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 200
+  canSendOnMail: 0
+  buyPrice: 5000
+  sellPrice: 100
+  sellable: 1
+  itemMallPrice: 50
+  canPutInTheStorage: 1
+  skins: []
+  localization:
+  - text: 
+    language: 10
+    description: 
+  - text: 
+    language: 30
+    description: "\u0414\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F
+      \u043F\u0440\u043E\u0442\u0438\u0432\u043E\u0433\u0430\u0437\u043E\u043C  "
+  maxStack: 1
+  maxDurability: 300
+  destroyable: 0
+  toolTip: "<b>{NAME}</b>\n{DESCRIPTION} \n\n{DURABILITYMAX}\n{DURABILITY}\n\n{WEIGHT}\n{TRADABLE}\n{BUYPRICE}"
+  image: {fileID: 21300000, guid: 501e9e3db239b3944a086c0c9e78e8d9, type: 3}
+  lootSound: {fileID: 8300000, guid: bce84b3643e6f284782de83c55b79cc5, type: 3}
+  drop: {fileID: 114666906706450464, guid: c29d741e5dd06fe4f8c47eda52966bce, type: 3}
+  modelPrefab: {fileID: 1917835097952912, guid: 92eeed4712e02014a910381c3347d433,
+    type: 3}
+  time: 30

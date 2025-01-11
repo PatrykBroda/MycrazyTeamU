@@ -1,0 +1,341 @@
+English;Russian
+
+Language;Language;Язык
+
+Login;Login;Вход
+Registration;Registration;Регистрация
+RecoverAccount;Recover Account;Напомнить пароль
+RememberMe;Remember Me;Запомнить меня
+Check;Check;Проверить
+QuitMessage;Do you really want to leave ?;Вы действительно хотите выйти ?
+
+Select character;Select character;Выберите Персонажа
+Create;Create;Создать
+Quit;Quit;Выход
+Start;Start;Играть
+Delete;Delete;Удалить
+LogOut;Log Out;Выйти из\nУчетной записи
+
+Character Creation;Character Creation;Создание Персонажа
+Gender;Gender;Пол
+Female;Female;Женщина
+Male;Male;Мужчина
+Bonuses;Bonuses;Бонусы
+Name;Name;Имя
+Randomize;Randomize;Рандомно
+Back;Back;Назад
+
+Head;Head;Головной убор
+Hair;Hair;Волосы
+Beard;Beard;Борода и Усы
+Hats;Hats;Головной убор
+Glasses;Glasses;Очки
+Mask;Mask;Маска
+Jackets;Jackets;Куртка
+Pants;Pants;Штаны
+Boots;Boots;Ботинки
+Gloves;Gloves;Перчатки
+ProtectiveSuits;ProtectiveSuits;Защитный костюм
+Suit;Suit;Костюм
+Backpack;Backpack;Рюкзак
+Bodyarmor;Bodyarmor;Бронежилет
+ArmorPlate;Armor Plate;Бронепластина
+Shoulders;Shoulders;Плечи
+ShoulderL;Shoulders;Плечо
+ShoulderR;Shoulders;Плечо
+Kneepads;Kneepads;Наколенники
+KneepaL;Kneepa;Наколенник
+KneepaR;Kneepa;Наколенник
+Pouch;Pouch;Сумка
+Pocket;Pocket;Карман
+Pockets;Pockets;Карманы
+Construction;Construction;Строительство
+Filter;Filter;Фильтр
+Colors;Colors;Цвет
+ChangeColor;Change Color;Переодеться
+
+Blood;Blood;Кровь
+Hydration;Hydration;Жажда
+Nutrition;Nutrition;Голод
+Temperature;Temperature;Температура
+Endurance;Endurance;Выносливость
+Damage;Damage;Урон
+Defense;Defense;Защита
+Weight;Weight;Вес
+CarriedWeight;CarriedWeight;Переносимый вес
+AddSlots;Add Slots;Слотов
+AddKg;Add Kg;Переносимый вес
+MoveSpeed;Move Speed;Скорость бега
+Players killed;Players killed;Игроков убито
+Monsters killed;Monsters killed;Зомби убито
+Lifetime;Lifetime;Время жизни
+
+Equipment;Equipment;Экипировка
+Inventory;Inventory;Инвентарь
+Storage;Storage;Хранилище
+StorageInfo;Personal storage is for your use only, not anyone else.;Личное хранилище предназначено только для вашего использования.
+Craft;Craft;Крафт;Craft;;;
+Crafting;Crafting;Крафт
+Recipes;Recipes;Рецепты
+Choose a recipe;Choose a recipe;Выберите рецепт
+The combination is not correct;The combination is not correct;Комбинация не верна
+Crafting level too low;Crafting level too low;Уровень крафта меньше необходимого
+Skill Level Required;Skill Level Required;Требуемый уровень умения
+IncorrectCombination;Combination is not correct;Комбинация не верна
+Recycle;Recycle;Переработка
+Auto;Auto;Авто
+Stats;Stats;Статистика
+StatisticsUpdateTime;Statistics are updated once a minute;Статистика обновляется каждые 5 минут
+Auction;Auction;Аукцион;Auction;;;
+CharacterInfo;Character Info;Персонаж;Character Info;;;
+SelectedKlan;Selected Klan;Ваш клан;Character Info;;;
+none;none;Не выбрано;
+Exchange;Exchange;Обменять
+Talk;Talk;Поговорить
+
+Accept;Accept;Принять;Accept;;;
+Add;Add;Добавить;Add;;;
+Cancel;Cancel;Отменить;Cancel;;;
+Close;Close;Закрыть;Close;;;
+CloseAll;Close All;Закрыть Все;Close ALL;;;
+Continue;Continue;Продолжить;Continue;;;
+Confirm;Confirm;Подвердить
+Decline;Decline;Отклонить;Decline;;;
+Default;Default;По умолчанию;Default;;;
+Error;Error;Ошибка
+None;None;Нет
+Refresh;Refresh;Обновить;Refresh;;;
+Rename;Rename;Переименовать
+Submit;Submit;Оценить;Submit;;;
+Search;Search;Искать;Search;;;
+Send;Send;Отправить;Send;;;
+Save;Save;Сохранить;Save;;;
+Use;Use;Использовать;Refresh;;;
+Restoring;Restoring;Восстанавливает
+Restore;Restore;Восстановить
+Reloading;Reloading;Перезарядка
+Price;Price;Стоимость
+Edit;Edit;Изменить
+Set;Set;Установить
+Reject;Reject;Отменить
+Kick;Kick;Выгнать
+TradableYes;Available;Возможен
+TradableNo;Not possible;Невозможен
+
+Type;Type;Тип
+Medicine;Medicine;Медицина
+Food;Food;Еда
+Drink;Drink;Напитки
+Cooldown;Cooldown;Скорость стрельбы
+
+Available;Available;Возможен
+NotAvailable;Not Available;Не возможен
+
+DurabilityMax;Durability Max;Максимальная Прочность
+Durability;Durability;Прочность
+durability;durability;прочности
+DurabilityRestoration;Durability Restoration;Восстановление прочности
+
+Tradable;Tradable;Обмен
+Amount;Amount;Количество
+
+
+Buy/Sell Items;Buy/Sell Items;Торговать;Trade;;;
+Buy;Buy;Купить;Buy;;;
+Sell;Sell;Продать;Sell;;;
+BuyItems;Items to buy;Товары для покупки;Items to buy;;;
+SaleItems;Items for sale;Товары на продажу;Items for sale;;;
+Trade;Trade;Торговать;Trade;;;
+TradingProgress;Trading in progress;Идет Торговля;Trading in progress;;;
+NotSoldItems;You have not sold items \n Want to confirm the sale ?;Есть не проданные товары. Хотите продолжить продажу ?;;;;
+NotBuyItems;You have not buy items \n Want to confirm the buy ?;У вас есть не купленные товары. Хотите продолжить покупку ?;;;;
+
+ByName;By Name;По имени;By Name;;;
+ByAmount;By Amount;По колличеству;By Amount;;;
+
+Normal;Normal;Обычное;Normal;;;
+Rare;Rare;Редкое;Rare;;;
+Legendary;Legendary;Легендарное;Legendary;;;
+
+Friendly;Friendly;Дружественные;Friendly;;;
+Neutral;Neutral;Нейтральные;Neutral;;;
+Aggressive;Aggressive;Агрессивные;Aggressive;;;
+
+Processing;Processing;Обработка;Processing;;;
+Quests;Quests;Квесты;Quests;;;
+Shop;Shop;Магазин
+Friends;Friends;Друзья
+DailyRewards;Daily Rewards;Ежедневные Награды
+Claim;Claim;Забрать
+Party;Party;Группа
+Interaction;Interaction;Взаимодействие
+PlayerTradeRequest;Player Trade Request!;Запрос на обмен
+WantsTrade;Wants to trade with you!;Хочет торговать с вами!
+Lock;Lock;Замок
+Description;Description;Описание;Description;;;
+
+ExchangeShopCoins;Exchange Shop Coins;Обменять Черепа
+
+InventoryFull;Inventory full;Инвентарь заполнен
+SafeZone;Safe Zone;Безопасная зона
+Radiation;Radiation;Зона радиации
+WeightOverload;Weight Overload;Персонаж перегружен
+
+
+Achievements;Achievements;Достижения;Achievements;;;
+Action;Action;Взаимодействие;Action;;;
+Requests;Requests;Запросы;Requests;;;
+
+Information;Information;Информация
+BetaInfo;The game is under development.\n\nSometimes something may not work as planned.\nSome of game mechanics may differ from the release version.;Игра находится в стадии разработки.\n\nИногда что-то может работать не так, как планировалось.\nНекоторые игровые механики могут отличаться от релизной версии.\n\n\nМного запланированных вещей и событий\n(Противостояние и выживание)\nбудут ждать Вас в следующих обновлениях!\n\n\nБлагодарим Вас за то, что присоединились к нам на этапе тестирования
+Do not show again;Do not show again;Не показывать
+
+Info;Info;Город
+Resources;Resources;Ресурсы;Resources;;;
+Resource;Resource;Ресурс;Resource;;;
+Resource mining;Resource mining;Добыча ресурсов;Resource mining;;;
+Instruments;Instruments;Инструменты;Instruments;;;
+Weapon;Weapon;Оружие;Weapon;;;
+Potions;Potions;Допинги;Potions;;;
+Animals;Animals;Животные;Animals;;;
+
+
+Relationships;Relationships;Отношения с группировками;Relationships;;;
+Military;Military;Военные
+Churchmen;Churchmen;Церковники
+Anarchists;Anarchists;Анархисты
+
+
+CombatSkills;Combat Skills;Боевые умения;Combat Skills;;;
+Skills;Skills;Умения;;;;
+Melee;Melee;Ближний бой;Melee;;;
+Range;Range;Стрелковое оружие;Range;;;
+
+Get Reward;Get Reward;Завершить;Get Reward;;;
+Tasks;Tasks;Задачи;Tasks;;;
+Rewards;Rewards;Награда;Rewards;;;
+
+Required Ingredients;Required Ingredients;Требуемые Ресурсы;Required Ingredients;;;
+Required Researches;Required Researches;Требуемые Изучения;Required Researches;;;
+
+
+
+Clearing the area;Clear The Area;Расчистить\nтерриторию;Cleaning The Territory;;;
+Hunters;Hunters;Охотники;Hunters;;;
+
+Capacity;Capacity;Вместимость;Capacity;;;
+exchangeRate;Exchange Rate;Обменный Курс
+
+Category;Category;Категория;Category;;;
+Subcategory;Subcategory;Подкатегория;Subcategory;;;
+Favorites;Favorites;Избранное;Favoritesy;;;
+AllItems;All Items;Все товары;All Items;;;
+MyItems;My Items;Мои товары;My Items;;;
+
+NpcTrading;Npc Trading;Торговля;Npc Trading;;;
+Total;Total;Всего;Total;;;
+
+Gold;Gold;Фингеры;Gold;;;
+NotEnoughGold;NotEnoughGold;Не достаточно Фингеров;Gold;;;
+Coins;Coins;Черепа;Coins;;;
+Dollars;Dollars;Доллары;Dollars;;;
+Cost;Cost;Стоимость;Cost;;;
+Expand;Expand;Расширить;Expand;;;
+Successfully;Successfully;Успешно;Successfully;;;
+
+Mail;Mail;Почта;Craft;;;
+Mailbox;Mailbox;Почта;Mailbox;;;
+Sender;Sender;Отправитель;Sender;;;
+Subject;Subject;Тема;Subject;;;
+New;New;Новое;New;;;
+From;From;От;From;;;
+Reply;Reply;Ответить;Reply;;;
+Recipient;Recipient;Получатель;Recipient;;;
+
+Confirmation;Confirmation;Подтверждение;Confirmation;;;
+Do you really want to delete;Do you really want to delete;Вы действительно хотите удалить;Do you really want to delete;;;
+Popup;Popup;Уведомление;Popup;;;
+Got it!;Got it!;Понятно!;Got it!;;;
+
+RegisterItemAmount;The amount of items that you can register at auction;Количество товаров котрые Вы можете зарегистрировать
+RegistrationTax;Item registration tax;Стоимость регистрации товара
+RegisterItem;Register Item;Регистрация товара
+
+single;Single;Одиночный;Single;;;
+burst;Burst;Очередь;Burst;;;
+auto;Auto;Авто;Auto;;;
+
+Cook;Cook;Повара
+Doctor;Doctor;Доктора
+Mechanic;Mechanic;Механика
+
+Weapons;Weapons;Оружие;Weapons;;;
+Ammo;Ammo;Патроны;Ammo;;;
+Powers;Powers;Допинги;Powers;;;
+Currencies;Currencies;Валюта;Currencies;;;
+Bundles;Bundles;Наборы;Bundles;;;
+Suits;Suits;Костюмы;Suits;;;
+WeaponSkins;Weapon Skins;Скины для оружия;Weapon Skins;;;
+
+WearSuit;Wear a suit;Надеть;Wear a suit;;;
+Biker;Biker;Байкер;Biker;;;
+Business;Business;Офисный Работник;Business;;;
+Cool;Cool;Клевый парень;Cool;;;
+Criminal;Criminal;Бандит;Criminal;;;
+Homeless;Homeless;Бездомный;Homeless;;;
+Hunter;Hunter;Охотник;Hunter;;;
+Islander;Islander;Оружие;Islander;;;
+Press;Press;Журналист;Press;;;
+ProtectionSuit;Protection suit;Костюм Хим Защиты;Protection suit;;;
+RiotCop;RiotCop;Полицейский;RiotCop;;;
+Sheriff;Sheriff;Шериф;Sheriff;;;
+Soldier;Soldier;Военный;Soldier;;;
+Teen;Teen;Подросток;Teen;;;
+Wanderer;Wanderer;Странник;Wanderer;;;
+
+Female Cool;Cool;Отвязная Чика;Cool;;;
+Female Eastern;Eastern;Восточный;Eastern;;;
+Female Emo;Emo;Эмо;Emo;;;
+Female Hazmat;Protection suit;Костюм Хим Защиты;Protection suit;;;
+Female Mechanic;Mechanic;Механик;Mechanic;;;
+Female Nerd;Nerd;Спасатель;Nerd;;;
+Female Nun;Nun;Монашка;Nun;;;
+Female Patient;Patient;Пациентка Больницы;Patient;;;
+Female Punk;Punk;Панк;Punk;;;
+Female Scout;Scout;Скаут;Scout;;;
+Female Soldier;Soldier;Военная;Soldier;;;
+Female Teen;Teen;Подросток;Teen;;;
+Female Waitress;Waitress;Официантка;Waitress;;;
+
+Amir Kaffarov;Amir Kaffarov;Амир Кафаров
+Lt. Jennifer Hawkins;Lt. Jennifer Hawkins;Лейтенант Дженнифер Хокинс
+
+GuildManagement;Guild Management;Гильдии
+NpcGuildManagement;Npc Guild Management;Гильдии
+GuildName;Guild Name;Название
+Master;Master;Лидер
+Members;Members;Участников
+Join;Join;Вступить
+CreateGuild;Create Guild;Создать гильдию
+TerminateGuild;TerminateGuild;Удаление гильдии
+Terminate;Terminate;Удалить
+LeaveGuild;Leave Guild;Покинуть
+GuildMaster;Guild Master;Лидер
+Notice;Notice;Приветствие
+Member;Member;Участник
+Rank;Rank;Ранг
+
+
+You can get a reward;You can get a reward;Можно забрать награду
+The reward has already been received;The reward has already been received;Награда уже получена
+The time of receipt has not yet come;The time of receipt has not yet come;Время получения награды еще не пришло
+
+Unknown island;Unknown island;Неизвестный  остров
+YouDied;You Died! Respawning in:;Вы Умерли! Возрождение через:
+InvitParty;Has invited you to their Party.;Приглашает в группу
+Bind Item;Bind Item;Привязка предмета
+BindDescription;After binding, you will not lose this item.\nTo give this item to other players, you have to release it.;После привязки вы не потеряете этот предмет.\nЧтобы передать его другим игрокам, вы должны его отвязать
+Bind;Bind;Выполнить
+
+The territory is controlled by the;The territory is controlled by the;Территорию контролируют
+The territory is not controlled;The territory is not controlled;Территория не контролируется

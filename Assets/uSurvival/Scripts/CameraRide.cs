@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-public class CameraRide : MonoBehaviour
+namespace uSurvival
 {
-    public float speed = 0.1f;
-
-    void Update()
+    public class CameraRide : MonoBehaviour
     {
-        // only while not logged in yet
-        if (Player.localPlayer) Destroy(this);
+        public float speed = 0.1f;
 
-        // move backwards
-        transform.position -= transform.forward * speed * Time.deltaTime;
+        void Update()
+        {
+            // only while not logged in yet
+            if (Player.localPlayer) Destroy(this);
+
+            // move backwards
+            transform.position -= transform.forward * speed * Time.deltaTime;
+        }
     }
 }

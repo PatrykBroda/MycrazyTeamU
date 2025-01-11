@@ -12,31 +12,37 @@
 //             not all entity types should react to OnTriggerEnter with aggro!)
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))] // aggro area trigger
-public class AggroArea : MonoBehaviour
+namespace uSurvival
 {
-    public Monster owner; // set in the inspector
-
-    // same as OnTriggerStay
-    void OnTriggerEnter(Collider co)
+    [RequireComponent(typeof(Collider))] // aggro area trigger
+    public class AggroArea : MonoBehaviour
     {
-        // is this a living thing that we could attack?
-        // (look in parents because AggroArea doesn't collide with player's main
-        //  layer (IgnoreRaycast), only with body part layers. this way
-        //  AggroArea only interacts with player layers, not with other
-        //  monster's IgnoreRaycast layers etc.)
-        Entity entity = co.GetComponentInParent<Entity>();
-        if (entity) owner.OnAggro(entity);
-    }
+        public Monster owner; // set in the inspector
 
-    void OnTriggerStay(Collider co)
-    {
-        // is this a living thing that we could attack?
-        // (look in parents because AggroArea doesn't collide with player's main
-        //  layer (IgnoreRaycast), only with body part layers. this way
-        //  AggroArea only interacts with player layers, not with other
-        //  monster's IgnoreRaycast layers etc.)
-        Entity entity = co.GetComponentInParent<Entity>();
-        if (entity) owner.OnAggro(entity);
-    }
+        // same as OnTriggerStay
+        void OnTriggerEnter(Collider co)
+        {
+            Entity entity = co.GetComponentInParent<Entity>();
+
+            if (entity && owner.fieldOfView.CanSeeTarget(entity))
+            {
+                owner.OnAggro(entity);
+            }
+        }
+
+        void OnTriggerStay(Collider co)
+        {
+            // is this a living thing that we could attack?
+            // (look in parents because AggroArea doesn't collide with player's main
+            //  layer (IgnoreRaycast), only with body part layers. this way
+            //  AggroArea only interacts with player layers, not with other
+            //  monster's IgnoreRaycast layers etc.)
+            Entity entity = co.GetComponentInParent<Entity>();
+
+            if (entity && owner.fieldOfView.CanSeeTarget(entity))
+            {
+                owner.OnAggro(entity);
+            }
+        }
+}
 }

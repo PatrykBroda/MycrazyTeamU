@@ -2,8 +2,11 @@
 // -> heat sources should always have a trigger collider for the heat area
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-public class HeatSource : MonoBehaviour
+namespace uSurvival
 {
-    public int recoveryBonus = 100; // 1°C / s
+    [RequireComponent(typeof(Collider))]
+    public class HeatSource : MonoBehaviour
+    {
+        public int recoveryBonus = 100; // 1°C / s
+    }
 }

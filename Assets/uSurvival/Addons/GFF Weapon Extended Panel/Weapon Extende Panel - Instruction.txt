@@ -1,0 +1,31 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+Any suggestions and questions you can send us by Email "GameFunSPB@gmail.com"
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+
+
+Addon name : Weapon Extende Panel
+Addon version : 1.0
+Date of creation / editing 01.02.2023
+Require Components : none
+Recommended Components : none
+Compatible projects : uSurvival 1.85
+Recommendations : Test the package on a uSurvival without changes.
+Recommended version Unity 2021.3.17
+Link : 
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Drag the "PanelWeaponExtended.prefab" (Addons\GFF Weapon Extended Panel\Prefabs\) to the canvas element so canvas is the parent.
+
+
+

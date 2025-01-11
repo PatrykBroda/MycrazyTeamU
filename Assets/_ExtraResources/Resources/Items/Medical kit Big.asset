@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbc25bef1e7c4f4aa348edf964275e9, type: 3}
+  m_Name: Medical kit Big
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 300
+  canSendOnMail: 0
+  buyPrice: 75
+  sellPrice: 40
+  sellable: 1
+  itemMallPrice: 0
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 99
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some health.
+
+
+    Restores {USAGEHEALTH}
+    Health on use.
+
+
+    Amount: {AMOUNT}
+
+    Durability: {DURABILITY}%'
+  image: {fileID: 21300000, guid: 311df27c240b1244db6bc778696416d5, type: 3}
+  lootSound: {fileID: 8300000, guid: bce84b3643e6f284782de83c55b79cc5, type: 3}
+  drop: {fileID: 114666906706450464, guid: 03fa1b94d1aa2594697352bf8befd2d7, type: 3}
+  modelPrefab: {fileID: 0}
+  equipmentItemType: 17
+  category: Pocket
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 8300000, guid: 612051aec421c6743bfeee0379f9eae3, type: 3}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  cooldown: 1
+  _cooldownCategory: Healing
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  potionType: 0
+  usageBoost: 0
+  _usageRadiation: 0
+  usageHealth: 50
+  usageHydration: 0
+  usageNutrition: 0

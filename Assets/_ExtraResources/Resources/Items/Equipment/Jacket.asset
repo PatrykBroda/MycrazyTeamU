@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c06992fabc4400c8c2e33ff979c9e2, type: 3}
+  m_Name: Jacket
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 1
+  canPutInTheStorageGuild: 1
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 200
+  canSendOnMail: 0
+  buyPrice: 4000
+  sellPrice: 300
+  sellable: 1
+  tradable: 1
+  itemMallPrice: 2000
+  canPutInTheStorage: 1
+  skins: []
+  localization:
+  - text: English
+    language: 10
+    description: 
+  - text: Russian
+    language: 30
+    description: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
+      \u043F\u0435\u0440\u043D\u043E\u0441\u0438\u043C\u044B\u0439 \u0432\u0435\u0441
+      \u0438 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u0434\u043E\u043F
+      \u0441\u043B\u043E\u0442\u044B \u0432 \u0438\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u0435"
+  maxStack: 1
+  maxDurability: 5000
+  destroyable: 0
+  toolTip: '<b>{NAME}</b>
+
+    {DESCRIPTION}
+
+
+    {WEIGHTBONUS}
+
+    {SLOTSBONUS}
+
+
+    {DURABILITYMAX}
+
+    {DURABILITY}
+
+
+    {WEIGHT}
+
+    {TRADABLE}
+
+    {BUYPRICE}'
+  image: {fileID: 21300000, guid: 1b41dafbdf6e459499baca972e992bbb, type: 3}
+  lootSound: {fileID: 0}
+  drop: {fileID: 112787239652236888, guid: afe7dba604d16fc49bf20ddeb20455b9, type: 3}
+  modelPrefab: {fileID: 3835941558834761789, guid: 9fec0e97613cc2d449f60ef6f8f014fd,
+    type: 3}
+  equipmentItemType: 6
+  category: Jacket
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 8300000, guid: 1886247efa26c704487936b7855c9c80, type: 3}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  puttingOnSound: {fileID: 0}
+  removedSound: {fileID: 0}
+  cooldown: 0
+  _cooldownCategory: 
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  armorType: 0
+  multiplierReducingDamage: 0
+  requiredCombatSkill: {fileID: 0}
+  requiredLevel: 1
+  moveSpeedBonus: 0
+  moveSpeedBonusPercentage: 0
+  secondCategory: 
+  secondItems: []
+  _addSlots: 2
+  _weightBonus: 0
+  _radiationResistanceBonus: 0
+  healthBonus: 0
+  hydrationBonus: 0
+  nutritionBonus: 0
+  damageBonus: 0
+  defenseBonus: 3
+  defaultBodyArmor: 0

@@ -1,0 +1,107 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on asset store
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Combat Skills (pt)
+Addon version : 1.0
+Date of creation / editing 25.10.2023
+Require Components : Addons Core, Character Info Extended
+Recommended Components : Extended Attributes, Stamina, Improved Crit & Block & Stun
+Compatible projects : uSurvival 1.86
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Link : 
+
+
+Versions for other projects:
+ * uMMORPG Extended : http://u3d.as/1PQL
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                              Installation and Configuration
+
+1. Edit the "Energy.cs"  Script in “/Scripts/" 
+   a)    find line      public abstract partial class Energy : NetworkBehaviour
+         change to      public abstract class Energy : NetworkBehaviour
+
+
+2. Edit the "EquipmentItem.cs"  Script in “Assets/uMMORPG/Scripts/ScriptableItems/" 
+   a)     Find line       public class EquipmentItem : UsableItem
+          change to       public partial class EquipmentItem : UsableItem
+
+   b)   Before line       return tip.ToString();
+           add line       Utils.InvokeMany(typeof(EquipmentItem), this, "ToolTip_", tip);
+
+
+3. Edit the "Combat.cs"  Script in “Assets/uMMORPG/Scripts/" 
+   a)     Find line       public class Combat : NetworkBehaviour
+          change to       public partial class Combat : NetworkBehaviour
+
+   b)   before line       victim.health.current -= damageDealt;
+          add lines       onServerHitEnemyCombatSkills.Invoke(victim, damageDealt);
+                          victimCombat.onServerReceivedDamageCombatSkills.Invoke(damageType);
+
+
+4. Add to gameobject NetworkManager script Database Events
+  a) On Connected  -> Object - NetworkManager, Function - Database.Connect_CombatSkills
+  b) On Character Load  -> Object - NetworkManager, Function - Database.CharacterLoad_CombatSkills
+  c) On Character Save  -> Object - NetworkManager, Function - Database.CharacterSave_CombatSkills
+
+
+5. Move folder "GFF Combat Skills" from "Addons\GFF Character Characteristics - Combat Skills (pt)\"  to  "...\Resources\Items\"
+
+
+6. Edit all player prefabs (uMMORPG\Prefabs\Entities\Players\)
+   a) add scripts "PlayerCombatSkills"
+   b) in Inspector in script "PlayerCombatSkills" Drag  in fields "Player" - this prefab
+   ñ) in Inspector in script "PlayerCombatSkills" in "Skill Templates" add Combat skiils from (...\Resources\Items\GFF Combat Skills)
+   d) in Inspector in script "Player"  Drag  in "CombatSkills" - this prefab
+   e) in Inspector in script "Combat"      
+	 1) add event to "onServerReceivedDamageCombatSkills"  - Object - this prefab, Function - PlayerCombatSkills.onServerReceivedDamage_CombatSkills
+	 1) add event to "onServerHitEnemyCombatSkills"  - Object - this prefab, Function - PlayerCombatSkills.OnHitEnemy_CombatSkills
+
+
+
+7. Edit the "Health.cs"  Script in “/Scripts/" 
+   a)    find line      return baseThisLevel + bonus;
+         change to      if (entity != null && entity is Player player) return baseThisLevel + bonus + player.BonusHealth_CombatSkills();
+                        else return baseThisLevel + bonus;
+
+
+9. Edit the "Combat.cs"  Script in “/Scripts/" 
+//damage
+   a)    find line      return baseDamage.Get(level.current) + bonus;
+         change to      if (entity is Player player) return baseDamage.Get(level.current) + bonus + player.GetDamageBonus_CombatSkills(baseDamage.Get(level.current) + bonus);
+                        else return baseDamage.Get(level.current) + bonus;
+
+
+//defense
+   a)    find line      return baseDefense.Get(level.current) + bonus;
+         change to      if (entity is Player player) return baseDamage.Get(level.current) + bonus + player.GetDefenseBonus_CombatSkills(baseDamage.Get(level.current) + bonus);
+                        else return baseDefense.Get(level.current) + bonus;
+
+
+10. All items in folder "Assets/uMMORPG/Resources/Equipment/" have two characteristics added
+  * you need to fill them for weapons 
+   -- for swords : itemtype select "weapon"  and  subType select "sword"
+   -- for bows : itemtype select "weapon"  and  subType select "bow"
+
+
+11. Configure addon GFF Character Info Extended
+
+
+
+
+Melee - add Sp and Damage
+Range - add Sp and Damage
+Force - add Fp and Damage
+Defense - add Hp and Defense
+Shield - add Block Chance

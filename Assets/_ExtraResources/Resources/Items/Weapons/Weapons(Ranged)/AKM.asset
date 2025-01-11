@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99cbcb882d44b2984928ebe183fb04, type: 3}
+  m_Name: AKM
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 10
+  dropFromInventory: 1
+  dropFromEquipment: 0
+  dropFromHotbar: 0
+  _itemWeight: 4200
+  canSendOnMail: 0
+  buyPrice: 24000
+  sellPrice: 11000
+  sellable: 1
+  itemMallPrice: 1500
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 1
+  maxDurability: 1000
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+
+    {DAMAGE} Damage
+
+    Fire Interval: {COOLDOWN}s
+
+    Requires:
+    {REQUIREDAMMO}
+
+
+    Ammo: {AMMO} / {MAGAZINESIZE}
+
+    Durability: {DURABILITY}%
+
+'
+  image: {fileID: 21300000, guid: 00f495300931c634abca040a33ac5219, type: 3}
+  lootSound: {fileID: 8300000, guid: bce84b3643e6f284782de83c55b79cc5, type: 3}
+  drop: {fileID: 114387862826166012, guid: 2fd9e3b586c40cb459be94815bd6f09b, type: 3}
+  modelPrefab: {fileID: 1856152654449828, guid: 445ce494c6362584c9e9f1d7d66992a3,
+    type: 3}
+  equipmentItemType: 0
+  category: WeaponTwohand
+  keepUsingWhileButtonDown: 1
+  successfulUseSound: {fileID: 8300000, guid: ff1fed4d66167c64cade535683204905, type: 3}
+  failedUseSound: {fileID: 8300000, guid: 7516a6affda49469993f31d09f151128, type: 3}
+  emptySound: {fileID: 8300000, guid: 7516a6affda49469993f31d09f151128, type: 3}
+  cooldown: 0.11
+  _cooldownCategory: 
+  shoulderLookAtWhileHolding: 1
+  useDirectly: 0
+  armorType: 0
+  multiplierReducingDamage: 0
+  requiredCombatSkill: {fileID: 0}
+  requiredLevel: 1
+  moveSpeedBonus: 0
+  secondCategory: 
+  secondItems: []
+  _addSlots: 0
+  _weightBonus: 0
+  _radiationResistanceBonus: 0
+  healthBonus: 0
+  hydrationBonus: 0
+  nutritionBonus: 0
+  damageBonus: 0
+  defenseBonus: 0
+  defaultBodyArmor: 0
+  weaponType: 0
+  attackRange: 180
+  damage: 25
+  upperBodyAnimationParameter: UPPERBODY_RIFLE
+  imageHorizontal: {fileID: 0}
+  _compatibleAmmo:
+  - {fileID: 11400000, guid: c9b8269d6b2e102418966f4c49314974, type: 2}
+  - {fileID: 11400000, guid: c20b2eb83f1b3884aa352f031d739b2b, type: 2}
+  - {fileID: 11400000, guid: 83a22f87c275960478707dcadda1deca, type: 2}
+  shootingModes: 000102
+  burstAmmoAmount: 3
+  changeShootingModeSound: {fileID: 8300000, guid: 5e36f43224d1e5a428a71fbee5a837c9,
+    type: 3}
+  successfulSilentUseSound: {fileID: 8300000, guid: c1bd91cf7c20534478c9b9c5d69d1732,
+    type: 3}
+  barrelModules:
+  - {fileID: 11400000, guid: af030cf91fa894d4aad0ff299909e243, type: 2}
+  - {fileID: 11400000, guid: 117866fb5352a4d43b1da7547fd0582a, type: 2}
+  - {fileID: 11400000, guid: af030cf91fa894d4aad0ff299909e243, type: 2}
+  handguardModules: []
+  buttModules:
+  - {fileID: 11400000, guid: b3482e899f0a9284b99a8763328da48c, type: 2}
+  sightsModules:
+  - {fileID: 11400000, guid: 92868f80dbfed36448dcf1640fce0a76, type: 2}
+  - {fileID: 11400000, guid: 4b7771bdce09f9840a6fe268fae4c1c3, type: 2}
+  magazineModules:
+  - {fileID: 11400000, guid: bb0404b2d5d3dbd4e8742be5bd7be6e6, type: 2}
+  - {fileID: 11400000, guid: 047a3d58e3de9974a8c9098c7bb06a34, type: 2}
+  - {fileID: 11400000, guid: bd0ddbeb9f59e2747b078eb96755947e, type: 2}
+  magazineSize: 30
+  reloadTime: 1.5
+  reloadSound: {fileID: 8300000, guid: 7450499e8d33a47d8b5db0c4650b7f18, type: 3}
+  zoom: 12
+  decalPrefab: {fileID: 1369496945668376, guid: 12cfe7016056b48e6875cfc877e30d28,
+    type: 3}
+  decalOffset: 0.01
+  recoilHorizontal: 0.7
+  recoilVertical: 5

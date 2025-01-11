@@ -1,0 +1,74 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Quests
+Addon version : 1.10
+Date of creation / editing 03.11.2021
+Require Components / Addons : Addons Core, Texture, Sounds
+Recommended Addons : Item Rarity, GameControlPanel, Characters Rank
+Compatible projects : uMMORPG 1.194, uMMORPG 2D 1.63
+Recommendations : Test the addon on a clean version uMMORPG without changes.
+Recommended version Unity 2019.4.32
+Link : http://u3d.as/1zkE
+
+
+Versions for other projects:
+ * uMMORPG Remastered  http://u3d.as/1Nrk
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+4. Edit the "NPC.cs" Script in “ Assets/uMMORPG/Scripts " 
+    b)     find line      if (entry.acceptHere && player.CanAcceptQuest(entry.quest) ||
+     replace it with      if (entry.acceptHere && player.CanAcceptQuestExtended(entry.quest) ||
+
+
+5. Edit the "Database.cs" Script in “ Assets/uMMORPG/Scripts " 
+    a)    after line       public bool completed { get; set; }
+            add line       public string lastTimeCompleted { get; set; }
+
+    b)    after line       quest.completed = row.completed;
+            add line       quest.lastTimeCompleted = row.lastTimeCompleted;
+
+    c)    find line        completed = quest.completed
+    replace it with        completed = quest.completed,
+                           lastTimeCompleted = quest.lastTimeCompleted
+
+
+6. Edit the "UINpcQuests.cs" Script in “ Assets\uMMORPG\Scripts\_UI " 
+          find line      player.CmdCompleteQuest(npcIndex);
+    replace it with      player.CmdCompleteExtendedQuest(npcIndex, 0);
+
+
+7. Delete or Disable the "Quests" in canvas
+
+8. Drag the "GFF Quests.prefab" (Addons\GFF Quests\Prefabs\) to the canvas element so canvas is the parent.
+
+9. Select the "Shortcuts" object in Canvas. In the inspector Drag in "Quests Panel" the object "Accepted Character Quests" from Canvas\GFF Quests\Accepted Character Quests
+
+10. Select the "NpcDialogue" object in Canvas. In the inspector Drag in "Npc Quest Panel" the object "Panel Quests at NPC" from Canvas\GFF Quests\Panel Quests at NPC
+
+11. Create new Quests or move files from (uMMORPG \ Addons\ GFF Quests\ Move this files to uMMORPG - Resources - Quests \)  to (uMMORPG \ Resources \ Quests)
+
+12. Add NPS quests as you like.
+
+
+For "Location Quest"
+* add an object with the name of the quest to the scene
+
+
+
+Extensions:
+1. If you bought and configured our addon "Item Rarity" https://assetstore.unity.com/packages/tools/integration/item-rarity-for-ummorpg-and-ummorpg-2d-158307
+   from version 1.4 - it will automatically connect and start working

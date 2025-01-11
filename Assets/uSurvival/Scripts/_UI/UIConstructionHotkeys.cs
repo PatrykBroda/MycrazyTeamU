@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UIConstructionHotkeys : MonoBehaviour
+namespace uSurvival
 {
-    public GameObject panel;
-    public Text rotationText;
-
-    void Update()
+    public class UIConstructionHotkeys : MonoBehaviour
     {
-        // holding a structure?
-        Player player = Player.localPlayer;
-        if (player != null)
+        public GameObject panel;
+        public Text rotationText;
+
+        void Update()
         {
-            rotationText.text = player.construction.rotationKey + " - Rotate";
-            panel.SetActive(player.construction.GetCurrentStructure() != null);
+            // holding a structure?
+            Player player = Player.localPlayer;
+            if (player != null)
+            {
+                rotationText.text = $"{player.construction.rotationKey} - Rotate";
+                panel.SetActive(player.construction.GetCurrentStructure() != null);
+            }
+            else panel.SetActive(false);
         }
-        else panel.SetActive(false);
     }
 }

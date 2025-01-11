@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33638231e05aeb44cac875057474edc9, type: 3}
+  m_Name: Armor Plate I
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 5000
+  canSendOnMail: 1
+  buyPrice: 10000
+  sellPrice: 1000
+  sellable: 1
+  itemMallPrice: 0
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 1
+  maxDurability: 500
+  destroyable: 0
+  toolTip: "<b>{NAME}</b>\n\u0414\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F
+    \u043F\u0440\u043E\u0442\u0438\u0432\u043E\u0433\u0430\u0437\u043E\u043C  \n\n{DURABILITYMAX}\n{DURABILITY}\n\n{TRADABLE}\n{WEIGHT}"
+  image: {fileID: -703555654, guid: b7a23efa858c73146b7e73fab7a99abb, type: 3}
+  lootSound: {fileID: 8300000, guid: bce84b3643e6f284782de83c55b79cc5, type: 3}
+  drop: {fileID: 114354571381432026, guid: c3b1b59edd0feda4796d3f8da0fc3bf9, type: 3}
+  modelPrefab: {fileID: 0}

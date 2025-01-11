@@ -1,0 +1,90 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Equipment Extended
+Addon version : 1.0
+Date of creation / editing 04.06.2021
+Require Components / Addons : Addons Core, Texture
+Recommended Addons : Item Rarity, ToolTip Extended
+Compatible projects : uMMORPG 1.194, uMMORPG 2D 1.63
+Recommendations : Test the addon on a clean version uMMORPG without changes.
+Recommended version Unity 2019.4.32
+Link : 
+
+
+Versions for other projects:
+ * uMMORPG Remastered
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+1. Edit the "EquipmentItem.cs"  Script in “Scripts/ScriptableItems/" 
+    a)  find line      public class EquipmentItem : UsableItem   
+        change to      public partial class EquipmentItem : UsableItem
+
+    b)  Find and delete or comment out completely "void Use(Player player, int inventoryIndex)"  
+
+
+2. Edit the "Player.cs"  Script in “Scripts/" 
+    a)  after line      inventory[inventoryIndex] = temp;   
+          add line      UpdateInventoryBags();
+
+
+3. Edit the "Database.cs"  Script in “Scripts/" 
+    a)  after line      public bool deleted { get; set; }
+	     add lines      public int inventorySizePurchased { get; set; }
+                        public int inventorySizeBags { get; set; }
+
+
+    b)   find line      for (int i = 0; i < player.equipmentInfo.Length; ++i)   
+         change to      for (int i = 0; i < player.equipmentInfoExtended.Length; ++i)
+
+
+    c) before line      LoadEquipment(player);  
+
+         add lines      player.inventorySizePurchased = row.inventorySizePurchased;
+                        player.inventorySizeBags = row.inventorySizeBags;
+                        player.inventorySize = player.inventorySizeDefault + player.inventorySizePurchased + player.inventorySizeBags;
+
+    d) after line       online = online,
+	    add lines       inventorySizePurchased = player.inventorySizePurchased,
+                        inventorySizeBags = player.inventorySizeBags,
+
+
+4. a) Delete or disable the "Equipment" from Canvas
+   b) Drag the "GFF Equipment.prefab" from (Addons\GFF Equipment\Prefabs\) to the canvas element so canvas is the parent.
+   ñ) Select the "Shortcuts" object in Canvas. In the inspector Drag in "Equipment Panel" the object "EquipmentPanel" in Canvas\GFF Equipment\EquipmentPanel
+
+
+5. a) Transfer "GFF Bags" from folder (uMMORPG\Addons\GFF Equipment\Items) to folder  uMMORPG\Resources\Items\Equipment\
+   b) Add items (Bags) to the NPC to Sale items
+
+
+6.  for uMMORPG 3D       replace the prefabs (Warrior and Archer) from the folder (Addons\GFF Equipment\Prebabs\3d) to folder  Prebabs\Entities\Players\
+    for uMMORPG 2D       replace the prefabs (Warrior and Archer) from the folder (Addons\GFF Equipment\Prebabs\2d) to folder  Prebabs\Entities\Players\
+
+
+
+	                                     Features and Settings
+ on GFF Equipment\EquipmentPanel script GffEquipment.cs
+  a) show Categories - 
+  b) show Ammo Amount - 
+  c) show Slot Background - 
+
+  d) use Inventory Addon And Bags - 
+  e) amount Bags
+  f) ability Remove Bags
+
+  g) use Stats Damage Defense - 
+  h) useMinAndMaxDamage -
+  i) useStatsAccuracyDodge - 

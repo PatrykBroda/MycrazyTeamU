@@ -1,0 +1,109 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Game Master Tool
+Addon version : 1.3
+Date of creation / editing 23.10.2023
+Require Components / Addons : Addons Core(DisableAfter), MoveSpeed, Info Panel
+Recommended Addons : Chat Extended, Gold(Money), Shop Coins
+Compatible projects : uSurvival 1.86
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.31
+Link : http://u3d.as/2Hkj
+
+
+Versions for other projects:
+ * uMMORPG Remastered : http://u3d.as/2oJT
+ * uMMORPG Classic : 
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+0. follow the instructions to configure the addon "MoveSpeed"
+
+
+1. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+     find line       public class Player : Entity
+     change to       public partial class Player : Entity
+
+
+2. Edit the "Combat.cs"  Script in   Assets/uSurvival/Scripts/
+  a) after line       int damageDealt = Mathf.Max(amountMultiplied - victimCombat.defense, 1);
+       add line       if (entity is Player player && player.isGameMaster && player.gameMasterTool.killingWithOneHit) damageDealt = victim.health.current;
+
+
+3. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+   a)  find line       public class Database : MonoBehaviour
+       change to       public partial class Database : MonoBehaviour
+
+   b) after line       public bool deleted { get; set; }
+       add lines       public bool gamemaster { get; set; } 
+
+   c) after line       player.endurance.current = row.endurance;
+       add lines       player.isGameMaster       = row.gamemaster;
+
+   d) after line       online = online,
+       add lines       gamemaster = player.isGameMaster,
+
+
+4. Edit the "UICharacterCreation.cs"  Script in   Assets/uSurvival/Scripts/
+   a)  find line       public class UICharacterCreation : MonoBehaviour
+       change to       public partial class UICharacterCreation : MonoBehaviour
+
+   c) after line       name = nameInput.text,
+        add line       gameMaster = toggleGameMaster.isOn,
+
+
+//Immortality
+5. Edit script "Energy"
+    a)  find line       public abstract class Energy : NetworkBehaviour
+        change to       public abstract partial class Energy : NetworkBehaviour
+
+   b) before line       bool emptyBefore = _current == 0;
+        add lines       if (entity != null && entity is Player player && player.isGameMaster && player.gameMasterTool.immortality)
+                        {
+                            _current = max;
+                            return;
+                        }
+
+
+6. Edit the "NetworkMessages.cs"  Script in   Assets/uSurvival/Scripts/
+    a) after line       public int classIndex;
+         add line       public bool gameMaster;
+
+
+7. Drag the "ButtonGameMaster.prefab" to the Canvas/MainUI/MainUIPanel/
+
+8. Drag the "GFF GameMasterTool.prefab" to the Canvas/MainUI/MainUIPanel/
+
+9. Select the "GFF GameMasterTool" object in Hierarchy.
+   -- In the inspector Drag in "Button Open" the button "ButtonGameMaster" (Canvas/MainUI/MainUIPanel/)
+
+
+10. Drag the "ToggleGameMaster.prefab" to the Canvas/CharacterCreation/CharacterCreationPanel/
+
+11. Select the "GFF CharacterCreation" (Canvas\CharacterCreation) object. In the inspector
+   a)  Drag in "Toggle Game Master" the "ToggleGameMaster" gameobject  from  (Canvas/CharacterCreation/CharacterCreationPanel/)
+
+
+12. Edit all player prefabs
+  a) add script "PlayerGameMasterTool"
+
+
+13. Edit the "NetworkManagerSurvival.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a) after line       Player player = CreateCharacter(playerClasses[message.classIndex], message.name, account);
+       add line       player.isGameMaster = message.gameMaster;
+
+
+14. Drag the "GFF Panel Info.prefab" to the Canvas/  from (Addons/GFF Info Panel/Prefabs/)

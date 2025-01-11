@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d0ab8a5b5004b93bc9f7f8490935cd, type: 3}
+  m_Name: Rare Ring
+  m_EditorClassIdentifier: 
+  toolTip: '<b>{NAME}</b>
+
+    Kill some {KILLTARGET}s to prove your strength!
+
+
+    Tasks:
+
+    *
+    Kill {KILLTARGET}: {KILLED}/{KILLAMOUNT}
+
+
+    Rewards:
+
+    * {REWARDGOLD} Gold
+
+    *
+    {REWARDEXPERIENCE} Experience
+
+    * {REWARDITEM}
+
+    * {REWARDRangPoints} Rang
+    Points
+
+
+    {STATUS}'
+  predecessor: {fileID: 0}
+  rewardGold: 0
+  rewardCoins: 0
+  rewardItems:
+  - item: {fileID: 0}
+    amount: 1
+  - item: {fileID: 0}
+    amount: 1
+  - item: {fileID: 0}
+    amount: 1
+  - item: {fileID: 0}
+    amount: 1
+  - item: {fileID: 0}
+    amount: 1
+  chooseReward: 1
+  cooldown: 0
+  guild: 0
+  premium: 0
+  descriptionLocalize:
+  - text: English
+    language: 10
+    description: 
+  - text: Russian
+    language: 30
+    description: 
+  taskLocalize:
+  - text: 
+    language: 10
+    description: 
+  - text: 
+    language: 30
+    description: 
+  isShare: 1
+  isCanceled: 1
+  completeImmediately: 1
+  color: {r: 0, g: 1, b: 0, a: 1}
+  killTarget: {fileID: 0}
+  killAmount: 5

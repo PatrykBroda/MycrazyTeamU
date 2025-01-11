@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d0ab8a5b5004b93bc9f7f8490935cd, type: 3}
+  m_Name: Kill the Spider Queen
+  m_EditorClassIdentifier: 
+  toolTip: 
+  predecessor: {fileID: 0}
+  rewardGold: 5000
+  rewardCoins: 500
+  rewardItems:
+  - item: {fileID: 11400000, guid: 1360173c52986aa4bb878f32da718829, type: 2}
+    amount: 3
+  - item: {fileID: 11400000, guid: 87c0484a23b4d544a9e6b61d0125431e, type: 2}
+    amount: 3
+  chooseReward: 1
+  cooldown: 1440
+  guild: 0
+  premium: 0
+  descriptionLocalize:
+  - text: English
+    language: 10
+    description: There is a barn up there, there is the Spider Queen, kill her, you
+      will get a reward.
+  - text: Russian
+    language: 30
+    description: "\u0422\u0430\u043C \u043D\u0430\u0432\u0435\u0440\u0445\u0443 \u0435\u0441\u0442\u044C
+      \u0441\u0430\u0440\u0430\u0439 \u0442\u0430\u043C \u041A\u043E\u0440\u043E\u043B\u0435\u0432\u0430
+      \u043F\u0430\u0443\u043A\u043E\u0432,\u0443\u0431\u0435\u0439 \u0435\u0451,\u0431\u0443\u0434\u0435\u0442
+      \u0442\u0435\u0431\u0435 \u043D\u0430\u0433\u0440\u0430\u0434\u0430."
+  taskLocalize:
+  - text: 
+    language: 10
+    description: 
+  - text: 
+    language: 30
+    description: 
+  isShare: 0
+  isCanceled: 1
+  completeImmediately: 1
+  color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  killTarget: {fileID: 114534996457767716, guid: f0d2eb2faab0b0d4bbd852d618a03653,
+    type: 3}
+  killAmount: 1

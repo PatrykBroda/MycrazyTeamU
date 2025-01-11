@@ -1,0 +1,68 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Interaction Extended
+Addon version : 1.0
+Date of creation / editing 02.01.2023
+Require Components / Addons : Addons Core(UtilsExtended), Player Network Name
+Recommended Addons : Npc
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.16
+Link : 
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "Player.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Player : Entity
+       replace it on        public partial class Player : Entity
+
+
+2. Edit the "Storage.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Storage : Inventory, Interactable
+       replace it on        public partial class Storage : Inventory, Interactable
+
+
+3. Edit the "Furnace.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Furnace : NetworkBehaviourNonAlloc, Interactable
+       replace it on        public partial class Furnace : NetworkBehaviourNonAlloc, Interactable
+
+
+4. Edit the "ItemDrop.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class ItemDrop : NetworkBehaviourNonAlloc, Interactable
+       replace it on        public partial class ItemDrop : NetworkBehaviourNonAlloc, Interactable
+
+
+5. Edit the "Door.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Door : NetworkBehaviourNonAlloc, Interactable
+       replace it on        public partial class Door : NetworkBehaviourNonAlloc, Interactable
+
+
+6. Edit the "Interactable.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)      after line        void OnInteractServer(Player player);
+            add line        Entity GetInteractionEntity();
+
+
+7. Drag the "InteractionExtended.prefab" (Addons/GFF Interaction Extended/Prefabs/InteractionExtended) to the Canvas\ after "Interaction".
+
+
+8. Select the "Main Camera" object. In the inspector on script "CursorLocking.cs" 
+    add element "Interaction" to Array "windows That Unlock Cursor" (Canvas\InteractionExtended\Interaction)
+
+
+9. Edit all player prefabs
+  a) add script "PlayerInteractionExtended"
+  b) in Inspector in script "PlayerInteractionExtended" drag in fields "Player" and "Health" this prefab
+  c) in Inspector in script "Player" drag in field "Interaction Extended" this prefab

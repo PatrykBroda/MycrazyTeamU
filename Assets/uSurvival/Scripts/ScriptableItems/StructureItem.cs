@@ -2,121 +2,178 @@
 using UnityEngine;
 using Mirror;
 
-// Objects need position offsets for some grid sizes.
-// (e.g. if grid = 1 and we want to build a thin palette, it should not be in
-//  the center of a unit cube, but on the sides)
-[Serializable]
-public struct CustomRotation
+namespace uSurvival
 {
-    public Vector3 positionOffset;
-    public Vector3 rotation;
-}
-
-[CreateAssetMenu(menuName = "uSurvival Item/Structure", order = 999)]
-public class StructureItem : UsableItem
-{
-    // Shown while deciding where to build
-    [Header("Structure")]
-    public GameObject structurePrefab;
-
-    // Show the preview 'n' units away from player.
-    // -> For example, a huge building needs to be shown at least size/2 away from the player
-    public float previewDistance = 2;
-
-    // Resolution 1: 1, 2, 3, 4, ...
-    // Resolution 2: 0.5, 1, 1.5, 2, ...
-    // Note: Modify availableRotations[] position offsets to fit grid if needed
-    [Range(1, 10)] public int gridResolution = 1;
-
-    // Rotation key switches through available rotations
-    public CustomRotation[] availableRotations = { new CustomRotation() };
-
-    // Can build checks
-    [Range(0, 1)] public float buildToleranceCollision = 0.1f;
-    [Range(0, 1)] public float buildToleranceAir = 0.1f;
-
-    // Can't use it from inventory. Need to aim where to build it
-    public override Usability CanUseInventory(Player player, int inventoryIndex) { return Usability.Never; }
-
-    public override Usability CanUseHotbar(Player player, int hotbarIndex, Vector3 lookAt)
+    // objects need position offsets for some grid sizes.
+    // (e.g. if grid = 1 and we want to build a thin palette, it should not be in
+    //  the center of a unit cube, but on the sides)
+    [Serializable]
+    public struct CustomRotation
     {
-        // Check base usability first (cooldown, etc.)
-        Usability baseUsable = base.CanUseHotbar(player, hotbarIndex, lookAt);
-        if (baseUsable != Usability.Usable)
-            return baseUsable;
-
-        // Calculate look direction in a way that works on clients and server (via lookAt)
-        Vector3 lookDirection = (lookAt - player.look.headPosition).normalized;
-
-        // Calculate bounds based on structurePrefab + position + rotation
-        Vector3 position = player.construction.CalculatePreviewPosition(this, player.look.headPosition, lookDirection);
-        Quaternion rotation = player.construction.CalculatePreviewRotation(); // Fixed: Removed 'this'
-
-        // We need the structure prefab's bounds, but rotated and positioned to where we want to build.
-        Vector3 prefabPosition = structurePrefab.transform.position;
-        Quaternion prefabRotation = structurePrefab.transform.rotation;
-        structurePrefab.transform.position = position;
-        structurePrefab.transform.rotation = rotation;
-        Bounds bounds = structurePrefab.GetComponentInChildren<Renderer>().bounds;
-        structurePrefab.transform.position = prefabPosition;
-        structurePrefab.transform.rotation = prefabRotation;
-
-        return CanBuildThere(player.look.headPosition, bounds, player.look.raycastLayers)
-               ? Usability.Usable
-               : Usability.Empty; // For empty sound. Better than 'Never'.
+        public Vector3 positionOffset;
+        public Vector3 rotation;
     }
 
-    // [Server] Use logic
-    public override void UseInventory(Player player, int inventoryIndex) { }
-
-    public override void UseHotbar(Player player, int hotbarIndex, Vector3 lookAt)
+    [CreateAssetMenu(menuName="uSurvival Item/Structure", order=999)]
+    public partial class StructureItem : UsableItem
     {
-        // Call base function to start cooldown
-        base.UseHotbar(player, hotbarIndex, lookAt);
+        // shown while deciding where to build
+        [Header("Structure")]
+        public GameObject structurePrefab;
 
-        // Get position and rotation from Construction component
-        // Calculate look direction in a way that works on clients and server (via lookAt)
-        Vector3 lookDirection = (lookAt - player.look.headPosition).normalized;
-        Vector3 position = player.construction.CalculatePreviewPosition(this, player.look.headPosition, lookDirection);
-        Quaternion rotation = player.construction.CalculatePreviewRotation(); // Fixed: Removed 'this'
+        // show the preview 'n' units away from player.
+        // -> for example, a huge building needs to be shown at least size/2 away
+        //    from player
+        public float previewDistance = 2;
 
-        // Spawn it into the world
-        GameObject go = Instantiate(structurePrefab, position, rotation);
-        go.name = structurePrefab.name; // Avoid "(Clone)". Important for saving..
-        NetworkServer.Spawn(go);
+        // resolution 1: 1,2,3,4,...
+        // resolution 2: 0.5, 1, 1.5, 2, ...
+        // note: modify availableRotations[] position offsets to fit grid if needed
+        [Range(1, 10)] public int gridResolution = 1;
 
-        // Decrease amount
-        ItemSlot slot = player.hotbar.slots[hotbarIndex];
-        slot.DecreaseAmount(1);
-        player.hotbar.slots[hotbarIndex] = slot;
-    }
+        // rotation key switches through available rotations
+        public CustomRotation[] availableRotations = { new CustomRotation() };
 
-    // Can we build the structure at this position with this rotation?
-    // -> Having CanBuildAt in here instead of in Construction script allows for
-    //    custom structures like windows that can only be built between walls
-    public virtual bool CanBuildThere(Vector3 headPosition, Bounds bounds, LayerMask raycastLayers)
-    {
-        // Nothing at this position yet?
-        // => We check 90% of size so things can at least barely touch each other
-        if (Physics.CheckBox(bounds.center, bounds.extents * (1 - buildToleranceCollision), Quaternion.identity, raycastLayers))
-            return false;
+        // can build checks
+        [Range(0, 1)] public float buildToleranceCollision = 0.1f;
+        [Range(0, 1)] public float buildToleranceAir = 0.1f;
 
-        // Not floating in air?
-        // => Needs to touch anything else if 110% of collider
-        if (!Physics.CheckBox(bounds.center, bounds.extents * (1 + buildToleranceAir), Quaternion.identity, raycastLayers))
-            return false;
+        // can't use it from inventory. need to aim where to build it
+        public override Usability CanUseInventory(Player player, int inventoryIndex) { return Usability.Never; }
+        //public override Usability CanUseHotbar(Player player, int hotbarIndex, Vector3 lookAt)
+        //{
+        //    // check base usability first (cooldown etc.)
+        //    Usability baseUsable = base.CanUseHotbar(player, hotbarIndex, lookAt);
+        //    if (baseUsable != Usability.Usable)
+        //        return baseUsable;
 
-        // Linecast to make sure that nothing is between us and the build preview
-        return !Physics.Linecast(headPosition, bounds.center, raycastLayers);
-    }
+        //    // calculate look direction in a way that works on clients and server
+        //    // (via lookAt)
+        //    Vector3 lookDirection = (lookAt - player.look.headPosition).normalized;
 
-    protected override void OnValidate()
-    {
-        // Call base function
-        base.OnValidate();
+        //    // calculate bounds based on structurePrefab + position + rotation
+        //    // (server doesn't have construction.preview GameObject)
+        //    // THIS POSITION IS DIFFERENT
+        //    Vector3 position = player.construction.CalculatePreviewPosition(this, player.look.headPosition, lookDirection);
+        //    Quaternion rotation = player.construction.CalculatePreviewRotation(this);
 
-        // Need at least one available rotation
-        if (availableRotations.Length == 0)
-            availableRotations = new CustomRotation[] { new CustomRotation() };
+        //    // we need the structure prefab's bounds, but rotated and positioned to
+        //    // where we want to build.
+        //    //
+        //    // this doesn't work yet:
+        //    /*
+        //        Bounds bounds = new Bounds();
+        //        Bounds originalBounds = structurePrefab.GetComponentInChildren<Renderer>().bounds;
+        //        Vector3 p0 = new Vector3(originalBounds.center.x - bounds.size.x,
+        //                                 originalBounds.center.y - bounds.size.y,
+        //                                 originalBounds.center.z - bounds.size.z);
+
+        //        Vector3 p1 = new Vector3(originalBounds.center.x + bounds.size.x,
+        //                                 originalBounds.center.y - bounds.size.y,
+        //                                 originalBounds.center.z - bounds.size.z);
+
+        //        Vector3 p2 = new Vector3(originalBounds.center.x - bounds.size.x,
+        //                                 originalBounds.center.y + bounds.size.y,
+        //                                 originalBounds.center.z - bounds.size.z);
+
+        //        Vector3 p3 = new Vector3(originalBounds.center.x - bounds.size.x,
+        //                                 originalBounds.center.y - bounds.size.y,
+        //                                 originalBounds.center.z + bounds.size.z);
+
+        //        Vector3 p4 = new Vector3(originalBounds.center.x + bounds.size.x,
+        //                                 originalBounds.center.y + bounds.size.y,
+        //                                 originalBounds.center.z - bounds.size.z);
+
+        //        Vector3 p5 = new Vector3(originalBounds.center.x + bounds.size.x,
+        //                                 originalBounds.center.y - bounds.size.y,
+        //                                 originalBounds.center.z + bounds.size.z);
+
+        //        Vector3 p6 = new Vector3(originalBounds.center.x - bounds.size.x,
+        //                                 originalBounds.center.y + bounds.size.y,
+        //                                 originalBounds.center.z + bounds.size.z);
+
+        //        Vector3 p7 = new Vector3(originalBounds.center.x + bounds.size.x,
+        //                                 originalBounds.center.y + bounds.size.y,
+        //                                 originalBounds.center.z + bounds.size.z);
+
+        //        bounds.Encapsulate(position + rotation * p0);
+        //        bounds.Encapsulate(position + rotation * p1);
+        //        bounds.Encapsulate(position + rotation * p2);
+        //        bounds.Encapsulate(position + rotation * p3);
+        //        bounds.Encapsulate(position + rotation * p4);
+        //        bounds.Encapsulate(position + rotation * p5);
+        //        bounds.Encapsulate(position + rotation * p6);
+        //        bounds.Encapsulate(position + rotation * p7);
+
+        //    */
+        //    // so for now, let's set the prefab's position/rotation, get the bounds
+        //    // and then reset it
+        //    Vector3 prefabPosition = structurePrefab.transform.position;
+        //    Quaternion prefabRotation = structurePrefab.transform.rotation;
+        //      structurePrefab.transform.position = position;
+        //      structurePrefab.transform.rotation = rotation;
+        //    Bounds bounds = structurePrefab.GetComponentInChildren<Renderer>().bounds;
+        //      structurePrefab.transform.position = prefabPosition;
+        //      structurePrefab.transform.rotation = prefabRotation;
+
+        //    return CanBuildThere(player.look.headPosition, bounds, player.look.raycastLayers)
+        //           ? Usability.Usable
+        //           : Usability.Empty; // for empty sound. better than 'Never'.
+        //}
+
+        // [Server] Use logic
+        public override void UseInventory(Player player, int inventoryIndex) {}
+
+        //public override void UseHotbar(Player player, int hotbarIndex, Vector3 lookAt)
+        //{
+        //    // call base function to start cooldown
+        //    base.UseHotbar(player, hotbarIndex, lookAt);
+
+        //    // get position and rotation from Construction component
+        //    // calculate look direction in a way that works on clients and server
+        //    // (via lookAt)
+        //    Vector3 lookDirection = (lookAt - player.look.headPosition).normalized;
+        //    Vector3 position = player.construction.CalculatePreviewPosition(this, player.look.headPosition, lookDirection);
+        //    Quaternion rotation = player.construction.CalculatePreviewRotation(this);
+
+        //    // spawn it into the world
+        //    GameObject go = Instantiate(structurePrefab, position, rotation);
+        //    go.name = structurePrefab.name; // avoid "(Clone)". important for saving..
+        //    NetworkServer.Spawn(go);
+
+        //    // decrease amount
+        //    ItemSlot slot = player.equipment.slots[hotbarIndex];
+        //    slot.DecreaseAmount(1);
+        //    player.equipment.slots[hotbarIndex] = slot;
+        //}
+
+        // can we build the structure at this position with this rotation?
+        // -> having CanBuildAt in here instead of in Construction script allows for
+        //    custom structures like windows that can only be built between walls
+        public virtual bool CanBuildThere(Vector3 headPosition, Bounds bounds, LayerMask raycastLayers)
+        {
+            // nothing at this position yet?
+            // => we check 90% of size so things can at least barely touch each other
+            if (Physics.CheckBox(bounds.center, bounds.extents * (1 - buildToleranceCollision), Quaternion.identity, raycastLayers))
+                return false;
+
+            // not floating in air?
+            // => needs to touch anything else if 110% of collider
+            if (!Physics.CheckBox(bounds.center, bounds.extents * (1 + buildToleranceAir), Quaternion.identity, raycastLayers))
+                return false;
+
+            // linecast to make sure that nothing is between us and the build preview
+            return !Physics.Linecast(headPosition, bounds.center, raycastLayers);
+        }
+
+        protected override void OnValidate()
+        {
+            // call base function
+            base.OnValidate();
+
+            // need at least one available rotation
+            if (availableRotations.Length == 0)
+                availableRotations = new CustomRotation[]{ new CustomRotation() };
+        }
     }
 }

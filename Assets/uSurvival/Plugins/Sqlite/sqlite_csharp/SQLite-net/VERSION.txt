@@ -1,0 +1,2 @@
+1.1.116
+https://github.com/praeclarum/sqlite-net/releases/tag/v1.8.116

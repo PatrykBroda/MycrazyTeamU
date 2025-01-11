@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4415c953814fcb4db5d25b7383825bd, type: 3}
+  m_Name: Cook
+  m_EditorClassIdentifier: 
+  description: 
+  items:
+  - item: {fileID: 11400000, guid: d3d8faae83f02994aa602bc214f5a682, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: b7a16b2e41a661b44ac6746ae6aba464, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: ee9fc4a06bb4a0e4d92e42bdb100646c, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: d3af26210682fac4f83c7ac75698805d, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 7c730cce86409504d915240d9bc0932f, type: 2}
+    amount: 20
+  - item: {fileID: 11400000, guid: 5ae209c1211b6094985404cda86b1527, type: 2}
+    amount: 20
+  gold: 0
+  price: 4000

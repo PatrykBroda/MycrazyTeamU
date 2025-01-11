@@ -1,12 +1,14 @@
 ﻿// used to destroy structures on death
-using UnityEngine;
 using Mirror;
 
-public class OnDeathDestroy : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-	[Server]
-	public void OnDeath()
+	public class OnDeathDestroy : NetworkBehaviour
 	{
-		Destroy(gameObject);
+		[Server]
+		public void OnDeath()
+		{
+			Destroy(gameObject);
+		}
 	}
 }

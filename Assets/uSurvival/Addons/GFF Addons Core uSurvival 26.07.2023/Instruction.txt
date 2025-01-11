@@ -1,0 +1,20 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+Any suggestions and questions you can send us by Email "GameFunSPB@gmail.com"
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+
+
+Addon name : Addons Core
+Addon version : 1.0
+Date of creation / editing 11.06.2020
+Require Components : none
+Recommended Components : none
+Compatible projects : uSurvival
+Recommendations : Test the package on a version uSurvival 1.75 without changes.
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS

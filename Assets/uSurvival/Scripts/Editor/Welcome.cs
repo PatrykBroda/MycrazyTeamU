@@ -3,7 +3,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace DOTSNET.Editor
+namespace uSurvival
 {
     static class Welcome
     {
@@ -16,10 +16,10 @@ namespace DOTSNET.Editor
             {
                 SessionState.SetBool("USURVIVAL_WELCOME", true);
 
-#if UNITY_2019_4
+#if UNITY_2021_3_OR_NEWER
                 Debug.Log("uSurvival | u3d.as/TsE | https://discord.gg/2gNKN78");
 #else
-                Debug.LogWarning("uSurvival works best with Unity 2019.4 LTS: https://unity3d.com/unity/qa/lts-releases?version=2019.4");
+                Debug.LogWarning("uSurvival works best with Unity 2021.3 LTS!");
 #endif
             }
         }

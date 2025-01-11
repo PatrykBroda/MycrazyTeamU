@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbc25bef1e7c4f4aa348edf964275e9, type: 3}
+  m_Name: Baked Meat
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 50
+  dropFromInventory: 1
+  dropFromEquipment: 0
+  dropFromHotbar: 0
+  _itemWeight: 420
+  canSendOnMail: 0
+  buyPrice: 50
+  sellPrice: 25
+  sellable: 1
+  itemMallPrice: 0
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 99
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some nutrition.
+
+
+    Restores {USAGENUTRITION}
+    Nutrition on use.
+
+
+    Amount: {AMOUNT}'
+  image: {fileID: 21300000, guid: d97bf03af0d11ca449a6356b4300b533, type: 3}
+  drop: {fileID: 114445437236403208, guid: 9b2fe305a05b8bd4fb2527914b9be607, type: 3}
+  modelPrefab: {fileID: 0}
+  equipmentItemType: 0
+  category: Pocket
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 0}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  cooldown: 1
+  _cooldownCategory: Food
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  potionType: 1
+  usageBoost: 0
+  _usageRadiation: 0
+  usageHealth: 20
+  usageHydration: 20
+  usageNutrition: 400

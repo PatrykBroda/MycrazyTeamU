@@ -2,15 +2,34 @@
 // Otherwise we would need slot.GetChild(0).GetComponentInChildren<Text> etc.
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIEquipmentSlot : MonoBehaviour
+namespace uSurvival
 {
-    public UIShowToolTip tooltip;
-    public UIDragAndDropable dragAndDropable;
-    public Image image;
-    public GameObject categoryOverlay;
-    public Text categoryText;
-    public Image cooldownCircle;
-    public GameObject amountOverlay;
-    public Text amountText;
+    public partial class UIEquipmentSlot : MonoBehaviour
+    {
+        public UIEquipmentSlot mainSlot;
+        public UIEquipmentSlot secondSlot;
+
+        public Button button;
+        public UIShowToolTip tooltip;
+        public UIDragAndDropable dragAndDropable;
+        public Image image;
+        public GameObject categoryOverlay;
+        public TextMeshProUGUI categoryText;
+        public Image cooldownCircle;
+        public GameObject amountOverlay;
+        public TextMeshProUGUI amountText;
+        public Slider sliderDurability;
+
+        //ammo
+        public GameObject ammoIcon;
+        public TextMeshProUGUI textAmmoAmount;
+
+        //modules
+        public Transform modules;
+
+        //binding
+        public GameObject imageBinding;
+    }
 }

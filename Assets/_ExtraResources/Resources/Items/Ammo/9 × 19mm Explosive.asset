@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbf3d4b1d1a4412ba55eb0813d3fa87, type: 3}
+  m_Name: "9 \xD7 19mm Explosive"
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 0
+  canSendOnMail: 0
+  buyPrice: 0
+  sellPrice: 0
+  sellable: 1
+  itemMallPrice: 100
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 600
+  maxDurability: 0
+  destroyable: 1
+  toolTip: "<b>{NAME}</b>\n9\xD719mm caliber Cartridge, commonly used with Beretta
+    92.\n\nAmount: {AMOUNT}\n\n<i>Drag onto a weapon to load it.</i>"
+  image: {fileID: 21300000, guid: 252e7b57ce3214150a214a9978902e05, type: 3}
+  drop: {fileID: 114632652555490082, guid: eec8884deae3e844d9cefac2568a63a0, type: 3}
+  modelPrefab: {fileID: 0}
+  _ammoDamageBonus: 0.5

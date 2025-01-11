@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99cbcb882d44b2984928ebe183fb04, type: 3}
+  m_Name: M500
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 1500
+  canSendOnMail: 0
+  buyPrice: 5000
+  sellPrice: 500
+  sellable: 1
+  itemMallPrice: 500
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 1
+  maxDurability: 1000
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    The Beretta 92 Pistole.
+
+
+    {DAMAGE} Damage
+
+    Fire
+    Interval: {COOLDOWN}s
+
+    Requires: {REQUIREDAMMO}
+
+
+    Ammo: {AMMO} / {MAGAZINESIZE}
+
+    Durability:
+    {DURABILITY}%
+
+'
+  image: {fileID: 21300000, guid: 125682ce2e943284cb2536e2cbd2400a, type: 3}
+  drop: {fileID: 114415590940616374, guid: 03ec9476c38648e43bfa475f8d06d24d, type: 3}
+  modelPrefab: {fileID: 1856152654449828, guid: d1e8c084ac9b477439151912c6a6f336,
+    type: 3}
+  equipmentItemType: 0
+  category: WeaponOnehand
+  keepUsingWhileButtonDown: 1
+  successfulUseSound: {fileID: 8300000, guid: c227b10053048984a9836db250bec29a, type: 3}
+  failedUseSound: {fileID: 8300000, guid: 9c977571ca7f343cf8e739a311e3034e, type: 3}
+  emptySound: {fileID: 8300000, guid: 7516a6affda49469993f31d09f151128, type: 3}
+  cooldown: 0.2
+  _cooldownCategory: 
+  shoulderLookAtWhileHolding: 1
+  useDirectly: 0
+  armorType: 0
+  multiplierReducingDamage: 0
+  requiredCombatSkill: {fileID: 0}
+  requiredLevel: 1
+  moveSpeedBonus: 0
+  secondCategory: 
+  secondItems: []
+  _addSlots: 0
+  _weightBonus: 0
+  _radiationResistanceBonus: 0
+  healthBonus: 0
+  hydrationBonus: 0
+  nutritionBonus: 0
+  damageBonus: 0
+  defenseBonus: 0
+  weaponType: 0
+  attackRange: 100
+  damage: 60
+  upperBodyAnimationParameter: UPPERBODY_PISTOL
+  imageHorizontal: {fileID: 0}
+  _compatibleAmmo:
+  - {fileID: 11400000, guid: 2ab34ea8df7d6d049bf8fe41cde23746, type: 2}
+  - {fileID: 11400000, guid: 58e734d9fd0f99e47aae43be79ae0cdb, type: 2}
+  - {fileID: 11400000, guid: 68ffa4a6d7cda29419e4f12b1cf0935a, type: 2}
+  shootingModes: 0001
+  burstAmmoAmount: 3
+  changeShootingModeSound: {fileID: 0}
+  successfulSilentUseSound: {fileID: 0}
+  barrelModules: []
+  handguardModules: []
+  buttModules: []
+  sightsModules: []
+  magazineModules: []
+  magazineSize: 6
+  reloadTime: 2
+  reloadSound: {fileID: 8300000, guid: 7450499e8d33a47d8b5db0c4650b7f18, type: 3}
+  zoom: 10
+  decalPrefab: {fileID: 1369496945668376, guid: 12cfe7016056b48e6875cfc877e30d28,
+    type: 3}
+  decalOffset: 0.01
+  recoilHorizontal: 1
+  recoilVertical: 20

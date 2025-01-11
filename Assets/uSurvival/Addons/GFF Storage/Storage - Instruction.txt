@@ -1,0 +1,92 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Storage (Items and Gold)
+Addon version : 1.13
+Date of creation / editing 27.10.2021
+Require Components / Addons : Addons Core 
+Recommended Addons : Item Rarity
+Compatible projects : uMMORPG 1.194
+Recommendations : Test the addon on a clean version uMMORPG without changes.
+Recommended version Unity 2019.4.32
+Link : http://u3d.as/1g1h
+
+
+Versions for other projects:
+ * uMMORPG 2D  http://u3d.as/2gJa
+ * uMMORPG Remastered  http://u3d.as/1PY2
+ * uMMORPG 2D Remastered  http://u3d.as/2AUu
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "Database.cs" Script in “ Assets/uMMORPG/Scripts " 
+    after line      public bool banned { get; set; }
+
+     add lines      public int goldInStorage { get; set; }
+                    public int storageSize { get; set; }
+
+
+2. Drag the "GFF Storage.prefab" to the canvas element so canvas is the parent.
+
+
+3. Drag the "Button Storage.prefab" to the Canvas/NpcDialogue/NpcDialoguePanel/PanelButtons/
+
+
+4. Select the "NpcDialogue" object. In the inspector, there are two new settings.
+   Drag in "Button Storage" the button in NpcDialogue/NpcDialoguePanel/PanelButtons/Button Storage
+
+
+5. Edit the "UINpcDialogue.cs" Script in “ Assets/uMMORPG/Scripts/_UI " 
+	  after line     welcomeText.text = npc.welcome;
+		add line     Utils.InvokeMany(typeof(UINpcDialogue), this, "Update_", player , npc);
+
+
+6. Select the "GFF Storage" object (Canvas/GFF Storage).
+	 In the inspector in script "UIStorage" drag in "Panel Inventory" the object "InventoryPanel" (Canvas/Inventory/InventoryPanel)
+
+
+7. Select the Npc object on the scene. In the inspector in the script "NPC" additional settings will appear
+   a) "Storage" - enables or disables item storage and bank through this npc (must be enabled) 
+   b) "Character Level Required" - character level from which the ability to storage items is available to him (must be at least 1)
+
+
+8. Edit all player prefabs
+  a) add script "PlayerStorage"
+  b) in Inspector in script "PlayerStorage" drag in field "Player" this prefab
+  c) in Inspector in script "Player" drag in field "Storage" this prefab
+  d) in Inspector in script "PlayerStorage" - adjust other parameters as you like
+
+
+
+9. If Used Durability addon 
+      Edit the "Storage Partial Sqlite-net.cs" Script in “ Assets/uMMORPG/Addons/GFF Storage/Scripts/ " 
+	  * uncomment these line     item.durability = row.durability;
+	  * uncomment these line     temp.durability = slot.item.durability;
+
+
+10. If Used Item Enchantment addon
+      Edit the "Storage Partial Sqlite-net.cs" Script in “ Assets/uMMORPG/Addons/GFF Storage/Scripts/ " 
+	  * uncomment these lines     item.holes = row.holes;
+                                  item.upgradeInd = LoadUpgradeInd(row.upgradeInd);
+
+	  * uncomment these lines     temp.holes = slot.item.holes;
+                                  temp.upgradeInd = SaveUpgradeInd(slot.item);
+
+
+ 
+
+                                      Information 
+
+ Storage common for all characters on the account

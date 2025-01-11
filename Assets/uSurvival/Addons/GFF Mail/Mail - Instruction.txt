@@ -1,0 +1,85 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on asset store
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Mail
+Addon version : 1.8
+Date of creation / editing 01.11.2022
+Require Components : Addons Core
+Recommended Components : Item Rarity
+Compatible projects : uSurvival 1.85 
+Recommendations : Test the package on a version uSurvival without changes.
+Recommended version Unity 2021.3.11
+Link : http://u3d.as/1zuq
+
+
+Versions for other projects:
+ * uMMORPG : http://u3d.as/1wdm
+ * uMMORPG Remastered : http://u3d.as/1KE8
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+1. Edit the "UIMainPanel.cs"  Script in   Assets/uSurvival/Scripts/_UI
+    a) "public class" change to "public partial class"
+
+    b)   after line      quitButton.onClick.SetListener(NetworkManagerSurvival.Quit);
+           and line      UtilsExtended.InvokeMany(typeof(UIMainPanel), this, "Update_", player);
+
+
+2. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+    a) "public class" change to "public partial class"
+
+
+3. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+    a) "public class" change to "public partial class"
+
+
+4. Edit the "ScriptableItem.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+5. Drag the "GFF Mail System.prefab" to the Canvas/MainUI/MainUIPanel/
+
+6. Drag the "ButtonMail.prefab" to the Canvas/MainUI/MainUIPanel/
+
+7. Select the "MainUI" object. In the inspector (script "UIMainPanel")
+   Drag in "Button Mail" the button "ButtonMail" (Canvas/MainUI/MainUIPanel/)
+
+
+8. Select on the scene gameobject "NetworkManager"
+  in script Database add Events
+  a) On Connected  -> Object - NetworkManager, Function - Database.Connect_Mail
+
+
+9. Edit all player prefabs
+  a) Add script "PlayerMail"
+  b) in Inspector in script "PlayerMail" Drag  in fields "Player" - this prefab
+  c) in Inspector in script "Player"  Drag  in  Mail - this prefab
+  d) in Inspector in script "PlayerMail" - adjust other parameters as you like
+
+
+10. All items have a setting "Can Send On Mail" - If you want that this item can sent by mail - turn it on
+
+
+11. If Used Item Enchantment addon
+      Edit the "Storage Partial Sqlite-net.cs" Script in “ Assets/uMMORPG/Scripts/Addons/GFF Mail/ " 
+	  * uncomment these lines     item.holes = row.holes;
+                                  item.upgradeInd = LoadUpgradeInd(row.upgradeInd);
+
+	  * uncomment these lines     temp.holes = slot.item.holes;
+                                  temp.upgradeInd = SaveUpgradeInd(slot.item);
+
+
+12. If Used Friends addon
+       Edit the "Mail Partial.cs" Script in “ Assets/uMMORPG/Scripts/Addons/GFF Mail/ " 
+       * uncomment   UIMail.singleton.mailNewMessage.inputfieldRecipient.text = player.friends.friends[icopy].name;

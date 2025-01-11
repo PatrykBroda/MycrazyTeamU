@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbf3d4b1d1a4412ba55eb0813d3fa87, type: 3}
+  m_Name: 7.62mm
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 0
+  dropFromInventory: 1
+  dropFromEquipment: 1
+  dropFromHotbar: 1
+  _itemWeight: 16
+  canSendOnMail: 1
+  buyPrice: 4
+  sellPrice: 2
+  sellable: 1
+  itemMallPrice: 20
+  canPutInTheStorage: 1
+  skins: []
+  localization:
+  - text: 
+    language: 10
+    description: 
+  - text: 
+    language: 30
+    description: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044E\u0435\u0442\u0441\u044F
+      \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u043E\u0432 \u0438\u043B\u0438
+      \u0440\u0443\u0447\u043D\u044B\u0445 \u043F\u0443\u043B\u0435\u043C\u0435\u0442\u043E\u0432.
+      \u041E\u0445\u043E\u0442\u043D\u0438\u043A\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044E\u0442
+      \u0435\u0433\u043E \u0434\u043B\u044F \u0441\u0442\u0440\u0435\u043B\u044C\u0431\u044B
+      \u0438\u0437 \u043A\u0430\u0440\u0430\u0431\u0438\u043D\u043E\u0432,"
+  maxStack: 600
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+
+    {AMOUNT}
+
+    {WEIGHT}'
+  image: {fileID: 21300000, guid: 830f3f809d4f8d642adaa75155cf682e, type: 3}
+  drop: {fileID: 114798028571130776, guid: fc82e83a9e0b78345b03c65b655b2d8f, type: 3}
+  modelPrefab: {fileID: 0}
+  _ammoDamageBonus: 0

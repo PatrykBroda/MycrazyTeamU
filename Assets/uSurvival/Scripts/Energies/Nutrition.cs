@@ -1,46 +1,49 @@
 ﻿using UnityEngine;
-using Mirror;
 
-// inventory, attributes etc. can influence max
-public interface INutritionBonus
+namespace uSurvival
 {
-    int GetNutritionBonus(int baseNutrition);
-    int GetNutritionRecoveryBonus();
-}
-
-[DisallowMultipleComponent]
-public class Nutrition : Energy
-{
-    public int baseRecoveryPerTick = -1;
-    public int baseNutrition = 100;
-
-    // cache components that give a bonus (attributes, inventory, etc.)
-    // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
-    INutritionBonus[] _bonusComponents;
-    INutritionBonus[] bonusComponents =>
-        _bonusComponents ?? (_bonusComponents = GetComponents<INutritionBonus>());
-
-    public override int max
+    // inventory, attributes etc. can influence max
+    public interface INutritionBonus
     {
-        get
-        {
-            // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
-            int bonus = 0;
-            foreach (INutritionBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetNutritionBonus(baseNutrition);
-            return baseNutrition + bonus;
-        }
+        short NutritionBonus(short baseNutrition);
+        short NutritionRecoveryBonus();
     }
 
-    public override int recoveryPerTick
+    [DisallowMultipleComponent]
+    public class Nutrition : Energy
     {
-        get
+        public short baseRecoveryPerTick = -1;
+        public short baseNutrition = 100;
+
+        // cache components that give a bonus (attributes, inventory, etc.)
+        // (assigned when needed. NOT in Awake because then prefab.max doesn't work)
+        INutritionBonus[] _bonusComponents;
+        INutritionBonus[] bonusComponents =>
+            _bonusComponents ??= GetComponents<INutritionBonus>();
+
+        public override short max
         {
-            // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
-            int bonus = 0;
-            foreach (INutritionBonus bonusComponent in bonusComponents)
-                bonus += bonusComponent.GetNutritionRecoveryBonus();
-            return baseRecoveryPerTick + bonus;
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (INutritionBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.NutritionBonus(baseNutrition);
+                return (short)(baseNutrition + bonus);
+            }
+        }
+
+        public override short recoveryPerTick
+        {
+            get
+            {
+                // sum up manually. Linq.Sum() is HEAVY(!) on GC and performance (190 KB/call!)
+                short bonus = 0;
+                foreach (INutritionBonus bonusComponent in bonusComponents)
+                    bonus += bonusComponent.NutritionRecoveryBonus();
+
+                return (short)(baseRecoveryPerTick + bonus);
+            }
         }
     }
 }

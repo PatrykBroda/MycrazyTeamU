@@ -2,9 +2,17 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class ItemDropChance
+namespace uSurvival
 {
-    public ItemDrop drop;
-    [Range(0,1)] public float probability;
+    [Serializable]
+    public class ItemDropChance
+    {
+        [HideInInspector] public string name;
+        public ItemDrop drop;
+        [Range(0,1)] public float probability;
+
+        //gff
+        public int minAmount = 1;
+        public int maxAmount = 1;
+    }
 }

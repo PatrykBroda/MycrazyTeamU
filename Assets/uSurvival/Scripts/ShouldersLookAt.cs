@@ -18,69 +18,72 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class ShoulderInfo
+namespace uSurvival
 {
-    public Transform bone;
-    [HideInInspector] public Quaternion initialRotation;
-    public Vector3 rotationOffset; // some models need an offset
-}
-
-public class ShouldersLookAt : MonoBehaviour
-{
-    [Header("Components")]
-    public PlayerHotbar hotbar;
-    public PlayerLook look;
-
-    [Header("Shoulders/Arms")]
-    public ShoulderInfo leftShoulder;
-    public ShoulderInfo rightShoulder;
-
-    void Awake()
+    [Serializable]
+    public class ShoulderInfo
     {
-        // reset rotation before reading initial bone rotations. otherwise the
-        // whole shoulder rotation might be wrong if we spawn into the world
-        // and try to get the rotation of an already rotated player, etc.
-        Quaternion backup = transform.rotation;
-        transform.rotation = Quaternion.identity;
-
-        // remember initial rotations
-        // -> .rotation works best for most models, e.g. Space Robot Kyle.
-        // -> .localRotation works for less models.
-        leftShoulder.initialRotation = leftShoulder.bone.rotation;
-        rightShoulder.initialRotation = rightShoulder.bone.rotation;
-
-        // revert rotation
-        transform.rotation = backup;
+        public Transform bone;
+        [HideInInspector] public Quaternion initialRotation;
+        public Vector3 rotationOffset; // some models need an offset
     }
 
-    void AdjustShoulder(ShoulderInfo shoulder)
+    public partial class ShouldersLookAt : MonoBehaviour
     {
-        // calculate transform.LookAt result manually first:
-        Quaternion lookRotation = Quaternion.LookRotation(look.lookPositionFar - shoulder.bone.position);
+        [Header("Components")]
+        //public PlayerHotbar hotbar;
+        public PlayerLook look;
 
-        // apply it, but factor in the bone's original rotation because it's
-        // most likely not rotated forward perfectly
-        shoulder.bone.rotation = lookRotation * shoulder.initialRotation * Quaternion.Euler(shoulder.rotationOffset);
-    }
+        [Header("Shoulders/Arms")]
+        public ShoulderInfo leftShoulder;
+        public ShoulderInfo rightShoulder;
 
-    // after animations, IK, etc. using Update would cause race conditions where
-    // the weapon twitches
-    void LateUpdate()
-    {
-        // not while free looking
-        if (look.IsFreeLooking()) return;
-
-        // make shoulders look at IK target if usable item requires it
-        // (usually for ranged weapon aiming)
-        // -> on the server too for weapon firing raycasts etc.
-        // -> only ranged weapons because melee weapons like the axe might be
-        //    carried on shoulder without any aiming being required
-        // -> works for hands item too (see GetCurrentUsableItem())
-        if (hotbar.GetCurrentUsableItemOrHands().shoulderLookAtWhileHolding)
+        void Awake()
         {
-            AdjustShoulder(leftShoulder);
-            AdjustShoulder(rightShoulder);
+            // reset rotation before reading initial bone rotations. otherwise the
+            // whole shoulder rotation might be wrong if we spawn into the world
+            // and try to get the rotation of an already rotated player, etc.
+            Quaternion backup = transform.rotation;
+            transform.rotation = Quaternion.identity;
+
+            // remember initial rotations
+            // -> .rotation works best for most models, e.g. Space Robot Kyle.
+            // -> .localRotation works for less models.
+            leftShoulder.initialRotation = leftShoulder.bone.rotation;
+            rightShoulder.initialRotation = rightShoulder.bone.rotation;
+
+            // revert rotation
+            transform.rotation = backup;
+        }
+
+        void AdjustShoulder(ShoulderInfo shoulder)
+        {
+            // calculate transform.LookAt result manually first:
+            Quaternion lookRotation = Quaternion.LookRotation(look.lookPositionFar - shoulder.bone.position);
+
+            // apply it, but factor in the bone's original rotation because it's
+            // most likely not rotated forward perfectly
+            shoulder.bone.rotation = lookRotation * shoulder.initialRotation * Quaternion.Euler(shoulder.rotationOffset);
+        }
+
+        // after animations, IK, etc. using Update would cause race conditions where
+        // the weapon twitches
+        void LateUpdate()
+        {
+            // not while free looking
+            if (look.IsFreeLooking()) return;
+
+            // make shoulders look at IK target if usable item requires it
+            // (usually for ranged weapon aiming)
+            // -> on the server too for weapon firing raycasts etc.
+            // -> only ranged weapons because melee weapons like the axe might be
+            //    carried on shoulder without any aiming being required
+            // -> works for hands item too (see GetCurrentUsableItem())
+            if (equipment.GetCurrentUsableItemOrHands().shoulderLookAtWhileHolding)
+            {
+                AdjustShoulder(leftShoulder);
+                AdjustShoulder(rightShoulder);
+            }
         }
     }
 }

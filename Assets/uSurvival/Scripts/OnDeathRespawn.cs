@@ -3,62 +3,65 @@ using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
 
-public class OnDeathRespawn : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    [Header("Components")]
-#pragma warning disable CS0109 // member does not hide accessible member
-    new public Collider collider;
-#pragma warning restore CS0109 // member does not hide accessible member
-
-    [Header("Death")]
-    public float deathTime = 30; // enough for animation & looting
-
-    [Header("Respawn")]
-    public float respawnTime = 10;
-
-    [Header("Events")]
-    public UnityEvent onRespawn;
-    public UnityEvent onDeathTimeElapsed;
-
-    [Server]
-    public void OnDeath()
+    public class OnDeathRespawn : NetworkBehaviour
     {
-        // be dead for a while, then disappear
-        Invoke(nameof(Disappear), deathTime);
-    }
+        [Header("Components")]
+    #pragma warning disable CS0109 // member does not hide accessible member
+        public new Collider collider;
+    #pragma warning restore CS0109 // member does not hide accessible member
 
-    [Server]
-    void Disappear()
-    {
-        // hide
-        netIdentity.visible = Visibility.ForceHidden;
+        [Header("Death")]
+        public float deathTime = 30; // enough for animation & looting
 
-        // disable collider while dead, so we don't block player movement or
-        // shots. otherwise the collider is still there while respawning etc.
-        collider.enabled = false;
+        [Header("Respawn")]
+        public float respawnTime = 10;
 
-        // call OnDeathTimeElapsed event in case other components need to know
-        // about it (like for the tree's rigidbody falling trick)
-        onDeathTimeElapsed.Invoke();
+        [Header("Events")]
+        public UnityEvent onRespawn;
+        public UnityEvent onDeathTimeElapsed;
 
-        // reappear in a while
-        Invoke(nameof(Reappear), respawnTime);
-    }
+        [Server]
+        public void OnDeath()
+        {
+            // be dead for a while, then disappear
+            Invoke(nameof(Disappear), deathTime);
+        }
 
-    [Server]
-    void Reappear()
-    {
-        // show again
-        netIdentity.visible = Visibility.Default;
+        [Server]
+        void Disappear()
+        {
+            // hide
+            netIdentity.visible = Visibility.ForceHidden;
 
-        // enable collider again
-        collider.enabled = true;
+            // disable collider while dead, so we don't block player movement or
+            // shots. otherwise the collider is still there while respawning etc.
+            collider.enabled = false;
 
-        // refill all energies
-        foreach (Energy energy in GetComponents<Energy>())
-            energy.current = energy.max;
+            // call OnDeathTimeElapsed event in case other components need to know
+            // about it (like for the tree's rigidbody falling trick)
+            onDeathTimeElapsed.Invoke();
 
-        // call OnRespawn event
-        onRespawn.Invoke();
+            // reappear in a while
+            Invoke(nameof(Reappear), respawnTime);
+        }
+
+        [Server]
+        void Reappear()
+        {
+            // show again
+            netIdentity.visible = Visibility.Default;
+
+            // enable collider again
+            collider.enabled = true;
+
+            // refill all energies
+            foreach (Energy energy in GetComponents<Energy>())
+                energy.current = energy.max;
+
+            // call OnRespawn event
+            onRespawn.Invoke();
+        }
     }
 }

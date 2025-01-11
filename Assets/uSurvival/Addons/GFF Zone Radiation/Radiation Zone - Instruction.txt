@@ -1,0 +1,87 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Radiation Zone
+Addon version : 1.0
+Date of creation / editing 13.02.2023
+Require Components / Addons : none
+Recommended Addons : none
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.18
+Link : http://u3d.as/31fz
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+2. Edit the "EquipmentItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class EquipmentItem : UsableItem
+       replace it on        public partial class EquipmentItem : UsableItem
+
+
+2. Edit the "PotionItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public class PotionItem : UsableItem
+       replace it on        public partial class PotionItem : UsableItem
+
+
+3. Edit the "Combat.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Combat : NetworkBehaviourNonAlloc
+       replace it on        public partial class Combat : NetworkBehaviourNonAlloc
+
+  b)      after line        int GetDefenseBonus();
+            add line        float GetRadiationResistanseBonus();
+
+
+4. Edit the "Equipment.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public abstract class Equipment : ItemContainer, IHealthBonus, IHydrationBonus, INutritionBonus, ICombatBonus
+       replace it on        public abstract partial class Equipment : ItemContainer, IHealthBonus, IHydrationBonus, INutritionBonus, ICombatBonus
+
+
+5. Edit the "PlayerHotbar.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerHotbar : ItemContainer, ICombatBonus
+       replace it on        public partial class PlayerHotbar : ItemContainer, ICombatBonus
+
+
+6. Edit the "UIStatus.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class UIStatus : MonoBehaviour
+       replace it on        public partial class UIStatus : MonoBehaviour
+
+  b)      after line        defenseText.text = player.combat.defense.ToString();
+            add line        radiationStatus.text = (player.combat.radiationResistance * 100) + "%";
+
+
+6. Edit all player prefabs
+  a) add script "Radiation"
+  b) in Inspector in script "Radiation" drag in fields "Health" and "Combat" this prefab
+  b) in Inspector in script "Combat" drag in field "Radiation"  this prefab
+
+
+7. Drag the "ZoneRadiation.prefab"  (Addons\GFF Zone Radiation\Prefabs\) to the scene.
+
+
+8. Delete "StatusPanel" from (Canvas/MainUI/MainUIPanel)
+
+9. Drag in "StatusPanel" from (Addons/GFF Zone Radiation/Prefabs/)  in Canvas\MainUI\MainUIPanel
+
+
+
+
+
+
+
+
+
+
+
+

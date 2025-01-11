@@ -1,0 +1,107 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Auction
+Addon version : 1.0
+Date of creation / editing 30.12.2022
+Require Components / Addons : Addons Core()
+Recommended Addons : Item Rarity, Enchant items
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.16
+Link : http://u3d.as/2ZqA
+
+Versions for other projects:
+ * uMMORPG Classic : http://u3d.as/1rkF
+ * uMMORPG Remastered : http://u3d.as/1JHs
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+0. Follow the instructions to set up the Interactions addon (Assets/uSurvival/Addons/GFF Interaction Extended/Interaction - Instruction)
+
+
+1. Edit the "ScriptableItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class ScriptableItem : ScriptableObjectNonAlloc
+       replace it on        public partial class ScriptableItem : ScriptableObjectNonAlloc
+
+
+2. Edit the "EquipmentItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class EquipmentItem : UsableItem
+       replace it on        public partial class EquipmentItem : UsableItem
+
+
+3. Edit the "WeaponItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public abstract class WeaponItem : UsableItem
+       replace it on        public abstract partial class WeaponItem : UsableItem
+
+
+4. Edit the "PotionItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public class PotionItem : UsableItem
+       replace it on        public partial class PotionItem : UsableItem
+
+
+5. Edit the "Database.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Database : MonoBehaviour
+       replace it on        public partial class Database : MonoBehaviour
+
+
+6. Drag the "GFF Auction.prefab"  (Addons\GFF Auction\Prefabs\) to the Canvas element after "MainUI".
+
+
+7. Select the "Auction" object. In the inspector (Canvas\GFF Auction\Auction)
+	 Drag in "Panel Inventory" the "MainUIPanel" in Canvas\MainUI\MainUIPanel
+
+
+8. Select the npc object. In the inspector in the script "NPC" additional settings will appear
+       "Auction" - enables or disables Auction through this npc (must be enabled) 
+
+
+9. Edit all player prefabs
+  a) add script "PlayerAuction"
+  b) in Inspector in script "PlayerAuction" drag in field "Player" this prefab
+  c) in Inspector in script "Player" drag in field "Auction" this prefab
+  d) in Inspector in script "PlayerAuction" select "itemTypes" from (/GFF Auction/Resources/)
+
+
+10. Add to gameobject NetworkManager script Database Events
+  a) On Connected  -> Object - NetworkManager, Function - Database.Connect_Auction
+  b) On Character Load  -> Object - NetworkManager, Function - Database.CharacterLoad_AuctionFavorites
+  c) On Character Save  -> Object - NetworkManager, Function - Database.CharacterSave_AuctionFavorites
+
+
+11. Select the "Main Camera" object. In the inspector on script "CursorLocking.cs" 
+    add elements "AuctionPanel" and "RegistrationPanel"  from (Canvas/GFF Auction/) to Array "windows That Unlock Cursor"
+
+
+12. in folder uSurvival\Resources\Items\
+	a) 
+
+    * Added "Weapon type" parameter to all Weapons
+    * Added "Armor type" parameter to all Equipment items (Armors)
+    * Added "Potion type" parameter to all Potions items
+
+	    need to fill them: You can specify any, but they must match the settings specified in "Addons/GFF Auction/Resources/"
+        (these parameters will be searched in the database)
+
+    b) Auction - Opportunity sell this item to auction (if enable - then this item can be sold through auction )
+
+
+13. Follow the instructions to set up the Interactions addon (Assets/uSurvival/Addons/GFF Gold (Money)/Gold - Instruction)
+
+
+14. if you use our addon "enchant items"
+   *  Edit the "UIRegistrationItemOnAuction.cs" Script in “ Assets\uMMORPG\Addons\GFF Auction\Scripts\ " 
+
+   *  Edit the "UIAuction.cs" Script in “ Assets\uMMORPG\Addons\GFF Auction\Scripts\ " 
+

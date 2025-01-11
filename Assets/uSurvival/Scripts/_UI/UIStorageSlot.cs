@@ -3,12 +3,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStorageSlot : MonoBehaviour
+namespace uSurvival
 {
-    public Button button;
-    public UIShowToolTip tooltip;
-    public UIDragAndDropable dragAndDropable;
-    public Image image;
-    public GameObject amountOverlay;
-    public Text amountText;
+    public class UIStorageSlot : MonoBehaviour
+    {
+        public Button button;
+        public UIShowToolTip tooltip;
+        public UIDragAndDropable dragAndDropable;
+        public Image image;
+        public GameObject amountOverlay;
+        public Text amountText;
+    }
 }

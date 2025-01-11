@@ -1,0 +1,298 @@
+English;Russian
+
+Backpack Schoolgirl Green;Backpack Schoolgirl Green;Рюкзак ученицы Зеленый;Schoolgirl Backpack;;;
+Backpack Schoolgirl Orange;Backpack Schoolgirl Orange;Рюкзак ученицы Оранжевый;Schoolgirl Backpack;;;
+Backpack Schoolgirl Pink;Backpack Schoolgirl Pink;Рюкзак ученицы Розовый;Schoolgirl Backpack;;;
+Backpack Schoolgirl Purple;Backpack Schoolgirl Purple;Рюкзак ученицы Сиреневый;Schoolgirl Backpack;;;
+Backpack Schoolgirl White;Backpack Schoolgirl White;Рюкзак ученицы Белый;Schoolgirl Backpack;;;
+
+Backpack Student Blue;Backpack Student Blue;Рюкзак школьника Синий;Student Backpack;;;
+Backpack Student Green;Backpack Student Green;Рюкзак школьника Зеленый;Student Backpack;;;
+Backpack Student Pink;Backpack Student Pink;Рюкзак школьника Розовый;Student Backpack;;;
+Backpack Student Purple;Backpack Student Purple;Рюкзак школьника Сиреневый;Student Backpack;;;
+Backpack Student Red;Backpack Student Red;Рюкзак школьника Красный;Student Backpack;;;
+Backpack Student Yellow;Backpack Student Yellow;Рюкзак школьника Желтый;Student Backpack;;;
+
+Backpack Beige;Backpack Beige;Средний рюкзак Бежевый;Middle Backpack;;;
+Backpack Black;Backpack Black;Средний рюкзак Черный;Middle Backpack;;;
+Backpack Blue;Backpack Blue;Средний рюкзак Синий;Middle Backpack;;;
+Backpack Green;Backpack Green;Средний рюкзак Зеленый;Middle Backpack;;;
+Backpack Grey;Backpack Grey;Средний рюкзак Серый;Middle Backpack;;;
+
+Backpack Large Beige Blue;Large Backpack;Рюкзак для путешествий;Large Backpack;;;
+Backpack Large Beige Purple;Large Backpack;Рюкзак для путешествий;Large Backpack;;;
+Backpack Large Beige Red;Large Backpack;Рюкзак для путешествий;Large Backpack;;;
+Backpack Large Blue Pink;Large Backpack;Рюкзак для путешествий;Large Backpack;;;
+Backpack Large Blue Yellow;Large Backpack;Рюкзак для путешествий;Large Backpack;;;
+
+Backpack Ex Large Beige Blue;Backpack Ex Large Beige Blue;Походный рюкзак;Ex Large Backpack;;;
+Backpack Ex Large Beige Red;Backpack Ex Large Beige Red;Походный рюкзак;Ex Large Backpack;;;
+Backpack Ex Large Blue Pink;Backpack Ex Large Blue Pink;Походный рюкзак;Ex Large Backpack;;;
+Backpack Ex Large Blue Yellow;Backpack Ex Large Blue Yellow;Походный рюкзак;Ex Large Backpack;;;
+Backpack Ex Large Orange Green;Backpack Ex Large Orange Green;Походный рюкзак;Ex Large Backpack;;;
+
+BackpackMidle;Midle Backpack;Средний рюкзак;;;;
+BackpackLarge;Large Backpack;Рюкзак для путешествий;;;;
+BackpackExLarge;Backpack Ex Large;Походный рюкзак;;;;
+
+Pouch A 1;Pouch A 1;Сумка A1;Pouch A 1;;;
+Pouch A 2;Pouch A 2;Сумка A2;Pouch A 2;;;
+Pouch A 3;Pouch A 3;Сумка A3;Pouch A 3;;;
+Pouch A 4;Pouch A 4;Сумка A4;Pouch A 4;;;
+Pouch B 1;Pouch B 1;Сумка B1;Pouch B 1;;;
+Pouch B 2;Pouch B 2;Сумка B2;Pouch B 2;;;
+Pouch B 3;Pouch B 3;Сумка B3;Pouch B 3;;;
+Pouch B 4;Pouch B 4;Сумка B4;Pouch B 4;;;
+Pouch C 1;Pouch C 1;Сумка C1;Pouch A 1;;;
+Pouch C 2;Pouch C 2;Сумка C2;Pouch A 2;;;
+Pouch C 3;Pouch C 3;Сумка C3;Pouch A 3;;;
+Pouch C 4;Pouch C 4;Сумка C4;Pouch A 4;;;
+Pouch D 1;Pouch D 1;Сумка D1;Pouch A 1;;;
+Pouch D 2;Pouch D 2;Сумка D2;Pouch A 2;;;
+Pouch D 3;Pouch D 3;Сумка D3;Pouch A 3;;;
+Pouch D 4;Pouch D 4;Сумка D4;Pouch A 4;;;
+
+
+
+
+
+SheriffHat Black;Sheriff Hat;Шляпа Шерифа;Sheriff Hat;;;
+SheriffHat Brown;Sheriff Hat;Шляпа Шерифа;Sheriff Hat;;;
+
+FootballHelmet Green;Football Helmet;Шлем;Football Helmet;;;
+FootballHelmet Orange;Football Helmet;Шлем;Football Helmet;;;
+FootballHelmet Pink;Football Helmet;Шлем;Football Helmet;;;
+FootballHelmet Purple;Football Helmet;Шлем;Football Helmet;;;
+FootballHelmet White;Football Helmet;Шлем;Football Helmet;;;
+
+SoldierHelmet Black;Soldier Helmet;Военный шлем;Soldier Helmet;;;
+SoldierHelmet Blue;Soldier Helmet;Военный шлем;Soldier Helmet;;;
+SoldierHelmet Green;Soldier Helmet;Военный шлем;Soldier Helmet;;;
+SoldierHelmet Grey;Soldier Helmet;Военный шлем;Soldier Helmet;;;
+SoldierHelmet Olive;Soldier Helmet;Военный шлем;Soldier Helmet;;;
+
+RiotCopHelmet Black A;RiotCop Helmet;Шлем полицейского;RiotCop Helmet;;;
+RiotCopHelmet Black B;RiotCop Helmet;Шлем полицейского;RiotCop Helmet;;;
+RiotCopHelmet Grey;RiotCop Helmet;Шлем полицейского;RiotCop Helmet;;;
+RiotCopHelmet White;RiotCop Helmet;Шлем полицейского;RiotCop Helmet;;;
+
+Mask A;Mask;Маска;Mask;;;
+Mask B;Mask;Маска;Mask;;;
+Mask C;Mask;Маска;Mask;;;
+Mask D;Mask;Маска;Mask;;;
+Mask E;Mask;Маска;Mask;;;
+Mask F;Mask;Маска;Mask;;;
+MaskHockey A;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+MaskHockey B;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+MaskHockey C;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+MaskHockey D;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+MaskHockey E;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+MaskHockey F;Mask Hockey;Маска хоккейста;Mask Hockey;;;
+GasMask A;Gas Mask;Противогаз;Gas Mask;;;
+GasMask B;Gas Mask;Противогаз;Gas Mask;;;
+GasMask C;Gas Mask;Противогаз;Gas Mask;;;
+GasMask D;Gas Mask;Противогаз;Gas Mask;;;
+GasMask E;Gas Mask;Противогаз;Gas Mask;;;
+GasMask F;Gas Mask;Противогаз;Gas Mask;;;
+
+Bat;Bat;Бита;;;;
+Bat Lucille;Бита Люсиль;;;;;
+Bat Hole Punch;Бита Дырокол;;;;;
+Bat Barber;Бита Барбер;;;;;
+Fire Axe;Fire Axe;Пожарный топор;;;;
+Plumbing pipe;Сантехническая труба;;;;;
+;;;;;;
+
+Flash Hider A;Flash Hider A;Пламегаситель A;;;;
+Flash Hider B;Flash Hider B;Пламегаситель B;;;;
+Flash Hider C;Flash Hider C;Пламегаситель C;;;;
+
+Scope A;Scope A;Прицел A;;;;
+Scope B;Scope B;Прицел B;;;;
+Scope C;Scope C;Прицел C;;;;
+Scope D;Scope D;Прицел D;;;;
+Scope E;Scope E;Прицел E;;;;
+Scope F;Scope F;Прицел F;;;;
+Scope G;Scope G;Прицел G;;;;
+
+Silencer A;Silencer A;Глушитель A;;;;
+Silencer B;Silencer B;Глушитель B;;;;
+Silencer C;Silencer C;Глушитель C;;;;
+
+Extended Mag (AK 76);Extended Mag (AK 76);Увеличенный магазин для штурмовых винтовок;;;;
+Extended Mag (Handgun);Extended Mag (Handgun);Увеличенный магазин для пистолетов и пистолетов-пулемётов;;;;
+Extended Mag (SR);Extended Mag (SR);Увеличенный магазин для снайперских винтовок;;;;
+
+QuickDraw Mag (AK 76);QuickDraw Mag (AK 76);Магазин быстрого доступа для штурмовых винтовок;;;;
+QuickDraw Mag (Handgun);QuickDraw Mag (Handgun);Магазин быстрого доступа для пистолетов и пистолетов-пулемётов;;;;
+QuickDraw Mag (SR);QuickDraw Mag (SR);Магазин быстрого доступа для снайперских винтовок;;;;
+
+Extended QuickDraw Mag (AK 76);Extended QuickDraw Mag (AK 76);Увеличенный магазин быстрого доступа для штурмовых винтовок;;;;
+Extended QuickDraw Mag (Handgun);Extended QuickDraw Mag (Handgun);Увеличенный магазин быстрого доступа для пистолетов и пистолетов-пулемётов;;;;
+Extended QuickDraw Mag (SR);Extended QuickDraw Mag (SR);Увеличенный магазин быстрого доступа для снайперских винтовок;;;;
+
+Bed Glock 17;Bed Glock 17;Центральня часть Глок 17;;;;
+Bolt frame Glock 17;Bolt frame Glock 17;Затвор для Глок 17;;;;
+Handle Glock 17;Handle Glock 17;Рукоядка для Глок 17;;;;
+
+Barrel AK;Barrel AK;Ствол для АК;;;;
+Body AK;Body AK;Центральня часть АК;;;;
+Butt AK;Butt AK;Приклад для АК;;;;
+Handle AK;Handle AK;Ручка для АК;;;;
+Loader AK;Loader AK;Магазин для AK;;;;
+
+Bed UMP 45;Bed UMP 45;Центральня часть UMP 45;;;;
+Clip UMP 45;Clip UMP 45;Магазин для UMP 45;;;;
+Main stick UMP 45;Main stick UMP 45;Ручка для UMP 45;;;;
+Stock UMP 45;Stock UMP 45;Приклад для UMP 45;;;;
+Support handle UMP 45;Support handle UMP 45;Часть от UMP 45;;;;
+
+BindItem;Bind Item;Биндилка;Bind Item;;;
+RepairKitForClothingAndProtection;Repair Kit for clothes and protection;Рем комплект для одежды и защиты;Bind Item;;;
+RepairKitForWeapon;Repair Kit For for Weapon;Рем комплект для Оружия;DurabilityRestorerForWeapon;;;
+RepairKitForClothingAndProtection 25%;Repair Kit for clothes and protection;Рем комплект для одежды и защиты;Bind Item;;;
+RepairKitForWeapon 25%;Repair Kit For for Weapon;Рем комплект для Оружия;DurabilityRestorerForWeapon;;;
+
+45 ACP;45 ACP;Патроны 45 ACP;45 ACP;;;
+45 ACP Piercing;45 ACP Piercing;Патроны 45 ACP Бронебойные;45 ACP Piercing;;;
+45 ACP Explosive;45 ACP Explosive;Патроны 45 ACP Разрывные;45 ACP Explosive;;;
+7.62mm;7.62mm;Патроны 7.62mm;7.62mm;;;
+7.62mm Piercing;7.62mm Piercing;Патроны 7.62mm Бронебойные;7.62mm Piercing;;;
+7.62mm Explosive;7.62mm Explosive;Патроны 7.62mm Разрывные;7.62mm Explosive;;;
+5.56mm;5.56mm;Патроны 5.56mm;5.56mm;;;
+5.56mm Piercing;5.56mm Piercing;Патроны 5.56mm Бронебойные;5.56mm Piercing;;;
+5.56mm Explosive;5.56mm Explosive;Патроны 5.56mm Разрывные;5.56mm Explosive;;;
+
+45 ACP S;45 ACP;45 ACP;45 ACP;;;
+45 ACP Piercing S;45 ACP Piercing;45 ACP Бронебойные;45 ACP Piercing;;;
+45 ACP Explosive S;45 ACP Explosive;45 ACP Разрывные;45 ACP Explosive;;;
+7.62mm S;7.62mm S;Патроны 7.62mm;7.62mm;;;
+7.62mm Piercing S;7.62mm Piercing;7.62mm Бронебойные;7.62mm Piercing;;;
+7.62mm Explosive S;7.62mm Explosive;7.62mm Разрывные;7.62mm Explosive;;;
+5.56mm S;5.56mm S;5.56mm;5.56mm;;;
+5.56mm Piercing S;5.56mm Piercing;5.56mm Бронебойные;5.56mm Piercing;;;
+5.56mm Explosive S;5.56mm Explosive;5.56mm Разрывные;5.56mm Explosive;;;
+
+Beer;Beer;Пиво;Beer;;;
+EnergyDrink;EnergyDrink;Энергетик;;;;
+Juice;Juice;Сок;Water;;;
+Milk;Milk;Молоко;Water;;;
+Vodka;Vodka;Водка;Water;;;
+Water;Water;Вода;Water;;;
+Whiskey;Whiskey;Виски;Water;;;
+
+
+Banana;Banana;Мясо;Meat;;;
+Bread;Bread;Хлеб;Meat;;;
+Canned fish;Canned fish;Рыбные консервы;Meat;;;
+Canned meat;Canned meat;Мясные консервы;Meat;;;
+Dried bread;Dried bread;Сушеный хлеб;Meat;;;
+Grilled meat;Grilled meat;Жаренное Мясо;Meat;;;
+Raw meat;Raw meat;Сырое Мясо;Meat;;;
+
+Antibiotic;Antibiotic;Антибиотик;;;;
+Bandage;Bandage;Бинт;;;;
+Charcoal tablets;Charcoal tablets;Активированный уголь в таблетках;;;;
+First Aid Kit;First Aid Kit;Аптечка первой помощи;;;;
+MediPack;MediPack;Медицинский пакет;;;;
+
+Accumulator;Accumulator;;;;;
+Battery;Battery;;;;;
+BentPipe;Bent pipe;Изогнутая труба;;;;
+BrokenGlass;Broken glass;;;;;
+CircularDisk;Circular disk;Пильный диск;;;;
+EmptyBottle;Empty bottle;Пустая бутылка;;;;
+Filter for gas mask;Filter for gas mask;;;;;
+Hammer;Hammer;Молоток;;;;
+InsulatingTape;Insulating tape;Изолента;;;;
+Log;Log;Бревно;;;;
+Nail;Nail;Гвозди;;;;
+Patch;Patch;;;;;
+PipeElement;Pipe element;Элемент трубы;;;;
+Pliers;Pliers;Плоскогубцы;;;;
+RadioComponents;RadioComponents;;;;;
+Rope;Rope;Веревка;;;;
+Screw;Screw;;;;;
+StationeryKnife;Stationery knife;Канцелярский нож;;;;
+Stick;Stick;Палка;;;;
+Skull;Skull;Кости;;;;
+Wire;Wire;Проволока;;;;
+
+
+BodyArmor A;BodyArmor A;Бронежилет A;;;;
+BodyArmor B;BodyArmor B;Бронежилет B;;;;
+BodyArmor C;BodyArmor C;Бронежилет C;;;;
+Armor Plate I;Armor Plate I;Бронепластина I;;;;
+Armor Plate II;Armor Plate II;Бронепластина II;;;;
+Armor Plate III;Armor Plate III;Бронепластина III;;;;
+
+
+Gas Mask Filter Big;Filter For Gas Mask (Big);Фильтр для противогаза(усиленный);;;;
+Gas Mask Filter small;Filter For Gas Mask;Фильтр для противогаза;;;;
+
+Kneepa Metal L;Kneepa Metal L;Металлические наколенники Л
+Kneepa Metal R;Kneepa Metal R;Металлические наколенники П
+Kneepa Wood L;Kneepa Wood L;Деревянные наколенники Л
+Kneepa Wood R;Kneepa Wood R;Деревянные наколенники П
+
+
+Shoulder Wood L;Shoulder Wood L;Деревянные плечи Л
+Shoulder Wood R;Shoulder Wood R;Деревянные плечи П
+Shoulder Metal L;Shoulder Metal L;Металлические плечи Л
+Shoulder Metal R;Shoulder Metal R;Металлические плечи П
+Shoulder Soft L;Shoulder Soft L;Мягкие плечи Л
+Shoulder Soft R;Shoulder Soft R;Мягкие плечи П
+Shoulder Sports L;Shoulder Sports L;Спортивные плечи Л
+Shoulder Sports R;Shoulder Sports R;Спортивные плечи П
+Shoulder Sports Light L;Shoulder Sports Light L;Спортивные облегченные плечи Л
+Shoulder Sports Light R;Shoulder Sports Light R;Спортивные облегченные плечи П
+
+
+Animal's skin;Animal's skin;Кожа животных;Animal's skin;;;
+Hard leather;Hard leather;Обработанная кожа;Hard leather;;;
+
+
+Wood;Wood;Бревно;Wood;;;
+Wooden plank;Wooden plank;Доски;Wooden plank;;;
+
+Rock;Rock;Камень;Rock;;;
+Rough stone;Rough stone;Грубый Камень;Rough stone;;;
+Stone block;Stone block;Каменный блок;Stone block;;;
+Limestone;Limestone;Известняк;Limestone;;;
+Granite;Granite;Гранит;Granite;;;
+
+Iron;Iron;Железная руда;Iron;;;
+Coal;Coal;Уголь;Coal;;;
+
+Iron Ore;Iron Ore;Железная Руда;;;;
+Copper Ore;Copper Ore;Медная Руда;;;;
+Tin Ore;Tin Ore;Оловянная Руда;;;;
+Zinc Ore;Zinc Ore;Цинковая Руда;;;;
+
+
+Iron Piece;Iron Piece;Кусок Железа;Gold;;;
+Copper Piece;Copper Piece;Кусок Меди;Iron;;;
+Tin Piece;Tin Piece;Кусок Олова;Gold;;;
+Zinc Piece;Zinc Piece;Кусок Цинка;Iron;;;
+
+Iron Bar;Iron Bar;Слиток Железа;Gold;;;
+Copper Bar;Copper Bar;Слиток Меди;Iron;;;
+Tin Bar;Tin Bar;Слиток Олова;Gold;;;
+Zinc Bar;Zinc Bar;Слиток Цинка;Iron;;;
+Bronze Bar;Bronze Bar;Слиток Бронзы;Iron;;;
+Brass Bar;Brass Bar;Слиток Латуни;Gold;;;
+Steel Bar;Steel Bar;Слиток Стали;Iron;;;
+
+Axe;Axe;Топор;Axe;;;
+Pickaxe;Pickaxe;Кирка;Pickaxe;;;
+Shovel;Shovel;Лопата;Shovel;;;
+Rusty Axe;Rusty Axe;Ржавый топор;Rusty Axe;;;
+Rusty Pickaxe;Rusty Pickaxe;Ржавая кирка;Rusty Pickaxe;;;
+Rusty shovel;Rusty shovel;Ржавая лопата;Rusty shovel;;;
+Bag;Bag;Кожанная сумка;Bag;;;
+Improved bag;Improved bag;Улучшенная Кожанная сумка;Improved bag;;;
+Belts;Belts;Ремни;Belts;;;
+Nails;Nails;Гвозди;Nails;;;
+
+Palette;Palette;Деревянный Паллет
+BuildingBlock;Building Block;Бетонный Блок

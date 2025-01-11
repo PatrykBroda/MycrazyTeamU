@@ -1,35 +1,55 @@
-﻿// Based on Unity's example script:
-// https://forum.unity.com/threads/new-post-processing-stack-pre-release.435581/page-2#post-2845653
-using UnityEngine;
-using UnityEngine.PostProcessing;
+﻿using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
-[RequireComponent(typeof(PostProcessingBehaviour))]
-public class HealthBasedVignette : MonoBehaviour
+namespace uSurvival
 {
-    public PostProcessingBehaviour behaviour; // assign in Inspector
-    public float healthBasedSpeedMultiplier = 1;
-
-    void Awake()
+    public class HealthBasedVignette : MonoBehaviour
     {
-        // create runtime profile so the project files aren't modified permanently
-        behaviour.profile = Instantiate(behaviour.profile);
-    }
+        public PostProcessProfile volumeProfile;
+        private Vignette vignette;
 
-    void SetVignetteSmoothness(float value)
-    {
-        VignetteModel.Settings vignette = behaviour.profile.vignette.settings;
-        vignette.smoothness = value;
-        behaviour.profile.vignette.settings = vignette;
-    }
+        public Color colorNormal = Color.black;
+        public float intensityNormal = 0.3f;
 
-    void Update()
-    {
-        Player player = Player.localPlayer;
-        if (!player) return;
+        public Color colorDamaged = Color.red;
+        public float healthBasedSpeedMultiplier = 1;
 
-        float healthPercent = player.health.Percent();
-        float speed = 1 + (1 - healthPercent) * healthBasedSpeedMultiplier; // scale speed with health
-        float wave = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup * speed));
-        SetVignetteSmoothness((1 - healthPercent) * (0.5f + (wave / 2f)));
+        void Start()
+        {
+            // get the vignette effect
+            for (int i = 0; i < volumeProfile.settings.Count; i++)
+            {
+                if (volumeProfile.settings[i].name == "Vignette")
+                {
+                    vignette = (Vignette)volumeProfile.settings[i];
+                }
+            }
+
+            SetVignetteSmoothness(intensityNormal, colorNormal);
+        }
+
+        void Update()
+        {
+            Player player = Player.localPlayer;
+            if (!player) return;
+
+            float healthPercent = player.health.Percent();
+            if (healthPercent < 1)
+            {
+                float speed = 1 + (1 - healthPercent) * healthBasedSpeedMultiplier; // scale speed with health
+                float wave = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup * speed));
+                SetVignetteSmoothness((1 - healthPercent) * (0.5f + (wave / 2f)), colorDamaged);
+            }
+            else
+            {
+                SetVignetteSmoothness(intensityNormal, colorNormal);
+            }
+        }
+
+        private void SetVignetteSmoothness(float value, Color color)
+        {
+            vignette.intensity.Override(value);
+            vignette.color.Override(color);
+        }
     }
 }

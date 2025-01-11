@@ -9,19 +9,23 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
-[Serializable] public class UnityEventEntityInt : UnityEvent<Entity, int> {}
-
-[DisallowMultipleComponent]
-[RequireComponent(typeof(Health))]
-[RequireComponent(typeof(Combat))]
-public abstract class Entity : NetworkBehaviourNonAlloc
+namespace uSurvival
 {
-    // Used components. Assign in Inspector. Easier than GetComponent caching.
-    [Header("Components")]
-    public Health health;
-    public Combat combat;
-#pragma warning disable CS0109 // member does not hide accessible member
-    new public Collider collider; // this is the main collider
-#pragma warning restore CS0109 // member does not hide accessible member
+    [Serializable] public class UnityEventEntityInt : UnityEvent<Entity, int> {}
+
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(Combat))]
+    public abstract partial class Entity : NetworkBehaviour
+    {
+        // Used components. Assign in Inspector. Easier than GetComponent caching.
+        [Header("Components")]
+        public Health health;
+        public Combat combat;
+    #pragma warning disable CS0109 // member does not hide accessible member
+        public new Collider collider; // this is the main collider
+    #pragma warning restore CS0109 // member does not hide accessible member
+    }
 }

@@ -1,57 +1,55 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIProgressBar : MonoBehaviour
+namespace uSurvival
 {
-    public GameObject panel;
-    public Slider slider;
-    public Text actionText;
-    public Text progressText;
-
-    bool ReloadInProgress(Player player, out float percentage, out string action, out string progress)
+    public class UIProgressBar : MonoBehaviour
     {
-        percentage = 0;
-        action = "";
-        progress = "";
+        public GameObject panel;
+        public Slider slider;
+        public TextMeshProUGUI actionText;
 
-        // currently reloading?
-        ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
-        if (slot.amount > 0 && slot.item.data is RangedWeaponItem)
+        private bool ReloadInProgress(Player player, out float percentage, out string action)
         {
-            float reloadTime = ((RangedWeaponItem)slot.item.data).reloadTime;
-            if (player.reloading.ReloadTimeRemaining() > 0)
+            percentage = 0;
+            action = "";
+
+            // currently reloading?
+            ItemSlot slot = player.equipment.slots[player.equipment.selection];
+            if (slot.amount > 0 && slot.item.data is RangedWeaponItem)
             {
-                percentage = (reloadTime - player.reloading.ReloadTimeRemaining()) / reloadTime;
-                action = "Reloading:";
-                progress = (percentage * 100).ToString("F0") + "%";
-                return true;
+                float reloadTime = ((RangedWeaponItem)slot.item.data).reloadTime;
+                if (player.reloading.ReloadTimeRemaining() > 0)
+                {
+                    percentage = (reloadTime - player.reloading.ReloadTimeRemaining()) / reloadTime;
+                    action = Localization.Translate("Reloading");
+                    return true;
+                }
             }
+
+            return false;
         }
 
-        return false;
-    }
-
-    void Update()
-    {
-        Player player = Player.localPlayer;
-        if (player)
+        private void Update()
         {
-            panel.SetActive(true);
-            float percentage;
-            string action;
-            string progress;
-
-            //  reloading?
-            if (ReloadInProgress(player, out percentage, out action, out progress))
+            Player player = Player.localPlayer;
+            if (player)
             {
-                panel.SetActive(true);
-                slider.value = percentage;
-                actionText.text = action;
-                progressText.text = progress;
+                float percentage;
+                string action;
+
+                //  reloading?
+                if (ReloadInProgress(player, out percentage, out action))
+                {
+                    panel.SetActive(true);
+                    slider.value = percentage;
+                    actionText.text = action;
+                }
+                // otherwise hide
+                else panel.SetActive(false);
             }
-            // otherwise hide
             else panel.SetActive(false);
         }
-        else panel.SetActive(false);
     }
 }

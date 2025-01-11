@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbc25bef1e7c4f4aa348edf964275e9, type: 3}
+  m_Name: Petrowskaya Vodka
+  m_EditorClassIdentifier: 
+  _auction: 1
+  _autoBind: 0
+  dropChance: 50
+  dropFromInventory: 1
+  dropFromEquipment: 0
+  dropFromHotbar: 0
+  _itemWeight: 250
+  canSendOnMail: 0
+  buyPrice: 100
+  sellPrice: 50
+  sellable: 1
+  itemMallPrice: 0
+  canPutInTheStorage: 1
+  skins: []
+  localization: []
+  maxStack: 50
+  maxDurability: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some hydration.
+
+
+    Restores {USAGEHYDRATION}
+    Hydration on use.
+
+
+    Amount: {AMOUNT}'
+  image: {fileID: 21300000, guid: 6206c9b5fec0d514faac8938a70a6443, type: 3}
+  drop: {fileID: 114354571381432026, guid: 2440e0f9d419ff54e8eb6ba03e142174, type: 3}
+  modelPrefab: {fileID: 0}
+  equipmentItemType: 0
+  category: Pocket
+  keepUsingWhileButtonDown: 0
+  successfulUseSound: {fileID: 8300000, guid: 8095a444382734c47857837c0fa665f4, type: 3}
+  failedUseSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  cooldown: 1
+  _cooldownCategory: Drinks
+  shoulderLookAtWhileHolding: 0
+  useDirectly: 0
+  potionType: 0
+  usageBoost: 0
+  _usageRadiation: 0
+  usageHealth: -50
+  usageHydration: -200
+  usageNutrition: -10

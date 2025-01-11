@@ -18,39 +18,42 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public abstract class ScriptableRecipe : ScriptableObjectNonAlloc
+namespace uSurvival
 {
-    // every recipe has a result
-    public ScriptableItem result;
-
-    // caching /////////////////////////////////////////////////////////////////
-    // we can only use Resources.Load in the main thread. we can't use it when
-    // declaring static variables. so we have to use it as soon as 'dict' is
-    // accessed for the first time from the main thread.
-    static Dictionary<string, ScriptableRecipe> cache = null;
-    public static Dictionary<string, ScriptableRecipe> dict
+    public abstract class ScriptableRecipe : ScriptableObject
     {
-        get
-        {
-            // not loaded yet?
-            if (cache == null)
-            {
-                // get all ScriptableRecipes in resources
-                ScriptableRecipe[] recipes = Resources.LoadAll<ScriptableRecipe>("");
+        // every recipe has a result
+        public ScriptableItem result;
 
-                // check for duplicates, then add to cache
-                List<string> duplicates = recipes.ToList().FindDuplicates(recipe => recipe.name);
-                if (duplicates.Count == 0)
+        // caching /////////////////////////////////////////////////////////////////
+        // we can only use Resources.Load in the main thread. we can't use it when
+        // declaring static variables. so we have to use it as soon as 'dict' is
+        // accessed for the first time from the main thread.
+        static Dictionary<string, ScriptableRecipe> cache = null;
+        public static Dictionary<string, ScriptableRecipe> dict
+        {
+            get
+            {
+                // not loaded yet?
+                if (cache == null)
                 {
-                    cache = recipes.ToDictionary(recipe => recipe.name, recipe => recipe);
+                    // get all ScriptableRecipes in resources
+                    ScriptableRecipe[] recipes = Resources.LoadAll<ScriptableRecipe>("");
+
+                    // check for duplicates, then add to cache
+                    List<string> duplicates = recipes.ToList().FindDuplicates(recipe => recipe.name);
+                    if (duplicates.Count == 0)
+                    {
+                        cache = recipes.ToDictionary(recipe => recipe.name, recipe => recipe);
+                    }
+                    else
+                    {
+                        foreach (string duplicate in duplicates)
+                            Debug.LogError($"Resources folder contains multiple ScriptableRecipes with the name {duplicate}. If you are using subfolders like 'Warrior/Ring' and 'Archer/Ring', then rename them to 'Warrior/(Warrior)Ring' and 'Archer/(Archer)Ring' instead.");
+                    }
                 }
-                else
-                {
-                    foreach (string duplicate in duplicates)
-                        Debug.LogError("Resources folder contains multiple ScriptableRecipes with the name " + duplicate + ". If you are using subfolders like 'Warrior/Ring' and 'Archer/Ring', then rename them to 'Warrior/(Warrior)Ring' and 'Archer/(Archer)Ring' instead.");
-                }
+                return cache;
             }
-            return cache;
         }
     }
 }

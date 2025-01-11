@@ -9,48 +9,51 @@ using System.Text;
 using UnityEngine;
 using Mirror;
 
-[Serializable]
-public struct ItemSlot
+namespace uSurvival
 {
-    public Item item;
-    public int amount;
-
-    // constructors
-    public ItemSlot(Item item, int amount=1)
+    [Serializable]
+    public struct ItemSlot
     {
-        this.item = item;
-        this.amount = amount;
+        public Item item;
+        public ushort amount;
+
+        // constructors
+        public ItemSlot(Item item, ushort amount =1)
+        {
+            this.item = item;
+            this.amount = amount;
+        }
+
+        // helper functions to increase/decrease amount more easily
+        // -> returns the amount that we were able to increase/decrease by
+        public ushort DecreaseAmount(int reduceBy)
+        {
+            // as many as possible
+            ushort limit = (ushort)Mathf.Clamp(reduceBy, 0, amount);
+            amount -= limit;
+            return limit;
+        }
+
+        public ushort IncreaseAmount(int increaseBy)
+        {
+            // as many as possible
+            ushort limit = (ushort)Mathf.Clamp(increaseBy, 0, item.maxStack - amount);
+            amount += limit;
+            return limit;
+        }
+
+        // tooltip
+        public string ToolTip()
+        {
+            if (amount == 0) return "";
+
+            // we use a StringBuilder so that addons can modify tooltips later too
+            // ('string' itself can't be passed as a mutable object)
+            StringBuilder tip = new StringBuilder(item.ToolTip());
+            tip.Replace("{AMOUNT}", amount.ToString());
+            return tip.ToString();
+        }
     }
 
-    // helper functions to increase/decrease amount more easily
-    // -> returns the amount that we were able to increase/decrease by
-    public int DecreaseAmount(int reduceBy)
-    {
-        // as many as possible
-        int limit = Mathf.Clamp(reduceBy, 0, amount);
-        amount -= limit;
-        return limit;
-    }
-
-    public int IncreaseAmount(int increaseBy)
-    {
-        // as many as possible
-        int limit = Mathf.Clamp(increaseBy, 0, item.maxStack - amount);
-        amount += limit;
-        return limit;
-    }
-
-    // tooltip
-    public string ToolTip()
-    {
-        if (amount == 0) return "";
-
-        // we use a StringBuilder so that addons can modify tooltips later too
-        // ('string' itself can't be passed as a mutable object)
-        StringBuilder tip = new StringBuilder(item.ToolTip());
-        tip.Replace("{AMOUNT}", amount.ToString());
-        return tip.ToString();
-    }
+    public class SyncListItemSlot : SyncList<ItemSlot> {}
 }
-
-public class SyncListItemSlot : SyncList<ItemSlot> {}

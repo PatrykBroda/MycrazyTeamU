@@ -1,0 +1,82 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Npc Trading
+Addon version : 1.1
+Date of creation / editing 31.10.2022
+Require Components / Addons : Addons Core
+Recommended Addons : Item Rarity
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2021.3.11
+Link : http://u3d.as/2HuH
+
+
+Versions for other projects:
+ * uMMORPG Classic : http://u3d.as/1nrW
+ * uMMORPG Remastered : http://u3d.as/1KiJ
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "Entity.cs"  Script in   Assets/uSurvival/Scripts/
+    "public abstract class" change to "public abstract partial class"
+
+
+2. Edit the "ScriptableItem.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+3. Edit the "Item.cs"  Script in   Assets/uSurvival/Scripts/
+    "public struct Item" change to "public partial struct Item"
+
+
+4. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+    a) "public class" change to "public partial class"
+
+
+5. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+    a) after line     public int endurance { get; set; }
+         add line     public long gold { get; set; }
+
+
+    b) after line     endurance = player.endurance.current,
+         add line     gold = player.gold,
+
+
+    c) after line     player.endurance.current = row.endurance;
+         add line     player.gold = row.gold;
+
+
+6. a) Delete "InventoryPanel" from Canvas/MainUI/MainUIPanel/
+   b) Drag the "InventoryPanelExtended.prefab" (Addons\GFF Gold\Prefabs\) to the Canvas/MainUI/MainUIPanel/
+
+
+7. Drag the "GFF NpcDialogue.prefab" (Addons\GFF NPC\Prefabs\) to the Canvas/
+
+8. Drag the "Npc Zombie.prefab" (Addons\GFF NPC\Prefabs\) to the scene
+
+9. Drag the "GFF NpcTrading Extended.prefab" (Addons\GFF Npc Trading\Prefabs\) to the Canvas/MainUI/MainUIPanel/
+
+
+10. Select the "Main Camera" object. In the inspector on script "CursorLocking.cs"
+      add element to Array "windows That Unlock Cursor"
+      * NpcDialoguePanel from (Canvas\GFF NpcDialogue\)
+
+
+11. Edit Npc on scene
+  * In inspector in script "Npc" add item for sell in array "Sale Items"
+
+
+13. Set a price for all products  in (Assets/uSurvival/Resources/Items/)

@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 
-public class CursorLocking : MonoBehaviour
+namespace uSurvival
 {
-    public GameObject[] windowsThatUnlockCursor;
-
-    bool AnyUnlockWindowActive()
+    public class CursorLocking : MonoBehaviour
     {
-        // check manually. Linq.Any() is HEAVY(!) on GC and performance
-        foreach (GameObject go in windowsThatUnlockCursor)
-            if (go.activeSelf)
-                return true;
-        return false;
-    }
+        public GameObject[] windowsThatUnlockCursor;
 
-    void Update()
-    {
-        Cursor.lockState = AnyUnlockWindowActive()
-                           ? CursorLockMode.None
-                           : CursorLockMode.Locked;
+        bool AnyUnlockWindowActive()
+        {
+            // check manually. Linq.Any() is HEAVY(!) on GC and performance
+            foreach (GameObject go in windowsThatUnlockCursor)
+                if (go.activeSelf)
+                    return true;
+            return false;
+        }
 
-        // OSX auto hides cursor while locked, Windows doesn't so do it manually
-        Cursor.visible = Cursor.lockState != CursorLockMode.Locked;
+        void Update()
+        {
+            Cursor.lockState = AnyUnlockWindowActive()
+                               ? CursorLockMode.None
+                               : CursorLockMode.Locked;
+
+            // OSX auto hides cursor while locked, Windows doesn't so do it manually
+            Cursor.visible = Cursor.lockState != CursorLockMode.Locked;
+        }
     }
 }

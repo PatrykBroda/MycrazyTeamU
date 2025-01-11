@@ -1,0 +1,65 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on asset store
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Friends
+Addon version : 1.0
+Date of creation / editing 28.10.2022
+Require Components : Addons Core
+Recommended Components : Mail Systems
+Compatible projects : uSurvival 1.85
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Link : http://u3d.as/2KKz
+
+
+Versions for other projects:
+ * uMMORPG : http://u3d.as/1BuM
+ * uMMORPG Remastered : http://u3d.as/1KDK
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+									  Installation and Configuration
+
+1. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+    a) "public class" change to "public partial class"
+
+
+2. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+    "public class" change to "public partial class"
+
+
+3. Drag the "GFF Friends.prefab" (Addons\GFF Friends\Prefabs\) to the Canvas/MainUI/MainUIPanel/
+
+
+4. Drag the "ButtonFriends.prefab" (Addons\GFF Friends System\Prefabs\) to the Canvas/MainUI/MainUIPanel/
+		
+
+5. Select the "GFF Friends" object.
+	 a)  Drag in "Button Open Friends" the object Canvas/MainUI/MainUIPanel/ButtonFriends
+
+
+6. Add to gameobject NetworkManager script Database Events
+  a) On Connected  -> Object - NetworkManager, Function - Database.Connect_Friends
+  b) On Character Load  -> Object - NetworkManager, Function - Database.CharacterLoad_Friends
+  c) On Character Save  -> Object - NetworkManager, Function - Database.CharacterSave_Friends
+
+
+7. Edit all player prefabs
+   a) add scripts "PlayerFriends"
+   b) in Inspector in script "PlayerFriends" Drag in field "Player" - this prefab
+   c) in Inspector in script "Player"  Drag in field "Friend" - this prefab
+
+
+
+  Extensions:
+1. if you want to use with Mail system addon https://assetstore.unity.com/packages/tools/integration/mail-system-for-ummorpg-ce-162306
+    from version 1.4 - it will automatically connect and start working

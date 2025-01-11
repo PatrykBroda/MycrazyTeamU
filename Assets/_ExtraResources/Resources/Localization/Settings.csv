@@ -1,0 +1,18 @@
+English;Russian
+
+Settings;Settings;Настройки;;;;
+Misc;Misc Settings;Основные;;;;
+Graphics;Graphics Settings;Графика;;;;
+Audio;Audio;Звуки;;;;
+Keys;Key Bindings;Управление
+Chat;Chat;Чат
+MiniMap;Mini Map;Миникарта
+MasterVolume;Master Volume;Общая Громкость
+UIVolume;UI Volume;Пользовательский интерфейс
+Music;Music Volume;Музыка
+SFX;SFX Volume;Звуки
+
+Resolution;Resolution;Разрешение
+Presets;Presets;Пресеты
+TextureQuality;Texture Quality;Качество текстур
+AntyAliasing;Anty Aliasing;Сглаживание

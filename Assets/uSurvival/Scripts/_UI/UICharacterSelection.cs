@@ -1,48 +1,67 @@
 ﻿// Simple character selection list. The charcter prefabs are known, so we could
 // easily show 3D models, stats, etc. too.
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using GFFAddons;
 
-public class UICharacterSelection : MonoBehaviour
+namespace uSurvival
 {
-    public UICharacterCreation uiCharacterCreation;
-    public UIConfirmation uiConfirmation;
-    public NetworkManagerSurvival manager; // singleton is null until update
-    public GameObject panel;
-    public UICharacterSelectionSlot slotPrefab;
-    public Transform content;
-    // available characters (set after receiving the message from the server)
-    public Button createButton;
-    public Button quitButton;
-
-    void Update()
+    public class UICharacterSelection : MonoBehaviour
     {
-        // show while in lobby and while not creating a character
-        if (manager.state == NetworkState.Lobby && !uiCharacterCreation.IsVisible())
+        public GameObject panel;
+        public Text textSelectCharacter;
+
+        // available characters (set after receiving the message from the server)
+        public Button startButton;
+        public Button deleteButton;
+        public Button createButton;
+        public Button quitButton;
+
+        [Header("Components")]
+        public NetworkManagerSurvival manager; // singleton is null until update
+        public UICharacterCreationExtended uiCharacterCreation;
+        public UIConfirmation uiConfirmation;
+        public AudioSource sound;
+
+        private void Start()
         {
-            panel.SetActive(true);
+            startButton.onClick.SetListener(() => {
+                // set client "ready". we will receive world messages from
+                // monsters etc. then.
+                NetworkClient.Ready();
 
-            // characters available message received already?
-            if (manager.charactersAvailableMsg.characters != null)
+                // send CharacterSelect message (need to be ready first!)
+                NetworkClient.Send(new CharacterSelectMsg { value = manager.selection });
+
+                // clear character selection previews
+                manager.ClearPreviews();
+
+                // make sure we can't select twice and call AddPlayer twice
+                panel.SetActive(false);
+            });
+
+            createButton.onClick.SetListener(() => {
+                sound.Play();
+                panel.SetActive(false);
+                uiCharacterCreation.Show();
+            });
+        }
+
+        private void Update()
+        {
+            // show while in lobby and while not creating a character
+            if (manager.state == NetworkState.Lobby && !uiCharacterCreation.IsVisible())
             {
-                // instantiate/destroy enough slots
-                CharactersAvailableMsg.CharacterPreview[] characters = manager.charactersAvailableMsg.characters;
-                UIUtils.BalancePrefabs(slotPrefab.gameObject, characters.Length, content);
+                panel.SetActive(true);
 
-                // refresh all
-                for (int i = 0; i < characters.Length; ++i)
+                // characters available message received already?
+                if (manager.charactersAvailableMsg.characters != null)
                 {
-                    GameObject prefab = manager.playerClasses.Find(p => p.name == characters[i].className);
-                    UICharacterSelectionSlot slot = content.GetChild(i).GetComponent<UICharacterSelectionSlot>();
+                    // instantiate/destroy enough slots
+                    CharactersAvailableMsg.CharacterPreview[] characters = manager.charactersAvailableMsg.characters;
 
-                    // name and icon
-                    slot.nameText.text = characters[i].name;
-                    slot.image.sprite = prefab.GetComponent<Player>().classIcon;
-
-                    // select button: calls AddPlayer which calls OnServerAddPlayer
+                    // start button: calls AddPLayer which calls OnServerAddPlayer
                     // -> button sends a request to the server
                     // -> if we press button again while request hasn't finished
                     //    then we will get the error:
@@ -50,38 +69,40 @@ public class UICharacterSelection : MonoBehaviour
                     //    which will happen sometimes at low-fps or high-latency
                     // -> internally ClientScene.AddPlayer adds to localPlayers
                     //    immediately, so let's check that first
-                    slot.selectButton.interactable = NetworkClient.localPlayer == null;
-                    int icopy = i; // needed for lambdas, otherwise i is Count
-                    slot.selectButton.onClick.SetListener(() => {
-                        // set client "ready". we will receive world messages from
-                        // monsters etc. then.
-                        NetworkClient.Ready();
+                    startButton.gameObject.SetActive(manager.selection != -1);
 
-                        // send CharacterSelect message (need to be ready first!)
-                        NetworkClient.Send(new CharacterSelectMsg{ value=icopy });
-
-                        // make sure we can't select twice and call AddPlayer twice
-                        panel.SetActive(false);
-                    });
-
-                    // delete button: sends delete message
-                    slot.deleteButton.onClick.SetListener(() => {
+                    // delete button
+                    deleteButton.gameObject.SetActive(manager.selection != -1);
+                    deleteButton.onClick.SetListener(() => {
+                        sbyte icopy = manager.selection;
+                        sound.Play();
                         uiConfirmation.Show(
-                            "Do you really want to delete <b>" + characters[icopy].name + "</b>?",
-                            () => { NetworkClient.Send(new CharacterDeleteMsg{value=icopy}); }
+                           Localization.Translate("Do you really want to delete") + "\n <b>" + characters[icopy].name + "</b>?",
+                            () => {
+                                Debug.Log("Delete send index " + icopy);
+                                NetworkClient.Send(new CharacterDeleteMsg { value = icopy });
+                            }
                         );
                     });
+
+                    createButton.interactable = characters.Length < manager.characterLimit;
+
+                    quitButton.onClick.SetListener(() => { NetworkManagerSurvival.Quit(); });
+
+                    textSelectCharacter.gameObject.SetActive(manager.selection == -1);
+
+                    //show create panel if characters count = 0
+                    if (characters.Length == 0)
+                    {
+                        manager.charactersAvailableMsg.characters = null;
+                        panel.SetActive(false);
+                        uiCharacterCreation.Show();
+                    }
+
+                    else if (characters.Length == 1) manager.selection = 0;
                 }
-
-                createButton.interactable = characters.Length < manager.characterLimit;
-                createButton.onClick.SetListener(() => {
-                    panel.SetActive(false);
-                    uiCharacterCreation.Show();
-                });
-
-                quitButton.onClick.SetListener(() => { NetworkManagerSurvival.Quit(); });
             }
+            else panel.SetActive(false);
         }
-        else panel.SetActive(false);
     }
 }

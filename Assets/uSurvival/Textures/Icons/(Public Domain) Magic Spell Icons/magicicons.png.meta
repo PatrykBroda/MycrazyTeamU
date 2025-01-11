@@ -186,7 +186,7 @@ TextureImporter:
       213: 21300120
     second: waves_cyan
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -203,12 +203,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -247,8 +246,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
-  swizzle: 50462976
-  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -260,7 +257,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -273,7 +269,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -286,7 +281,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
@@ -1584,69 +1578,70 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crystal: 21300016
-      fire: 21300018
-      flower: 21300014
-      lightning: 21300020
-      magicicons_0: 21300000
+      magicicons_56: 21300112
       magicicons_1: 21300002
-      magicicons_12: 21300024
-      magicicons_13: 21300026
       magicicons_14: 21300028
-      magicicons_15: 21300030
-      magicicons_16: 21300032
-      magicicons_17: 21300034
-      magicicons_18: 21300036
+      magicicons_44: 21300088
+      magicicons_32: 21300064
+      magicicons_42: 21300084
+      magicicons_37: 21300074
       magicicons_19: 21300038
-      magicicons_2: 21300004
-      magicicons_20: 21300040
+      magicicons_59: 21300118
+      magicicons_36: 21300072
+      magicicons_5: 21300010
+      magicicons_39: 21300078
+      magicicons_33: 21300066
+      magicicons_18: 21300036
+      magicicons_34: 21300068
+      magicicons_27: 21300054
+      magicicons_16: 21300032
+      magicicons_12: 21300024
+      magicicons_0: 21300000
+      magicicons_31: 21300062
+      magicicons_38: 21300076
+      magicicons_58: 21300116
+      magicicons_40: 21300080
+      magicicons_30: 21300060
+      magicicons_53: 21300106
+      magicicons_46: 21300092
+      magicicons_50: 21300100
       magicicons_21: 21300042
-      magicicons_22: 21300044
+      magicicons_4: 21300008
+      magicicons_43: 21300086
+      magicicons_51: 21300102
+      waves_cyan: 21300120
+      magicicons_54: 21300108
+      magicicons_17: 21300034
+      magicicons_35: 21300070
+      water: 21300022
+      magicicons_48: 21300096
       magicicons_23: 21300046
       magicicons_24: 21300048
-      magicicons_25: 21300050
-      magicicons_26: 21300052
-      magicicons_27: 21300054
+      magicicons_55: 21300110
       magicicons_28: 21300056
       magicicons_29: 21300058
       magicicons_3: 21300006
-      magicicons_30: 21300060
-      magicicons_31: 21300062
-      magicicons_32: 21300064
-      magicicons_33: 21300066
-      magicicons_34: 21300068
-      magicicons_35: 21300070
-      magicicons_36: 21300072
-      magicicons_37: 21300074
-      magicicons_38: 21300076
-      magicicons_39: 21300078
-      magicicons_4: 21300008
-      magicicons_40: 21300080
-      magicicons_41: 21300082
-      magicicons_42: 21300084
-      magicicons_43: 21300086
-      magicicons_44: 21300088
-      magicicons_45: 21300090
-      magicicons_46: 21300092
+      magicicons_20: 21300040
+      magicicons_22: 21300044
       magicicons_47: 21300094
-      magicicons_48: 21300096
-      magicicons_49: 21300098
-      magicicons_5: 21300010
-      magicicons_50: 21300100
-      magicicons_51: 21300102
+      magicicons_25: 21300050
       magicicons_52: 21300104
-      magicicons_53: 21300106
-      magicicons_54: 21300108
-      magicicons_55: 21300110
-      magicicons_56: 21300112
+      fire: 21300018
+      magicicons_2: 21300004
+      lightning: 21300020
       magicicons_57: 21300114
-      magicicons_58: 21300116
-      magicicons_59: 21300118
-      water: 21300022
+      magicicons_15: 21300030
+      magicicons_45: 21300090
+      magicicons_41: 21300082
+      flower: 21300014
+      magicicons_49: 21300098
+      magicicons_13: 21300026
+      crystal: 21300016
+      magicicons_26: 21300052
       waves: 21300012
-      waves_cyan: 21300120
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

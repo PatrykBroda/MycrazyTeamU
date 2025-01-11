@@ -1,0 +1,77 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Menu
+Addon version : 1.0
+Date of creation / editing 11.01.2022
+Require Components / Addons : Sounds, Texture
+Recommended Addons : none
+Compatible projects : uSurvival 1.84
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Recommended version Unity 2019.4.34
+Link : http://u3d.as/2K4b
+
+
+Versions for other projects:
+ * uMMORPG http://u3d.as/1vUi
+ * uMMORPG Remastered  https://u3d.as/1Q6B
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Drag the "GFF Menu.prefab" to the canvas element so canvas is the parent.
+
+
+2. The menu opens when you press a key on the keyboard "Escape"
+
+
+3. Select the "GFF Menu" object. In the inspector on script "UIMenuHelper", there are some new settings.
+    a) Drag in "Manager" the "NetworkManager" gameobject
+	b) Add or Edit Menu Buttons in list "Menu list"
+
+
+4. Edit the Player.cs script in “Assets/uMMORPG/Scripts”. 
+     find the line      guildOverlay.text = !string.IsNullOrWhiteSpace(guild.name) ? guildOverlayPrefix + guild.name + guildOverlaySuffix : "";
+   Replace it with      guildOverlay.text = !string.IsNullOrWhiteSpace(guild.name) && UIMenuOptions.singleton.showGuildNames ? guildOverlayPrefix + guild.name + guildOverlaySuffix : "";
+
+
+5. Select all Gameobjects in Canvas (Inventory, Equipment, CharacterInfo, Skills ....) in inspector settings "HotKey" set to "None"
+
+
+
+
+How the audio manager works :
+1) Music - Starts to play when a player comes in from Lobby to World
+
+2) How to add sounds to your project
+      Example 1 : sound running character
+	     Edit the Player.cs script in “Assets/uMMORPG/Scripts”
+		 after line     TargetNearest();
+		   add line     if (state == "MOVING") GffUISoundManager.singleton.PlaySound(GffUISoundManager.singleton.PlayerRun, this.transform.position);
+
+
+	  Example 2 : sound of hitting the shield
+	  	 Edit the Entity.cs script in “Assets/uMMORPG/Scripts”
+		     find the line     popup.GetComponentInChildren<TextMeshPro>().text = "<i>Block!</i>";
+
+		   Replace it with    {
+                                   popup.GetComponentInChildren<TextMeshPro>().text = "<i>Block!</i>";
+                                   GffUISoundManager.singleton.PlaySound(GffUISoundManager.singleton.SoundBlock, this.transform.position);
+                              }
+
+
+	  Example 3 : UI elements (Skill Upgrade)
+	     Edit the UISkills.cs script in “Assets/uMMORPG/Scripts/_UI”
+		 after line     player.CmdUpgradeSkill(icopy);
+		   add line     player.PlaySoundSkillUpgrade();

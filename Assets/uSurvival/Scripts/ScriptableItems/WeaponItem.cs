@@ -3,24 +3,28 @@
 using System.Text;
 using UnityEngine;
 
-public abstract class WeaponItem : UsableItem
+namespace uSurvival
 {
-    [Header("Weapon")]
-    public float attackRange = 20; // attack range
-    public int damage = 10;
-    public string upperBodyAnimationParameter;
-
-    // usage: disable inventory usage for weapons. only from hotbar.
-    // (right clicking a rifle in the inventory to shoot it would be odd)
-    public override Usability CanUseInventory(Player player, int inventoryIndex) { return Usability.Never; }
-    public override void UseInventory(Player player, int inventoryIndex) {}
-
-    // tooltip
-    public override string ToolTip()
+    public abstract partial class WeaponItem : EquipmentItem
     {
-        StringBuilder tip = new StringBuilder(base.ToolTip());
-        tip.Replace("{ATTACKRANGE}", attackRange.ToString());
-        tip.Replace("{DAMAGE}", damage.ToString());
-        return tip.ToString();
+        [Header("Weapon")]
+        public float attackRange = 20; // attack range
+        public short damage = 10;
+        public string upperBodyAnimationParameter;
+        public Sprite imageHorizontal;
+
+        // usage: disable inventory usage for weapons. only from hotbar.
+        // (right clicking a rifle in the inventory to shoot it would be odd)
+        //public override Usability CanUseInventory(Player player, int inventoryIndex) { return Usability.Never; }
+        //public override void UseInventory(Player player, int inventoryIndex) {}
+
+        // tooltip
+        public override string ToolTip()
+        {
+            StringBuilder tip = new StringBuilder(base.ToolTip());
+            tip.Replace("{ATTACKRANGE}", attackRange.ToString());
+            tip.Replace("{DAMAGE}", Localization.Translate("Damage") + ": " + damage.ToString());
+            return tip.ToString();
+        }
     }
 }

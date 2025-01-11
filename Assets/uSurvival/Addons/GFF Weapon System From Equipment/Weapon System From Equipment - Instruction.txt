@@ -1,0 +1,191 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+Any suggestions and questions you can send us by Email "GameFunSPB@gmail.com"
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+
+
+Addon name : Weapon System From Equipment
+Addon version : 1.0
+Date of creation / editing 01.02.2023
+Require Components : none
+Recommended Components : none
+Compatible projects : uSurvival 1.85
+Recommendations : Test the package on a uSurvival without changes.
+Recommended version Unity 2021.3.17
+Link : 
+
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. Edit the "PlayerEquipment.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerEquipment : Equipment
+       replace it on        public partial class PlayerEquipment : Equipment
+
+  b)      after line        RefreshLocation(info.location, slot);
+            add line        RefreshLocations();
+
+
+2. Edit the "PlayerReloading.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerReloading : NetworkBehaviourNonAlloc
+       replace it on        public partial class PlayerReloading : NetworkBehaviourNonAlloc
+
+  b)       Find line        ItemSlot slot = hotbar.slots[hotbar.selection];
+       replace it on        ItemSlot slot = equipment.slots[equipment.selection];
+
+  c)       Find line        CmdReloadWeaponOnHotbar(inventoryIndex, hotbar.selection);
+       replace it on        CmdReloadWeaponOnEquipment(inventoryIndex, equipment.selection);
+
+
+3. Edit the "ShouldersLookAt.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class ShouldersLookAt : MonoBehaviour
+       replace it on        public partial class ShouldersLookAt : MonoBehaviour
+
+  b)       Find line        if (hotbar.GetCurrentUsableItemOrHands().shoulderLookAtWhileHolding)
+       replace it on        if (equipment.GetCurrentUsableItemOrHands().shoulderLookAtWhileHolding)
+
+
+
+4. Edit the "PlayerConstruction.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class PlayerConstruction : NetworkBehaviourNonAlloc
+       replace it on        public partial class PlayerConstruction : NetworkBehaviourNonAlloc
+
+  b)       Find line        UsableItem itemData = hotbar.GetCurrentUsableItemOrHands();
+       replace it on        UsableItem itemData = equipment.GetCurrentUsableItemOrHands();
+
+
+5. Edit the "Zoom.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class Zoom : NetworkBehaviourNonAlloc
+       replace it on        public partial class Zoom : NetworkBehaviourNonAlloc
+
+  b)       Find line        UsableItem itemData = hotbar.GetCurrentUsableItemOrHands();
+       replace it on        UsableItem itemData = equipment.GetCurrentUsableItemOrHands();
+
+
+6. Edit the "EquipmentItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class EquipmentItem : UsableItem
+       replace it on        public partial class EquipmentItem : UsableItem
+
+  b)       Find line        return FindEquipableSlotFor(player.equipment, inventoryIndex) != -1
+       replace it on        return FindEquipableSlotForExtended(player.equipment, inventoryIndex) != -1
+
+  c)       Find line        int slot = FindEquipableSlotFor(player.equipment, inventoryIndex);
+       replace it on        int slot = FindEquipableSlotForExtended(player.equipment, inventoryIndex);
+
+
+
+7. Edit the "UsableItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public abstract class UsableItem : ScriptableItem
+       replace it on        public abstract partial class UsableItem : ScriptableItem
+
+
+8. Edit the "WeaponItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public abstract class WeaponItem : UsableItem
+       replace it on        public abstract class WeaponItem : EquipmentItem
+
+  b) comment out these lines        public override Usability CanUseInventory(Player player, int inventoryIndex) { return Usability.Never; }
+                                    public override void UseInventory(Player player, int inventoryIndex) {}
+
+
+9. Edit the "RangedWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public abstract class RangedWeaponItem : WeaponItem
+       replace it on        public abstract partial class RangedWeaponItem : WeaponItem
+
+
+10. Edit the "RangedRaycastWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class RangedRaycastWeaponItem : RangedWeaponItem
+       replace it on        public partial class RangedRaycastWeaponItem : RangedWeaponItem
+
+
+11. Edit the "RangedRaycastWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class RangedProjectileWeaponItem : RangedWeaponItem
+       replace it on        public partial class RangedProjectileWeaponItem : RangedWeaponItem
+
+
+12. Edit the "StructureItem.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        public class StructureItem : UsableItem
+       replace it on        public partial class StructureItem : EquipmentItem
+
+
+13. Edit the "PotionItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public class PotionItem : UsableItem
+       replace it on        public partial class PotionItem : UsableItem
+
+
+14. Edit the "MeleeWeaponItem.cs"  Script in “Assets/uSurvival/Scripts/ScriptableItems/" 
+  a)       Find line        public class MeleeWeaponItem : WeaponItem
+       replace it on        public partial class MeleeWeaponItem : WeaponItem
+
+
+15. Edit the "Database.cs"  Script in   Assets/uSurvival/Scripts/
+  a)       Find line        public class Database : MonoBehaviour
+       replace it on        public partial class Database : MonoBehaviour
+
+  b)      after line        connection.CreateTable<character_hotbar_selection>();
+            add line        connection.CreateTable<character_equipment_selection>();
+
+  c) comment out these lines        LoadHotbar(player.hotbar);
+                                    SaveHotbar(player.hotbar);
+
+  d)       Find line        LoadHotbarSelection(player.hotbar);
+       replace it on        LoadEquipmentSelection(player.equipment);
+
+  e)       Find line        SaveHotbarSelection(player.hotbar);
+       replace it on        SaveEquipmentSelection(player.equipment);
+
+
+16. Edit the "UIHud.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
+       replace it on        ItemSlot slot = player.equipment.slots[player.equipment.selection];
+
+
+17. Edit the "UIProgressBar.cs"  Script in “Assets/uSurvival/Scripts/" 
+  a)       Find line        ItemSlot slot = player.hotbar.slots[player.hotbar.selection];
+       replace it on        ItemSlot slot = player.equipment.slots[player.equipment.selection];
+
+
+18. Edit all player prefabs
+  *) in Inspector in script "PlayerEquipment" drag in fields "Player, Movement, Reloading, Look, AudioSource" this prefab
+  *) in Inspector in script "PlayerEquipment" in field "Hands" select item "Hands (Punching)"
+  *) in Inspector in script "PlayerEquipment" in field "Model Location" copy from script "PlayerHotbar"
+  *) in Inspector in script "PlayerEquipment" edit "SlotInfo"
+    - add 4 slots "WeaponOnehand", "WeaponTwohand", "WeaponTwohand"  and "Structure"
+    - set the order of the slots so that the weapon comes first and then the armor follows
+
+  *) in Inspector in script "PlayerReloading" drag in field "Daily Rewards" this prefab
+  *) in Inspector in script "PlayerConstruction" drag in field "Equipment" this prefab
+  *) in Inspector in script "ShouldersLookAt" drag in field "Equipment" this prefab
+  *) in Inspector in script "Zoom" drag in field "Equipment" this prefab
+  *) remove script "PlayerHotbar"
+
+
+
+19. Edit the "Player.cs"  Script in   Assets/uSurvival/Scripts/
+  a)       Find line        animator.SetBool("UPPERBODY_HANDS", hotbar.slots[hotbar.selection].amount == 0);
+       replace it on        animator.SetBool("UPPERBODY_HANDS", equipment.slots[equipment.selection].amount == 0);
+
+
+  b)      Find lines        hotbar.slots[hotbar.selection].amount > 0 &&
+                            hotbar.slots[hotbar.selection].item.data is WeaponItem)
+
+       replace it on        equipment.slots[equipment.selection].amount > 0 &&
+                            equipment.slots[equipment.selection].item.data is WeaponItem)
+
+
+  c)       Find line        WeaponItem weapon = (WeaponItem)hotbar.slots[hotbar.selection].item.data;
+       replace it on        WeaponItem weapon = (WeaponItem)equipment.slots[equipment.selection].item.data;
+
+
+20. Select the "Hotbar" object in Canvas. 
+   a)  Remove script "UIHotbar"
+   b)  Add script "UIWeaponSystemFromEquipment"
+
+
+
