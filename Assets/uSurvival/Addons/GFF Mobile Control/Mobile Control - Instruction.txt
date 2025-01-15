@@ -1,0 +1,108 @@
+Thank you for your purchase. 
+Our other projects you can see https://assetstore.unity.com/publishers/37837
+We are waiting for your feedback on assetstore
+Best wishes the development team GFF
+Support us on patreon  https://www.patreon.com/GameFunSPB
+Contacts : email "GameFunSPB@gmail.com"; Discord  "GameFunSPB#2037"
+
+
+Addon name : Mobile Control
+Addon version : 1.2
+Date of creation / editing 09.07.2024
+Require Components : Joystick Pack
+Recommended Components : AIM, Weapon Modules
+Compatible projects : uSurvival 1.87
+Recommendations : Test the addon on a clean version uSurvival without changes.
+Link : http://u3d.as/35Qp
+
+Versions for other projects:
+ * uMMORPG Remastered 2D : http://u3d.as/2DGE
+
+All Addons for uMMORPG Classic http://u3d.as/25bQ
+All Addons for uMMORPG Remastered : https://u3d.as/2AEs
+All Addons for uMMORPG 2D Remastered : https://u3d.as/2FJ8
+All Addons for uSurvival : https://u3d.as/38bS
+
+
+                                      Installation and Configuration
+
+1. download and install the joystick asset
+    https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631
+
+
+2. Edit the "PlayerMovement.cs"  Script in “/Scripts/"
+   a)   find line      public class PlayerMovement : NetworkBehaviour
+        change to      public partial class PlayerMovement : NetworkBehaviour
+
+
+   b)  find lines     horizontal = Input.GetAxis("Horizontal");
+                      vertical = Input.GetAxis("Vertical");                     
+
+        change to     horizontal = joystick.Horizontal;
+                      vertical = joystick.Vertical;
+
+
+   c)   find line      bool jumpKeyPressed;
+        change to      [HideInInspector] public bool jumpKeyPressed;
+
+
+   d)   fully coment void "Update"
+
+
+3. Edit the "PlayerLook.cs"  Script in “/Scripts/"
+   a)   find line      public class PlayerLook : NetworkBehaviour
+        change to      public partial class PlayerLook : NetworkBehaviour
+
+
+   b)   find line      if (health.current > 0 && Cursor.lockState == CursorLockMode.Locked)
+        change to      if (health.current > 0)
+
+
+   c)  find lines     float xExtra = Input.GetAxis("Mouse X") * XSensitivity;
+                      float yExtra = Input.GetAxis("Mouse Y") * YSensitivity;                     
+
+        change to     float xExtra = joystick.Horizontal * XSensitivity;
+                      float yExtra = joystick.Vertical * YSensitivity;
+
+
+4. Edit the "Player.cs"  Script in “/Scripts/"
+   a)   find line      public class Player : Entity
+        change to      public partial class Player : Entity
+
+
+5. Edit the "PlayerHotbar.cs"  Script in “/Scripts/"
+   a)   fully coment void "Update"
+
+   b)   find line      void TryUseItem(UsableItem itemData)
+        change to      public void TryUseItem(UsableItem itemData)
+
+
+6. Edit the "Zoom.cs"  Script in “/Scripts/"
+   a)   fully coment void "Update"
+
+   b)   find line      void AssignFieldOfView(float value)
+        change to      public void AssignFieldOfView(float value)
+
+   c)   find line      float defaultFieldOfView;
+        change to      public float defaultFieldOfView;
+
+
+7. Drag the "GFF Mobile Control.prefab"  (Addons\GFF Mobile Control\Prefabs\) to the canvas element so canvas is the parent.
+   * after "MainUI" object
+
+
+8. Select the "GFF Mobile Control" object.
+ a) Drag in "PanelMain"  MainUIPanel from (Canvas\MainUI\)
+
+
+9. a) Disable or delete "HotkeyInfo" 
+   b) Disable or delete "Hotbar" 
+   c) Move Chat UI to top left position
+
+
+10. Select the "Main Camera" object.
+ a) Disable script "CursorLocking"
+
+
+11. Edit all player prefabs
+  a) in Inspector in script "Player" drag to "zoom" from this prefab
