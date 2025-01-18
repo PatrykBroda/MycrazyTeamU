@@ -80,7 +80,7 @@ namespace uSurvival
         [Header("Jumping")]
         public float jumpSpeed = 7;
         [HideInInspector] public float jumpLeg;
-        bool jumpKeyPressed;
+        [HideInInspector] public bool jumpKeyPressed;
 
         [Header("Falling")]
         public float fallMinimumMagnitude = 6; // walking down steps shouldn't count as falling and play no falling sound.
@@ -137,6 +137,8 @@ namespace uSurvival
         // last valid move's velocity here.
         public Vector3 velocity { get; private set; }
 
+        public Joystick joystick;
+
         void Awake()
         {
             camera = Camera.main;
@@ -163,6 +165,9 @@ namespace uSurvival
             {
                 horizontal = Input.GetAxis("Horizontal");
                 vertical = Input.GetAxis("Vertical");
+
+                horizontal = joystick.Horizontal;
+                vertical = joystick.Vertical;
             }
 
             // normalize ONLY IF needs to be normalized (if length>1).
@@ -764,6 +769,14 @@ namespace uSurvival
         // use Update to check Input
         void Update()
         {
+
+            if (joystick == null)
+            {
+                GameObject joystickObject = GameObject.Find("Variable Joystick Move");
+                if (joystickObject != null)
+                    joystick = joystickObject.GetComponent<Joystick>();
+            }
+
             // local player?
             if (isLocalPlayer)
             {
